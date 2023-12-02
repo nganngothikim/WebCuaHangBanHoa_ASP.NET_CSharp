@@ -1,0 +1,58 @@
+﻿@{
+    ViewBag.Title = "PhieuNhap";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+
+   <!-- Phiếu nhập -->
+<!-- Page Content  -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách phiếu nhập</h4>
+                        </div>
+                        <div class="iq-card-header-toolbar d-flex align-items-center">
+                            <a href="/QuanLy/ThemDanhSachNhap/" class="btn btn-primary">Thêm mới</a>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class="table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%;">Mã phiếu</th>
+                                        <th style="width: 20%;">Người lập</th>
+                                        <th style="width: 20%;">Nhà cung cấp</th>
+                                        <th style="width: 20%;">Ngày lập</th>
+                                        <th style="width: 20%;">Tổng tiền</th>
+                                        <th style="width: 10%;">Hoạt động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>
+                                            Người lập
+                                        </td>
+                                        <td>Nhà cung cấp</td>
+                                        <td>22222222</td>
+                                        <td>23455555</td>
+                                        <td>
+                                            <div class="flex align-items-center list-user-action">
+                                                <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết" href="/QuanLy/ChiTietPhieuNhap/"><i class="ri-eye-line"></i></a>
+                                                <!-- <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a> -->
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

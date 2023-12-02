@@ -1,0 +1,40 @@
+﻿@{
+    ViewBag.Title = "ThemChuDe";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+
+
+@if (ViewBag.ThongBao_ChuDe != null)
+{
+    <script>
+        // Đoạn mã JavaScript để hiển thị thông báo alert
+        alert("@ViewBag.ThongBao_ChuDe");
+    </script>
+}
+  <!-- Thêm Chủ đề  -->
+<!-- Page Content  -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Thêm danh mục chủ đề</h4>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <form action="/QuanLy/ThemChuDe" method="post">
+                            <div class="form-group">
+                                <label>Tên chủ đề:</label>
+                                <input type="text" class="form-control" name="ten">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                            <button type="reset" class="btn btn-danger"><a href="/QuanLy/ChuDe" class="text-light">Quay về</a></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

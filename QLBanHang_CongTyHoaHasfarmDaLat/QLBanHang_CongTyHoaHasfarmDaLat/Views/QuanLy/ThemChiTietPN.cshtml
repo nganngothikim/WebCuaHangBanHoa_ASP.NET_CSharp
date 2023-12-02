@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "ThemChiTietPN";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+
+<!-- Thêm Chi tiết phiếu nhập -->
+<!-- Page Content  -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Lập chi tiết phiếu nhập: <span class="text-primary">PN005</span></h4>
+                        </div>
+
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class=" table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 25%;">Sản phẩm </th>
+                                        <th style="width: 25%;">Đơn giá nhập</th>
+                                        <th style="width: 25%;">Số lượng nhập</th>
+                                        <th style="width: 25%;">Thành tiền</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>Reading on the Worlds</td>
+                                        <td>10000</td>
+                                        <td>
+                                            <form>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control" id="sl" value="">
+                                                </div>
+                                            </form>
+                                        </td>
+                                        <td>9987765</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <a href="/QuanLy/ThemDanhSachNhap/" class="btn btn-danger">Quay lại</a>
+                            </div>
+                            <div class="iq-card-header-toolbar d-flex align-items-center">
+                                <a href="/QuanLy/ChiTietPhieuNhap" class="btn btn-primary">Hoàn thành</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

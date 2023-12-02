@@ -1,0 +1,22 @@
+﻿@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model TaiKhoan
+<ul class="dropdown-submenu dropdown-hover">
+
+    @if (Model != null)
+    {
+        <li style="color: #E72463; padding-left:20px; font-weight: 500;">Xin chào, @Model.Username</li>
+        <li><a href="/TaiKhoan/DangXuat"><i class="fa fa-sign-out" aria-hidden="true"></i>Đăng Xuất</a></li>
+    }
+    else
+    {
+                <li><a href="/TaiKhoan/DangXuat"><i class="fa fa-sign-in"></i>Đăng Nhập</a></li>
+    }
+</ul>   
+
+
+
+
+
+
+
+

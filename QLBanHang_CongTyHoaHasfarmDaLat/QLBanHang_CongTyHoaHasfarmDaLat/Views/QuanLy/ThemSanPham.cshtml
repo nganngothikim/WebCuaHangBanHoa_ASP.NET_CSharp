@@ -1,0 +1,87 @@
+﻿@{
+    ViewBag.Title = "ThemSanPham";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<ChuDe>
+<!-- Thêm Sản Phẩm -->
+<!-- Page Content  -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Thêm Sản Phẩm</h4>
+                        </div>
+                    </div>
+                    <div class="iq-card-body">
+                        <form action="/QuanLy/ThemSanPham" method="post">
+                            <div class="form-group">
+                                <label>Tên sản phẩm:</label>
+                                <input type="text" class="form-control" name="tensp">
+                            </div>
+                            <div class="form-group">
+                                <label>Danh mục chủ đề:</label>
+                                <select class="form-control" id="exampleFormControlSelect1" name="chude">
+                                    <option selected disabled>Danh mục chủ đề</option>
+                                    @foreach (var item in Model)
+                                    {
+                                        <option>@item.TenChuDe</option>
+                                    }
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Mô tả:</label>
+                                <textarea class="form-control" rows="4" name="mota"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Giá bán:</label>
+                                <input type="number" class="form-control" name="gia">
+                            </div>
+                            <div class="form-group">
+                                <label>Đơn vị tính:</label>
+                                <input type="text" class="form-control" name="dvt">
+                            </div>
+                            <div class="form-group">
+                                <label>Hình ảnh 1:</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" accept="image/png, image/jpeg" name="hinh1">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Hình ảnh 2:</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" accept="image/png, image/jpeg" name="hinh2">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Hình ảnh 3:</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" accept="image/png, image/jpeg" name="hinh3">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label>Hình ảnh 4:</label>
+                                <div class="custom-file">
+                                    <input type="file" class="custom-file-input" accept="image/png, image/jpeg" name="hinh4">
+                                    <label class="custom-file-label">Choose file</label>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label class="d-block">Trạng thái:</label>
+                                <input type="checkbox" name="tt"/>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Gửi</button>
+                            <button type="reset" class="btn btn-danger"><a href="/QuanLy/SanPham/" class="text-light">Quay về</a></button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

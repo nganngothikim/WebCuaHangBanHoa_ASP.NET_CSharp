@@ -1,0 +1,13 @@
+﻿@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<ChuDe>
+@{int i = 1;}
+@foreach (var item in Model)
+{
+    <li class="menu-item-has-children">
+        <a href="/KhachHang/LocTheoChuDe/CD@(i.ToString("D2"))">
+            <img width="20" src="/Image/hoa@(i).png">
+            <span>@item.TenChuDe</span>
+        </a>    
+    </li>
+    i++;
+}

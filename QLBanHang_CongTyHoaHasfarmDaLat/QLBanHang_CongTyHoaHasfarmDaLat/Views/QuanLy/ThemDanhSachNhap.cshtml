@@ -1,0 +1,64 @@
+﻿@{
+    ViewBag.Title = "ThemDanhSachNhap";
+    Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
+}
+
+<!-- Chọn danh sách nhập -->
+<!-- Page Content  -->
+<div id="content-page" class="content-page">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="iq-card">
+                    <div class="iq-card-header d-flex justify-content-between">
+                        <div class="iq-header-title">
+                            <h4 class="card-title">Danh sách nhập</h4>
+                        </div>
+
+                    </div>
+                    <div class="iq-card-body">
+                        <div class="table-responsive">
+                            <table class=" table table-striped table-bordered" style="width:100%">
+                                <thead>
+                                    <tr>
+                                        <th style="width: 10%;">Mã SP</th>
+                                        <th style="width: 15%;">Hình ảnh</th>
+                                        <th style="width: 15%;">Tên sản phẩm</th>
+                                        <th style="width: 15%;">Chủ đề</th>
+                                        <th style="width: 10%;">SL Tồn</th>
+                                        <th style="width: 10%;">Trạng thái</th>
+                                        <th style="width: 10%;">Nhập hàng</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td><img class="img-fluid rounded" src="images/browse-books/01.jpg" alt=""></td>
+                                        <td>Reading on the Worlds</td>
+                                        <td>General Books</td>
+                                        <td>100</td>
+                                        <td>Còn hàng</td>
+                                        <td>
+                                            <div class="custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="email01">
+                                                <label class="custom-control-label" for="email01">Nhập</label>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div class="iq-card-header d-flex justify-content-between">
+                            <div class="iq-header-title">
+                                <a href="/QuanLy/PhieuNhap/" class="btn btn-danger">Quay lại</a>
+                            </div>
+                            <div class="iq-card-header-toolbar d-flex align-items-center">
+                                <a href="/QuanLy/ThemChiTietPN/" class="btn btn-primary">Tạo danh sách</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
