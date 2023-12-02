@@ -852,6 +852,7 @@
     <Content Include="Views\TaiKhoan\DangNhap.cshtml" />
     <Content Include="Views\TaiKhoan\DangKy.cshtml" />
     <Content Include="Views\TaiKhoan\TaiKhoan_Dropdown.cshtml" />
+    <Content Include="Views\KhachHang\XacNhanThongTinDatHang.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

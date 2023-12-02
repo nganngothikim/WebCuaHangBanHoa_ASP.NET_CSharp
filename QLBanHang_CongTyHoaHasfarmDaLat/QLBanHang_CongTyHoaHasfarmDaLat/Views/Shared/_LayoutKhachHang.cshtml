@@ -588,6 +588,7 @@
 </body>
 </html>
 <script>
+    //Up
     function updateQuantity(input, maSP) {
         var soluong = $(input).val(); // Sử dụng jQuery để lấy giá trị của input
         var data = {
@@ -636,5 +637,15 @@
         updateQuantity(input, maSP);
     }
 
+    function kiemTraRadioDaChon() {
+        var thanhToanOnline = document.querySelector('input[name="thanhtoan"][value="true"]').checked;
+        var shipCOD = document.querySelector('input[name="thanhtoan"][value="false"]').checked;
 
+        if (!thanhToanOnline && !shipCOD) {
+            alert("Vui lòng chọn phương thức thanh toán.");
+            return false; // Ngăn chặn chuyển hướng
+        }
+
+        return true; // Cho phép chuyển hướng
+    }
 </script>
