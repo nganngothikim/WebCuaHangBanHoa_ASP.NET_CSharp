@@ -5,8 +5,8 @@
       <Column Name="SoHoaDon" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaSP" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongBan" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="GiaBan" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ThanhTien" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="GiaBan" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThanhTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="HoaDon_ChiTietHoaDon" Member="HoaDon" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="HoaDon" IsForeignKey="true" />
       <Association Name="SanPham_ChiTietHoaDon" Member="SanPham" ThisKey="MaSP" OtherKey="MaSP" Type="SanPham" IsForeignKey="true" />
     </Type>
@@ -14,7 +14,7 @@
   <Table Name="dbo.ThongTinThanhToan" Member="ThongTinThanhToans">
     <Type Name="ThongTinThanhToan">
       <Column Name="MaGiaoDich" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenNganHang" Type="System.String" DbType="VarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="TenNganHang" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
       <Column Name="SoTaiKhoan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="SoHoaDon" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Association Name="HoaDon_ThongTinThanhToan" Member="HoaDon" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="HoaDon" IsForeignKey="true" />
@@ -25,8 +25,8 @@
       <Column Name="MaPhieuDat" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaSP" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongDat" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DonGiaDat" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ThanhTien" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="DonGiaDat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThanhTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="PhieuDat_ChiTietPhieuDat" Member="PhieuDat" ThisKey="MaPhieuDat" OtherKey="MaPhieuDat" Type="PhieuDat" IsForeignKey="true" />
       <Association Name="SanPham_ChiTietPhieuDat" Member="SanPham" ThisKey="MaSP" OtherKey="MaSP" Type="SanPham" IsForeignKey="true" />
     </Type>
@@ -36,8 +36,8 @@
       <Column Name="MaPhieuNhap" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaSP" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoLuongNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="DonGiaNhap" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="ThanhTien" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="DonGiaNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ThanhTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="PhieuNhap_ChiTietPhieuNhap" Member="PhieuNhap" ThisKey="MaPhieuNhap" OtherKey="MaPhieuNhap" Type="PhieuNhap" IsForeignKey="true" />
       <Association Name="SanPham_ChiTietPhieuNhap" Member="SanPham" ThisKey="MaSP" OtherKey="MaSP" Type="SanPham" IsForeignKey="true" />
     </Type>
@@ -53,6 +53,8 @@
     <Type Name="GiaoHang">
       <Column Name="MaVanDon" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="SoHoaDon" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="DiaChiGiaoHang" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NgayGiao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Association Name="HoaDon_GiaoHang" Member="HoaDon" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="HoaDon" IsForeignKey="true" />
@@ -84,8 +86,7 @@
       <Column Name="MaKhachHang" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NgayLap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="PhuongThucThanhToan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="DiaChiGiaoHang" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="TongTien" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TongTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="HoaDon_ChiTietHoaDon" Member="ChiTietHoaDons" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="ChiTietHoaDon" />
       <Association Name="HoaDon_ThongTinThanhToan" Member="ThongTinThanhToans" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="ThongTinThanhToan" />
       <Association Name="HoaDon_GiaoHang" Member="GiaoHangs" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="GiaoHang" />
@@ -98,7 +99,7 @@
       <Column Name="MaKhachHang" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenKhachHang" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="HoatDong" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Username" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
@@ -111,8 +112,8 @@
     <Type Name="KhuyenMai">
       <Column Name="NgayBatDau" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="NgayKetThuc" Type="System.DateTime" DbType="Date NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TiLeKhuyenMai" Type="System.Single" DbType="Real" CanBeNull="true" />
-      <Column Name="GiamGia" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TiLeKhuyenMai" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="GiamGia" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="MaSP" Type="System.String" DbType="VarChar(10) NOT NULL" CanBeNull="false" />
       <Association Name="SanPham_KhuyenMai" Member="SanPham" ThisKey="MaSP" OtherKey="MaSP" Type="SanPham" IsForeignKey="true" />
     </Type>
@@ -122,7 +123,7 @@
       <Column Name="MaNhaCungCap" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenNhaCungCap" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
-      <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Association Name="NhaCungCap_PhieuDat" Member="PhieuDats" ThisKey="MaNhaCungCap" OtherKey="MaNhaCungCap" Type="PhieuDat" />
       <Association Name="NhaCungCap_PhieuNhap" Member="PhieuNhaps" ThisKey="MaNhaCungCap" OtherKey="MaNhaCungCap" Type="PhieuNhap" />
@@ -134,7 +135,7 @@
       <Column Name="TenNhanVien" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="NgaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(11)" CanBeNull="true" />
+      <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="Email" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
       <Column Name="HoatDong" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="Username" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
@@ -149,7 +150,8 @@
       <Column Name="MaPhieuDat" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="MaNhanVien" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="MaNhaCungCap" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
-      <Column Name="TongTien" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="NgayDat" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="TongTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="PhieuDat_ChiTietPhieuDat" Member="ChiTietPhieuDats" ThisKey="MaPhieuDat" OtherKey="MaPhieuDat" Type="ChiTietPhieuDat" />
       <Association Name="NhaCungCap_PhieuDat" Member="NhaCungCap" ThisKey="MaNhaCungCap" OtherKey="MaNhaCungCap" Type="NhaCungCap" IsForeignKey="true" />
       <Association Name="NhanVien_PhieuDat" Member="NhanVien" ThisKey="MaNhanVien" OtherKey="MaNhanVien" Type="NhanVien" IsForeignKey="true" />
@@ -161,7 +163,7 @@
       <Column Name="MaNhanVien" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="MaNhaCungCap" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
       <Column Name="NgayNhap" Type="System.DateTime" DbType="Date" CanBeNull="true" />
-      <Column Name="TongTien" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="TongTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="PhieuNhap_ChiTietPhieuNhap" Member="ChiTietPhieuNhaps" ThisKey="MaPhieuNhap" OtherKey="MaPhieuNhap" Type="ChiTietPhieuNhap" />
       <Association Name="NhaCungCap_PhieuNhap" Member="NhaCungCap" ThisKey="MaNhaCungCap" OtherKey="MaNhaCungCap" Type="NhaCungCap" IsForeignKey="true" />
       <Association Name="NhanVien_PhieuNhap" Member="NhanVien" ThisKey="MaNhanVien" OtherKey="MaNhanVien" Type="NhanVien" IsForeignKey="true" />
@@ -172,7 +174,7 @@
       <Column Name="MaSP" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenSP" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="MoTa" Type="System.String" DbType="NVarChar(2000)" CanBeNull="true" />
-      <Column Name="GiaBan" Type="System.Single" DbType="Real" CanBeNull="true" />
+      <Column Name="GiaBan" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(10)" CanBeNull="true" />
       <Column Name="SoLuongTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="TrangThai" Type="System.Boolean" DbType="Bit" CanBeNull="true" />

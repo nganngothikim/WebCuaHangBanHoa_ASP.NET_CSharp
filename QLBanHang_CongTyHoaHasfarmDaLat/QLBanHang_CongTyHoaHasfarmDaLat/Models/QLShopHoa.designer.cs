@@ -262,9 +262,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private System.Nullable<int> _SoLuongBan;
 		
-		private System.Nullable<float> _GiaBan;
+		private System.Nullable<int> _GiaBan;
 		
-		private System.Nullable<float> _ThanhTien;
+		private System.Nullable<int> _ThanhTien;
 		
 		private EntityRef<HoaDon> _HoaDon;
 		
@@ -280,9 +280,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnMaSPChanged();
     partial void OnSoLuongBanChanging(System.Nullable<int> value);
     partial void OnSoLuongBanChanged();
-    partial void OnGiaBanChanging(System.Nullable<float> value);
+    partial void OnGiaBanChanging(System.Nullable<int> value);
     partial void OnGiaBanChanged();
-    partial void OnThanhTienChanging(System.Nullable<float> value);
+    partial void OnThanhTienChanging(System.Nullable<int> value);
     partial void OnThanhTienChanged();
     #endregion
 		
@@ -361,8 +361,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaBan", DbType="Real")]
-		public System.Nullable<float> GiaBan
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaBan", DbType="Int")]
+		public System.Nullable<int> GiaBan
 		{
 			get
 			{
@@ -381,8 +381,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Real")]
-		public System.Nullable<float> ThanhTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Int")]
+		public System.Nullable<int> ThanhTien
 		{
 			get
 			{
@@ -546,7 +546,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenNganHang", DbType="VarChar(200) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TenNganHang", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
 		public string TenNganHang
 		{
 			get
@@ -677,9 +677,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private System.Nullable<int> _SoLuongDat;
 		
-		private System.Nullable<float> _DonGiaDat;
+		private System.Nullable<int> _DonGiaDat;
 		
-		private System.Nullable<float> _ThanhTien;
+		private System.Nullable<int> _ThanhTien;
 		
 		private EntityRef<PhieuDat> _PhieuDat;
 		
@@ -695,9 +695,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnMaSPChanged();
     partial void OnSoLuongDatChanging(System.Nullable<int> value);
     partial void OnSoLuongDatChanged();
-    partial void OnDonGiaDatChanging(System.Nullable<float> value);
+    partial void OnDonGiaDatChanging(System.Nullable<int> value);
     partial void OnDonGiaDatChanged();
-    partial void OnThanhTienChanging(System.Nullable<float> value);
+    partial void OnThanhTienChanging(System.Nullable<int> value);
     partial void OnThanhTienChanged();
     #endregion
 		
@@ -776,8 +776,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGiaDat", DbType="Real")]
-		public System.Nullable<float> DonGiaDat
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGiaDat", DbType="Int")]
+		public System.Nullable<int> DonGiaDat
 		{
 			get
 			{
@@ -796,8 +796,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Real")]
-		public System.Nullable<float> ThanhTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Int")]
+		public System.Nullable<int> ThanhTien
 		{
 			get
 			{
@@ -917,9 +917,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private System.Nullable<int> _SoLuongNhap;
 		
-		private System.Nullable<float> _DonGiaNhap;
+		private System.Nullable<int> _DonGiaNhap;
 		
-		private System.Nullable<float> _ThanhTien;
+		private System.Nullable<int> _ThanhTien;
 		
 		private EntityRef<PhieuNhap> _PhieuNhap;
 		
@@ -935,9 +935,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnMaSPChanged();
     partial void OnSoLuongNhapChanging(System.Nullable<int> value);
     partial void OnSoLuongNhapChanged();
-    partial void OnDonGiaNhapChanging(System.Nullable<float> value);
+    partial void OnDonGiaNhapChanging(System.Nullable<int> value);
     partial void OnDonGiaNhapChanged();
-    partial void OnThanhTienChanging(System.Nullable<float> value);
+    partial void OnThanhTienChanging(System.Nullable<int> value);
     partial void OnThanhTienChanged();
     #endregion
 		
@@ -1016,8 +1016,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGiaNhap", DbType="Real")]
-		public System.Nullable<float> DonGiaNhap
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DonGiaNhap", DbType="Int")]
+		public System.Nullable<int> DonGiaNhap
 		{
 			get
 			{
@@ -1036,8 +1036,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Real")]
-		public System.Nullable<float> ThanhTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ThanhTien", DbType="Int")]
+		public System.Nullable<int> ThanhTien
 		{
 			get
 			{
@@ -1269,6 +1269,10 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private string _SoHoaDon;
 		
+		private string _DiaChiGiaoHang;
+		
+		private string _SoDienThoai;
+		
 		private System.Nullable<System.DateTime> _NgayGiao;
 		
 		private System.Nullable<bool> _TrangThai;
@@ -1283,6 +1287,10 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnMaVanDonChanged();
     partial void OnSoHoaDonChanging(string value);
     partial void OnSoHoaDonChanged();
+    partial void OnDiaChiGiaoHangChanging(string value);
+    partial void OnDiaChiGiaoHangChanged();
+    partial void OnSoDienThoaiChanging(string value);
+    partial void OnSoDienThoaiChanged();
     partial void OnNgayGiaoChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayGiaoChanged();
     partial void OnTrangThaiChanging(System.Nullable<bool> value);
@@ -1335,6 +1343,46 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 					this._SoHoaDon = value;
 					this.SendPropertyChanged("SoHoaDon");
 					this.OnSoHoaDonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChiGiaoHang", DbType="NVarChar(200)")]
+		public string DiaChiGiaoHang
+		{
+			get
+			{
+				return this._DiaChiGiaoHang;
+			}
+			set
+			{
+				if ((this._DiaChiGiaoHang != value))
+				{
+					this.OnDiaChiGiaoHangChanging(value);
+					this.SendPropertyChanging();
+					this._DiaChiGiaoHang = value;
+					this.SendPropertyChanged("DiaChiGiaoHang");
+					this.OnDiaChiGiaoHangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDienThoai", DbType="VarChar(10)")]
+		public string SoDienThoai
+		{
+			get
+			{
+				return this._SoDienThoai;
+			}
+			set
+			{
+				if ((this._SoDienThoai != value))
+				{
+					this.OnSoDienThoaiChanging(value);
+					this.SendPropertyChanging();
+					this._SoDienThoai = value;
+					this.SendPropertyChanged("SoDienThoai");
+					this.OnSoDienThoaiChanged();
 				}
 			}
 		}
@@ -1841,9 +1889,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private System.Nullable<bool> _PhuongThucThanhToan;
 		
-		private string _DiaChiGiaoHang;
-		
-		private System.Nullable<float> _TongTien;
+		private System.Nullable<int> _TongTien;
 		
 		private EntitySet<ChiTietHoaDon> _ChiTietHoaDons;
 		
@@ -1869,9 +1915,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnNgayLapChanged();
     partial void OnPhuongThucThanhToanChanging(System.Nullable<bool> value);
     partial void OnPhuongThucThanhToanChanged();
-    partial void OnDiaChiGiaoHangChanging(string value);
-    partial void OnDiaChiGiaoHangChanged();
-    partial void OnTongTienChanging(System.Nullable<float> value);
+    partial void OnTongTienChanging(System.Nullable<int> value);
     partial void OnTongTienChanged();
     #endregion
 		
@@ -1993,28 +2037,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DiaChiGiaoHang", DbType="NVarChar(200)")]
-		public string DiaChiGiaoHang
-		{
-			get
-			{
-				return this._DiaChiGiaoHang;
-			}
-			set
-			{
-				if ((this._DiaChiGiaoHang != value))
-				{
-					this.OnDiaChiGiaoHangChanging(value);
-					this.SendPropertyChanging();
-					this._DiaChiGiaoHang = value;
-					this.SendPropertyChanged("DiaChiGiaoHang");
-					this.OnDiaChiGiaoHangChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Real")]
-		public System.Nullable<float> TongTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Int")]
+		public System.Nullable<int> TongTien
 		{
 			get
 			{
@@ -2311,7 +2335,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDienThoai", DbType="VarChar(11)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDienThoai", DbType="VarChar(10)")]
 		public string SoDienThoai
 		{
 			get
@@ -2510,9 +2534,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private System.DateTime _NgayKetThuc;
 		
-		private System.Nullable<float> _TiLeKhuyenMai;
+		private System.Nullable<double> _TiLeKhuyenMai;
 		
-		private System.Nullable<float> _GiamGia;
+		private System.Nullable<int> _GiamGia;
 		
 		private string _MaSP;
 		
@@ -2526,9 +2550,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnNgayBatDauChanged();
     partial void OnNgayKetThucChanging(System.DateTime value);
     partial void OnNgayKetThucChanged();
-    partial void OnTiLeKhuyenMaiChanging(System.Nullable<float> value);
+    partial void OnTiLeKhuyenMaiChanging(System.Nullable<double> value);
     partial void OnTiLeKhuyenMaiChanged();
-    partial void OnGiamGiaChanging(System.Nullable<float> value);
+    partial void OnGiamGiaChanging(System.Nullable<int> value);
     partial void OnGiamGiaChanged();
     partial void OnMaSPChanging(string value);
     partial void OnMaSPChanged();
@@ -2580,8 +2604,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TiLeKhuyenMai", DbType="Real")]
-		public System.Nullable<float> TiLeKhuyenMai
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TiLeKhuyenMai", DbType="Float")]
+		public System.Nullable<double> TiLeKhuyenMai
 		{
 			get
 			{
@@ -2600,8 +2624,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiamGia", DbType="Real")]
-		public System.Nullable<float> GiamGia
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiamGia", DbType="Int")]
+		public System.Nullable<int> GiamGia
 		{
 			get
 			{
@@ -2802,7 +2826,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDienThoai", DbType="VarChar(11)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDienThoai", DbType="VarChar(10)")]
 		public string SoDienThoai
 		{
 			get
@@ -3054,7 +3078,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDienThoai", DbType="VarChar(11)")]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SoDienThoai", DbType="VarChar(10)")]
 		public string SoDienThoai
 		{
 			get
@@ -3280,7 +3304,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private string _MaNhaCungCap;
 		
-		private System.Nullable<float> _TongTien;
+		private System.Nullable<System.DateTime> _NgayDat;
+		
+		private System.Nullable<int> _TongTien;
 		
 		private EntitySet<ChiTietPhieuDat> _ChiTietPhieuDats;
 		
@@ -3298,7 +3324,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnMaNhanVienChanged();
     partial void OnMaNhaCungCapChanging(string value);
     partial void OnMaNhaCungCapChanged();
-    partial void OnTongTienChanging(System.Nullable<float> value);
+    partial void OnNgayDatChanging(System.Nullable<System.DateTime> value);
+    partial void OnNgayDatChanged();
+    partial void OnTongTienChanging(System.Nullable<int> value);
     partial void OnTongTienChanged();
     #endregion
 		
@@ -3378,8 +3406,28 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Real")]
-		public System.Nullable<float> TongTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NgayDat", DbType="Date")]
+		public System.Nullable<System.DateTime> NgayDat
+		{
+			get
+			{
+				return this._NgayDat;
+			}
+			set
+			{
+				if ((this._NgayDat != value))
+				{
+					this.OnNgayDatChanging(value);
+					this.SendPropertyChanging();
+					this._NgayDat = value;
+					this.SendPropertyChanged("NgayDat");
+					this.OnNgayDatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Int")]
+		public System.Nullable<int> TongTien
 		{
 			get
 			{
@@ -3526,7 +3574,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private System.Nullable<System.DateTime> _NgayNhap;
 		
-		private System.Nullable<float> _TongTien;
+		private System.Nullable<int> _TongTien;
 		
 		private EntitySet<ChiTietPhieuNhap> _ChiTietPhieuNhaps;
 		
@@ -3546,7 +3594,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnMaNhaCungCapChanged();
     partial void OnNgayNhapChanging(System.Nullable<System.DateTime> value);
     partial void OnNgayNhapChanged();
-    partial void OnTongTienChanging(System.Nullable<float> value);
+    partial void OnTongTienChanging(System.Nullable<int> value);
     partial void OnTongTienChanged();
     #endregion
 		
@@ -3646,8 +3694,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Real")]
-		public System.Nullable<float> TongTien
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TongTien", DbType="Int")]
+		public System.Nullable<int> TongTien
 		{
 			get
 			{
@@ -3792,7 +3840,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private string _MoTa;
 		
-		private System.Nullable<float> _GiaBan;
+		private System.Nullable<int> _GiaBan;
 		
 		private string _DonViTinh;
 		
@@ -3826,7 +3874,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     partial void OnTenSPChanged();
     partial void OnMoTaChanging(string value);
     partial void OnMoTaChanged();
-    partial void OnGiaBanChanging(System.Nullable<float> value);
+    partial void OnGiaBanChanging(System.Nullable<int> value);
     partial void OnGiaBanChanged();
     partial void OnDonViTinhChanging(string value);
     partial void OnDonViTinhChanged();
@@ -3910,8 +3958,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaBan", DbType="Real")]
-		public System.Nullable<float> GiaBan
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaBan", DbType="Int")]
+		public System.Nullable<int> GiaBan
 		{
 			get
 			{

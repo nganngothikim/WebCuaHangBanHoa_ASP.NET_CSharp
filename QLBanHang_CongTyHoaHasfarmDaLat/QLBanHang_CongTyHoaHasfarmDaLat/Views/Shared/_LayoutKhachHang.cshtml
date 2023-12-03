@@ -145,7 +145,7 @@
                                         <i class="fa fa-shopping-cart"></i>
                                         <span class="cart-item_count">3</span>
                                     </a>
-                                    <div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
+                                    @*<div class="cart-item-wrapper dropdown-sidemenu dropdown-hover-2">
                                         <div class="single-cart-item">
                                             <div class="cart-img">
                                                 <a href="cart.html"><img src="~/assets/images/cart/1.jpg" alt=""></a>
@@ -199,7 +199,7 @@
                                             <a class="btn product-cart button-icon flosun-button dark-btn" href="cart.html">View cart</a>
                                             <a class="btn flosun-button secondary-btn rounded-0" href="checkout.html">Checkout</a>
                                         </div>
-                                    </div>
+                                    </div>*@
                                 </li>
                                 <li class="sidemenu-wrap">
                                     <a href="#"><i class="fa fa-search"></i> </a>
@@ -558,7 +558,7 @@
     <!-- JS
     ============================================ -->
     <!-- jQuery JS -->
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    @*<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>*@
 
 
     <script src="~/assets/js/vendor/jquery-3.6.0.min.js"></script>
@@ -637,15 +637,22 @@
         updateQuantity(input, maSP);
     }
 
-    function kiemTraRadioDaChon() {
-        var thanhToanOnline = document.querySelector('input[name="thanhtoan"][value="true"]').checked;
-        var shipCOD = document.querySelector('input[name="thanhtoan"][value="false"]').checked;
+    //function kiemTraRadioVaChuyenHuong() {
+    //    var thanhToanOnline = document.querySelector('input[name="thanhtoan"][value="true"]').checked;
+    //    var shipCOD = document.querySelector('input[name="thanhtoan"][value="false"]').checked;
 
-        if (!thanhToanOnline && !shipCOD) {
-            alert("Vui lòng chọn phương thức thanh toán.");
-            return false; // Ngăn chặn chuyển hướng
-        }
+    //    if (!thanhToanOnline && !shipCOD) {
+    //        alert("Vui lòng chọn phương thức thanh toán.");
+    //        return false; // Ngăn chặn chuyển hướng
+    //    }
 
-        return true; // Cho phép chuyển hướng
-    }
+    //    // Lấy giá trị của radio đã chọn
+    //    var giaTriRadioDaChon = thanhToanOnline ? "true" : "false";
+
+    //    // Chuyển hướng với giá trị của radio đã chọn
+    //    window.location.href = '/KhachHang/XacNhanThongTinDatHang?thanhtoan=' + giaTriRadioDaChon;
+
+    //    // Ngăn chặn chuyển hướng mặc định của thẻ a
+    //    return false;
+    //}
 </script>

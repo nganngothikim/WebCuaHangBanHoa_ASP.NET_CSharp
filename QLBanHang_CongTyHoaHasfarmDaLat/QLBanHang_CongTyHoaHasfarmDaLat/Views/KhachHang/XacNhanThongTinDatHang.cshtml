@@ -3,7 +3,8 @@
     Layout = "~/Views/Shared/_LayoutKhachHang.cshtml";
 }
 @using QLBanHang_CongTyHoaHasfarmDaLat.Models;
-@model List<ChiTietHoaDon>
+@model List<GioHang>
+@{int? Tongtien = 0;}
 <div class="breadcrumbs-area position-relative">
     <div class="container">
         <div class="row">
@@ -25,17 +26,16 @@
     <div class="container custom-container">
         <div class="row">
             <div class="col-lg-6 col-12 col-custom">
-                <form action="#">
+                <form action="/KhachHang/XacNhanThongTinDatHang" method="post">
                     <div class="checkbox-form">
                         <h3>Billing Details</h3>
                         <div class="row">
-
-                            <div class="col-md-12 col-custom">
+                            @*<div class="col-md-12 col-custom">
                                 <div class="checkout-form-list">
                                     <label>Họ Và Tên</label>
                                     <input placeholder="Nhập Họ Và Tên" type="text" name="hoten">
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="col-md-12 col-custom">
                                 <div class="checkout-form-list">
                                     <label>Địa Chỉ <span class="required">*</span></label>
@@ -62,8 +62,9 @@
                                     </div>
                                 </div>
                             </div>
-
-
+                            <div class="col-md-12 col-custom order-button-payment">
+                                <button type="submit" class="btn flosun-button secondary-btn black-color rounded-0 w-100">Đặt Hàng</button>
+                            </div>
                         </div>
                     </div>
                 </form>
@@ -85,17 +86,18 @@
                                     <tr class="cart_item">
                                         <td class="cart-product-name">
                                             @item.SanPham.TenSP<strong class="product-quantity">
-                                                × @item.SoLuongBan
+                                                × @item.SoLuong
                                             </strong>
                                         </td>
-                                        <td class="cart-product-total text-center"><span class="amount">@string.Format("{0:N0}đ",@item.SanPham.GiaBan*@item.SoLuongBan)</span></td>
+                                        <td class="cart-product-total text-center"><span class="amount">@string.Format("{0:N0}đ",@item.SanPham.GiaBan*@item.SoLuong)</span></td>
                                     </tr>
+                                    Tongtien += (item.SanPham.GiaBan * item.SoLuong);
                                 }
                             </tbody>
                             <tfoot>
                                 <tr class="order-total">
                                     <th>Order Total</th>
-                                    <td class="text-center"><strong><span class="amount"></span></strong></td>
+                                    <td class="text-center"><strong><span class="amount">@string.Format("{0:N0}đ", @Tongtien)</span></strong></td>
                                 </tr>
                             </tfoot>
                         </table>
@@ -117,38 +119,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="card">
-                                    <div class="card-header" id="#payment-2">
-                                        <h5 class="panel-title mb-3">
-                                            <a href="#" class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                                                Cheque Payment
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseTwo" class="collapse" data-parent="#accordion">
-                                        <div class="card-body mb-2 mt-2">
-                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="card">
-                                    <div class="card-header" id="#payment-3">
-                                        <h5 class="panel-title mb-3">
-                                            <a href="#" class="collapsed" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                                                PayPal
-                                            </a>
-                                        </h5>
-                                    </div>
-                                    <div id="collapseThree" class="collapse" data-parent="#accordion">
-                                        <div class="card-body mb-2 mt-2">
-                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
-                            <div class="order-button-payment">
+                            @*<div class="order-button-payment">
                                 <button class="btn flosun-button secondary-btn black-color rounded-0 w-100">Place Order</button>
-                            </div>
+                            </div>*@
                         </div>
                     </div>
                 </div>

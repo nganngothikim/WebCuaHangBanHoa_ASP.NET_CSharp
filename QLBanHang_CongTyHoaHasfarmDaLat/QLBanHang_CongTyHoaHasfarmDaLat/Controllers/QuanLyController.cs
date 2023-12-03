@@ -130,7 +130,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             string tenSanPham = form["tensp"];
             string maChuDe = form["chude"];
             string moTa = form["mota"];
-            float giaBan = float.Parse(form["gia"]);
+            int giaBan = int.Parse(form["gia"]);
             string donViTinh = form["dvt"];
             bool trangThai = form["tt"] != null && form["tt"].Equals("on"); // Kiểm tra checkbox trạng thái
 

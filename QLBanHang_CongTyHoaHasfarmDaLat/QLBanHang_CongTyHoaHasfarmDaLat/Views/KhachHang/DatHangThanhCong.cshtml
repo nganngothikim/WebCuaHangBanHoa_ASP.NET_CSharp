@@ -1,0 +1,59 @@
+﻿
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Arial', sans-serif;
+        background-color: #f4f4f4;
+    }
+
+    .notification-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+    }
+
+    .notification {
+        background-color: #fff;
+        padding: 20px;
+        border-radius: 8px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+        .notification h2 {
+            color: #28a745;
+        }
+
+        .notification p {
+            color: #333;
+        }
+
+    .button {
+        display: inline-block;
+        padding: 10px 20px;
+        background-color: #3f414d;
+        color: #f4f4f4;
+        text-decoration: none;
+        border-radius: 5px;
+        margin-top: 15px;
+        transition: background-color 0.3s ease;
+    }
+
+        .button:hover {
+            background-color: #f4f4f4;
+        }
+</style>
+@{
+    ViewBag.Title = "DatHangThanhCong";
+    Layout = "~/Views/Shared/_LayoutKhachHang.cshtml";
+}
+
+<div class="notification-container">
+    <div class="notification">
+        <h2>Đặt Hàng Thành Công!</h2>
+        <p>Cảm ơn bạn đã đặt hàng. Đơn hàng của bạn đã được xác nhận.</p>
+        <a href="/KhachHang/Home" class="button">Quay lại Trang Chủ</a>
+    </div>
+</div>

@@ -730,11 +730,6 @@
     <Content Include="Image\sweetavalanche.jpg" />
     <Content Include="Image\tungthom60.jpg" />
     <Content Include="Image\vannien.jpg" />
-    <Content Include="Models\QLShopHoa.dbml">
-      <Generator>MSLinqToSQLGenerator</Generator>
-      <LastGenOutput>QLShopHoa.designer.cs</LastGenOutput>
-      <SubType>Designer</SubType>
-    </Content>
     <Content Include="assets\admin\images\book-dec\.DS_Store" />
     <Content Include="assets\admin\images\book\book.pdf" />
     <Content Include="assets\admin\images\browse-books\.DS_Store" />
@@ -796,6 +791,11 @@
     <Content Include="assets\admin\fonts\slick.eot" />
     <Content Include="assets\admin\fonts\slick.ttf" />
     <Content Include="assets\admin\fonts\slick.woff" />
+    <Content Include="Models\QLShopHoa.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>QLShopHoa.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </Content>
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
     <Content Include="Scripts\jquery-1.8.2.min.js" />
@@ -853,6 +853,7 @@
     <Content Include="Views\TaiKhoan\DangKy.cshtml" />
     <Content Include="Views\TaiKhoan\TaiKhoan_Dropdown.cshtml" />
     <Content Include="Views\KhachHang\XacNhanThongTinDatHang.cshtml" />
+    <Content Include="Views\KhachHang\DatHangThanhCong.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

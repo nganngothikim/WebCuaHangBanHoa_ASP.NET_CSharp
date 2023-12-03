@@ -111,9 +111,18 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
         public ActionResult GioHang()
         {
+            List<GioHang> ds = null;
             TaiKhoan tk = (TaiKhoan)Session["tk"];
-            List<GioHang> ds = ql.GioHangs.Where(t => t.MaKhachHang == tk.KhachHangs.FirstOrDefault().MaKhachHang).ToList();
-            return View(ds);
+            if(tk != null)
+            {
+                ds = ql.GioHangs.Where(t => t.MaKhachHang == tk.KhachHangs.FirstOrDefault().MaKhachHang).ToList();
+                return View(ds);
+
+            }
+            else
+            {
+                return View(ds);
+            }
         }
 
         public ActionResult XoaGioHang(string id)
@@ -185,10 +194,17 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         public ActionResult XacNhanThongTinDatHang()
         {
             TaiKhoan tk = (TaiKhoan)Session["tk"];
+            List<GioHang> ds = ql.GioHangs.Where(t => t.MaKhachHang == tk.KhachHangs.FirstOrDefault().MaKhachHang).ToList();
+            return View(ds);
+        }
+        [HttpPost]
+        public ActionResult XacNhanThongTinDatHang(FormCollection form)
+        {
+            TaiKhoan tk = (TaiKhoan)Session["tk"];
             if (tk != null)
             {
                 ViewBag.TB_GioHang = null;
-                float? Tongtien = 0;
+                int? Tongtien = 0;
                 List<GioHang> gio = ql.GioHangs.Where(t => t.MaKhachHang == tk.KhachHangs.FirstOrDefault().MaKhachHang).ToList();
                 if (gio.Count <= 0)
                 {
@@ -219,49 +235,75 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 ql.SubmitChanges();
 
                 nhapChiTietHoaDon(hd, gio);
-
+                //xóa giỏ hàng khi đã nhập vào hóa đơn
                 ql.GioHangs.DeleteAllOnSubmit(gio);
                 ql.SubmitChanges();
-                return View("DatHangThanhCong");
+                //Nhập phiếu giao bằng mã hóa đơn vừa tạo
+                GiaoHang kttontai = ql.GiaoHangs.Where(g => g.SoHoaDon == hd.SoHoaDon).FirstOrDefault();
+                if (kttontai == null)
+                {
+                    GiaoHang giao = new GiaoHang();
+                    int sttgiao = 1;
+                    string magiao = "VD00" + (ql.GiaoHangs.Count() + sttgiao);
+                    GiaoHang kiemtragiao = ql.GiaoHangs.Where(kt => kt.MaVanDon == magiao).FirstOrDefault();
+                    while (kiemtragiao != null)
+                    {
+                        sttgiao++;
+                        magiao = "VD00" + (ql.GiaoHangs.Count() + sttgiao);
+                        kiemtragiao = ql.GiaoHangs.Where(kt => kt.MaVanDon == magiao).FirstOrDefault();
+                    }
+                    giao.MaVanDon = magiao;
+                    giao.SoHoaDon = hd.SoHoaDon;
+                    giao.NgayGiao = null;
+                    giao.TrangThai = false;
+                    giao.DiaChiGiaoHang = form["diachi"];
+                    giao.SoDienThoai = form["sdt"];
+                    ql.GiaoHangs.InsertOnSubmit(giao);
+                    ql.SubmitChanges();
+                    return View("DatHangThanhCong");
+                }
+                else
+                {
+                    ViewBag.TB_GioHang = "Hoa Don Da Duoc Giao!";
+                    return View("GioHang", null);
+                }
             }
             else
             {
                 return RedirectToAction("DangNhap", "TaiKhoan");
             }
         }
-        [HttpPost]
-        public ActionResult XacNhanThongTinDatHang(FormCollection form)
-        {
-            return View();
-        }
         public int nhapChiTietHoaDon(HoaDon hd, List<GioHang> gio)//thêm chi tiết hóa đơn cùng mã hóa đơn
         {
-            //if (hd != null)
-            //{
-            //    foreach (GioHang i in gio)
-            //    {
-            //        ChiTietHoaDon ct = new ChiTietHoaDon();
-            //        ct.SoHoaDon = hd.SoHoaDon;
-            //        ct.MaSach = i.MaSach;
-            //        ct.SoLuongBan = i.SoLuong;
-            //        ct.GiaBan = i.Sach.GiaBan;
-            //        ct.ThanhTien = (i.Sach.GiaBan * i.SoLuong);
-            //        ql.ChiTietHoaDons.InsertOnSubmit(ct);
-            //        ql.SubmitChanges();
-            //        Sach sach = ql.Saches.Where(t => t.MaSach == i.MaSach).FirstOrDefault();
-            //        if (sach != null)
-            //        {
-            //            // Trừ số lượng của chi tiết kích thước
-            //            sach.SoLuongCon -= i.SoLuong;
-            //            ql.SubmitChanges();
-            //        }
-            //    }
-            //    return 1;
-            //}
+            if (hd != null)
+            {
+                foreach (GioHang i in gio)
+                {
+                    ChiTietHoaDon ct = new ChiTietHoaDon();
+                    ct.SoHoaDon = hd.SoHoaDon;
+                    ct.MaSP = i.MaSP;
+                    ct.SoLuongBan = i.SoLuong;
+                    ct.GiaBan = i.SanPham.GiaBan;
+                    ct.ThanhTien = (i.SanPham.GiaBan * i.SoLuong);
+                    ql.ChiTietHoaDons.InsertOnSubmit(ct);
+                    ql.SubmitChanges();
+                    SanPham sp = ql.SanPhams.Where(t => t.MaSP == i.MaSP).FirstOrDefault();
+                    if (sp != null)
+                    {
+                        // Trừ số lượng của chi tiết kích thước
+                        sp.SoLuongTon -= i.SoLuong;
+                        ql.SubmitChanges();
+                    }
+                }
+                return 1;
+            }
             return -1;
         }
 
-
+        public ActionResult DatHangThanhCong()
+        {
+            return View();
+        }
 
 
     }

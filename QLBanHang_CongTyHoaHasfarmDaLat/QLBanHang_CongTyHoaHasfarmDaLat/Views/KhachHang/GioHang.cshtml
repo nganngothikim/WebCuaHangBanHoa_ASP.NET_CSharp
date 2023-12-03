@@ -4,7 +4,7 @@
 }
 @using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 @model List<GioHang>
-@{double? Tongtien = 0;}
+@{int? Tongtien = 0;}
 
 <div class="breadcrumbs-area position-relative">
     <div class="container">
@@ -23,92 +23,103 @@
 </div>
 <!-- Breadcrumb Area End Here -->
 <!-- cart main wrapper start -->
-<div class="cart-main-wrapper mt-no-text">
-    <div class="container custom-area">
-        <div class="row">
-            <div class="col-lg-12 col-custom">
-                <!-- Cart Table Area -->
-                <div class="cart-table table-responsive">
-                    <table class="table table-bordered">
-                        <thead>
-                            <tr>
-                                <th class="pro-thumbnail">Image</th>
-                                <th class="pro-title">Product</th>
-                                <th class="pro-price">Price</th>
-                                <th class="pro-quantity">Quantity</th>
-                                <th class="pro-subtotal">Total</th>
-                                <th class="pro-remove">Remove</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var item in Model)
-                            {
+@if (Model != null && Model.Count > 0)
+{
+    <div class="cart-main-wrapper mt-no-text">
+        <div class="container custom-area">
+            <div class="row">
+                <div class="col-lg-12 col-custom">
+                    <!-- Cart Table Area -->
+                    <div class="cart-table table-responsive">
+                        <table class="table table-bordered">
+                            <thead>
                                 <tr>
-                                    <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="~/Image/@item.SanPham.HinhAnh.Hinh1" alt="Product" /></a></td>
-                                    <td class="pro-title"><a href="#">@item.SanPham.TenSP / @item.SanPham.DonViTinh</a></td>
-                                    <td class="pro-price"><span>@string.Format("{0:N0}đ", @item.SanPham.GiaBan)</span></td>
-                                    <td class="pro-quantity">
-                                        <div class="quantity">
-                                            <div class="cart-plus-minus">
-                                                <input class="cart-plus-minus-box soluong" value="@item.SoLuong" type="text" id="quantity" oninput="updateQuantity(this, '@item.MaSP')">
-                                                <button class="dec qtybutton" onclick="updateTangGiam('minus', '@item.MaSP')"><i class="fa fa-minus"></i></button>
-                                                <button class="inc qtybutton" onclick="updateTangGiam('plus', '@item.MaSP')"><i class="fa fa-plus"></i></button>
+                                    <th class="pro-thumbnail">Hình Ảnh</th>
+                                    <th class="pro-title">Sản Phẩm</th>
+                                    <th class="pro-price">Giá Bán</th>
+                                    <th class="pro-quantity">Số Lượng</th>
+                                    <th class="pro-subtotal">Thành Tiền</th>
+                                    <th class="pro-remove">Xóa</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    <tr>
+                                        <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="~/Image/@item.SanPham.HinhAnh.Hinh1" alt="Product" /></a></td>
+                                        <td class="pro-title"><a href="#">@item.SanPham.TenSP / @item.SanPham.DonViTinh</a></td>
+                                        <td class="pro-price"><span>@string.Format("{0:N0}đ", @item.SanPham.GiaBan)</span></td>
+                                        <td class="pro-quantity">
+                                            <div class="quantity">
+                                                <div class="cart-plus-minus">
+                                                    <input class="cart-plus-minus-box soluong" value="@item.SoLuong" type="text" id="quantity" oninput="updateQuantity(this, '@item.MaSP')">
+                                                    <button class="dec qtybutton" onclick="updateTangGiam('minus', '@item.MaSP')"><i class="fa fa-minus"></i></button>
+                                                    <button class="inc qtybutton" onclick="updateTangGiam('plus', '@item.MaSP')"><i class="fa fa-plus"></i></button>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="pro-subtotal"><span>@string.Format("{0:N0}đ",@item.SoLuong*@item.SanPham.GiaBan)</span></td>
-                                    <td class="pro-remove"><a href="/KhachHang/XoaGioHang/@item.MaSP"><i class="lnr lnr-trash"></i></a></td>
-                                </tr>
-                                            Tongtien += (item.SanPham.GiaBan * item.SoLuong);
-                            }
-                        </tbody>
-                    </table>
-                </div>
-                <!-- Cart Update Option -->
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-lg-5 ml-auto col-custom">
-                <!-- Cart Calculation Area -->
-                <div class="cart-calculator-wrapper">
-                    <div class="cart-calculate-items">
-                        <h3>Cart Totals</h3>
-                        <div class="table-responsive">
-                            <table class="table">
-                                <tr>
-                                    <td>Sub Total</td>
-                                    <td>@string.Format("{0:N0}đ", @Tongtien)</td>
-                                </tr>
-                                <tr>
-                                    <td>Shipping</td>
-                                    <td>0đ</td>
-                                </tr>
-                                <tr>
-                                    <td>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="thanhtoan" value="true" checked> Thanh Toán Online
-                                        </label>
-                                    </td>
-                                    <td>
-                                        <label class="radio-inline">
-                                            <input type="radio" name="thanhtoan" value="false"> Ship COD
-                                        </label>
-                                    </td>
-                                </tr>
-                                <tr class="total">
-                                    <td>Total</td>
-                                    <td class="total-amount">@string.Format("{0:N0}đ", @Tongtien)</td>
-                                </tr>
-                            </table>
-                        </div>
+                                        </td>
+                                        <td class="pro-subtotal"><span>@string.Format("{0:N0}đ", @item.SoLuong * @item.SanPham.GiaBan)</span></td>
+                                        <td class="pro-remove"><a href="/KhachHang/XoaGioHang/@item.MaSP"><i class="lnr lnr-trash"></i></a></td>
+                                    </tr>
+                                    Tongtien += (item.SanPham.GiaBan * item.SoLuong);
+                                }
+                            </tbody>
+                        </table>
                     </div>
-                    <a href="/KhachHang/XacNhanThongTinDatHang" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Proceed To Checkout</a>
+                    <!-- Cart Update Option -->
                 </div>
             </div>
+
+            <div class="row">
+                <div class="col-lg-5 ml-auto col-custom">
+                    <!-- Cart Calculation Area -->
+                    <div class="cart-calculator-wrapper">
+                        <div class="cart-calculate-items">
+                            <h3>Cart Totals</h3>
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <tr>
+                                        <td>Sub Total</td>
+                                        <td>@string.Format("{0:N0}đ", @Tongtien)</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Shipping</td>
+                                        <td>0đ</td>
+                                    </tr>
+                                    <tr>
+                                        <td>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="thanhtoan" value="true" checked> Thanh Toán Online
+                                            </label>
+                                        </td>
+                                        <td>
+                                            <label class="radio-inline">
+                                                <input type="radio" name="thanhtoan" value="false"> Ship COD
+                                            </label>
+                                        </td>
+                                    </tr>
+                                    <tr class="total">
+                                        <td>Total</td>
+                                        <td class="total-amount">@string.Format("{0:N0}đ", @Tongtien)</td>
+                                    </tr>
+                                </table>
+                            </div>
+                        </div>
+                        <a href="/KhachHang/XacNhanThongTinDatHang" class="btn flosun-button primary-btn rounded-0 black-btn w-100">Xác Nhận Đặt Hàng</a>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
-</div>
+}
+else
+{
+    <br />
+    <br />
+    <h3 class="text-center text-danger">Giỏ Hàng Trống! Thêm Sản Phẩm Để Tiếp Tục Mua Sắm</h3>
+}
+<br />
+<br />
+<br />
 
-<br />
-<br />
-<br />
