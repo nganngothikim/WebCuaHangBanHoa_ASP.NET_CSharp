@@ -637,6 +637,34 @@
         updateQuantity(input, maSP);
     }
 
+    function validateAndSubmit(event) {
+        var phoneNumber = document.getElementById('sdt').value;
+
+        // Kiểm tra nếu số điện thoại không đủ 10 số
+        if (phoneNumber.length !== 10) {
+            document.getElementById('error-msg').style.display = 'block';
+
+            // Ngăn chặn sự kiện mặc định của form (ngăn chặn gửi yêu cầu tới controller)
+            event.preventDefault();
+        } else {
+            // Nếu đủ số, submit form
+            document.getElementById('error-msg').style.display = 'none';
+        }
+    }
+
+    document.getElementById('sdt').addEventListener('input', function () {
+        var inputValue = this.value;
+
+        // Chặn nhập quá 10 ký tự
+        if (inputValue.length > 10) {
+            this.value = inputValue.slice(0, 10);
+        }
+
+        // Yêu cầu có số 0 ở đầu
+        if (!inputValue.startsWith('0')) {
+            this.value = '0' + inputValue.slice(1);
+        }
+    });
     //function kiemTraRadioVaChuyenHuong() {
     //    var thanhToanOnline = document.querySelector('input[name="thanhtoan"][value="true"]').checked;
     //    var shipCOD = document.querySelector('input[name="thanhtoan"][value="false"]').checked;

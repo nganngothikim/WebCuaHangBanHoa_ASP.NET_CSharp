@@ -29,12 +29,13 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
         public ActionResult DangNhap()
         {
+            ViewBag.ThongBao_DangKy = null;
             return View();
         }
         [HttpPost]
         public ActionResult DangNhap(FormCollection form)
         {
-            ViewBag.ThongBao_DangNhap = null;
+            TempData["ThongBao_DangNhap"] = null;
             string tendn = form["tendn"];
             string mk = form["mk"];
             TaiKhoan taikhoan = ql.TaiKhoans.Where(t => t.Username == tendn && t.Pass == mk).FirstOrDefault();
@@ -50,7 +51,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     }
                     else
                     {
-                        ViewBag.ThongBao_DangNhap = "Tai Khoan Da Bi Dung Hoat Dong!";
+                        TempData["ThongBao_DangNhap"] = "Tai Khoan Da Dung Hoat Dong!"; 
                         return View();
                     }
                 }
@@ -64,26 +65,27 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     }
                     else
                     {
-                        ViewBag.ThongBao_DangNhap = "Tai Khoan Da Bi Dung Hoat Dong!";
+                        TempData["ThongBao_DangNhap"] = "Tai Khoan Da Dung Hoat Dong!"; 
                         return View();
                     }
                 }
             }
             else
             {
-                ViewBag.ThongBao_DangNhap = "Sai Mat Khau Hoac Ten Dang Nhap !";
+                TempData["ThongBao_DangNhap"] = "Sai Mat Khau Hoac Ten Dang Nhap!"; 
                 return View();
             }
         }
 
         public ActionResult DangKy()
         {
+            ViewBag.ThongBao_DangKy = null;
             return View();
         }
         [HttpPost]
         public ActionResult DangKy(FormCollection form)
         {
-            ViewBag.ThongBao_DangKy = null;
+            TempData["ThongBao_DangKy"] = null;
             TaiKhoan ktra = ql.TaiKhoans.Where(t => t.Username == form["tendn"]).FirstOrDefault();
             if (ktra == null)
             {
@@ -118,7 +120,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
             else
             {
-                ViewBag.ThongBao_DangKy = "Ten Dang Nhap Da Ton Tai! Vui Long Su Dung Ten Khac.";
+                TempData["ThongBao_DangKy"] = "Ten Dang Nhap Da Ton Tai! Vui Long Su Dung Ten Khac.";
                 return View();
 
             }

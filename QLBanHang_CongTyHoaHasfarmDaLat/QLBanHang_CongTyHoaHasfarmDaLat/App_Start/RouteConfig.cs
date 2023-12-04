@@ -16,7 +16,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat
             routes.MapRoute(
                 name: "Default",
                 url: "{controller}/{action}/{id}",
-                defaults: new { controller = "KhachHang", action = "Home", id = UrlParameter.Optional }
+                defaults: new { controller = "QuanLy", action = "Dashboard", id = UrlParameter.Optional }
             );
         }
     }

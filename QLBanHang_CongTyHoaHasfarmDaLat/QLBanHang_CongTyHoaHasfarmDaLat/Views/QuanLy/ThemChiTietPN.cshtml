@@ -2,7 +2,8 @@
     ViewBag.Title = "ThemChiTietPN";
     Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
 }
-
+@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model DanhSachNhap
 <!-- Thêm Chi tiết phiếu nhập -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
@@ -28,18 +29,23 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Reading on the Worlds</td>
-                                        <td>10000</td>
-                                        <td>
-                                            <form>
+                                    @foreach (var item in Model.dssp)
+                                    {
+                                        <tr>
+                                            <td>@item.tenSP</td>
+                                            <td>
                                                 <div class="form-group">
-                                                    <input type="number" class="form-control" id="sl" value="">
+                                                    <input type="number" class="form-control" id="dg" value="0" min="0" name="dg">
                                                 </div>
-                                            </form>
-                                        </td>
-                                        <td>9987765</td>
-                                    </tr>
+                                            </td>
+                                            <td>
+                                                <div class="form-group">
+                                                    <input type="number" class="form-control" id="sl" value="0" min="0" name="sl">
+                                                </div>
+                                            </td>
+                                            <td>9987765</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>

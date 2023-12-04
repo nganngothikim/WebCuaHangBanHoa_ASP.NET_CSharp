@@ -26,6 +26,11 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
+        public ActionResult Dropdown_ChuDe()
+        {
+            List<ChuDe> ds = ql.ChuDes.ToList();
+            return View(ds);
+        }
 
         public ActionResult ThemChuDe()
         {
@@ -123,7 +128,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
         [HttpPost]
-        public ActionResult ThemSanPham(FormCollection form)
+        public ActionResult ThemSanPham(FormCollection form, HttpPostedFileBase hinh1, HttpPostedFileBase hinh2, HttpPostedFileBase hinh3, HttpPostedFileBase hinh4)
         {
             ViewBag.ThongBao_ThemSanPham = null;
             // Lấy thông tin từ form
@@ -152,71 +157,131 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 sanPham.TenSP = tenSanPham;
                 sanPham.MaChuDe = chuDe.MaChuDe;
                 sanPham.MoTa = moTa;
+                sanPham.SoLuongTon = 0;
                 sanPham.GiaBan = giaBan;
                 sanPham.DonViTinh = donViTinh;
                 sanPham.TrangThai = trangThai;
-
-                // Upload hình ảnh và lưu đường dẫn vào CSDL
-                // Lưu ý: Cần xử lý lưu hình ảnh vào thư mục và cập nhật đường dẫn trong CSDL
-                // Đoạn mã ở đây chỉ mang tính chất minh họa, cần được điều chỉnh theo logic cụ thể của bạn
-                for (int i = 1; i <= 4; i++)
-                {
-                    HttpPostedFileBase file = Request.Files["hinh" + i];
-                    if (file != null && file.ContentLength > 0)
-                    {
-                        string fileName = Path.GetFileName(file.FileName);
-                        string path = Path.Combine(Server.MapPath("~/hinhanh"), fileName);
-                        file.SaveAs(path);
-                        // Lưu đường dẫn vào đối tượng sanPham
-                        switch (i)
-                        {
-                            case 1:
-                                sanPham.HinhAnh.Hinh1 = path;
-                                break;
-                            case 2:
-                                sanPham.HinhAnh.Hinh2 = path;
-                                break;
-                            case 3:
-                                sanPham.HinhAnh.Hinh3 = path;
-                                break;
-                            case 4:
-                                sanPham.HinhAnh.Hinh4 = path;
-                                break;
-                        }
-                    }
-                }
-
                 ql.SanPhams.InsertOnSubmit(sanPham);
                 ql.SubmitChanges();
-                ViewBag.ThongBao_ThemSanPham = "Them San Pham Thanh Cong!";
+                HinhAnh ha = new HinhAnh();
+                ha.MaSP = sanPham.MaSP;
+                if (hinh1 != null)
+                {
+                    hinh1.SaveAs(Server.MapPath("/Image/" + hinh1.FileName));
+                    ha.Hinh1 = hinh1.FileName;
+                }
+                if (hinh2 != null)
+                {
+                    hinh2.SaveAs(Server.MapPath("/Image/" + hinh2.FileName));
+                    ha.Hinh2 = hinh2.FileName;
+                }
+                if (hinh3 != null)
+                {
+                    hinh3.SaveAs(Server.MapPath("/Image/" + hinh3.FileName));
+                    ha.Hinh3 = hinh3.FileName;
+                }
+                if (hinh4 != null)
+                {
+                    hinh4.SaveAs(Server.MapPath("/Image/" + hinh4.FileName));
+                    ha.Hinh4 = hinh4.FileName;
+                }
+                ql.HinhAnhs.InsertOnSubmit(ha);
+                ql.SubmitChanges();
+
+                // Chuyển hướng sau khi thêm sản phẩm
+                return RedirectToAction("SanPham");
             }
             else
             {
                 ViewBag.ThongBao_ThemSanPham = "Chu De Khong Ton Tai!";
+                return RedirectToAction("SanPham");
             }
-
-            // Chuyển hướng sau khi thêm sản phẩm
-            return RedirectToAction("SanPham");
         }
-        public ActionResult SuaSanPham()
+        public ActionResult SuaSanPham(string id)
         {
-            return View();
+            SanPham sp = ql.SanPhams.Where(t => t.MaSP == id).FirstOrDefault();
+            return View(sp);
         }
-
+        [HttpPost]
+        public ActionResult SuaSanPham(FormCollection form)
+        {
+            ViewBag.ThongBao_SuaSanPham = null;
+            SanPham sp = ql.SanPhams.Where(t => t.MaSP == form["masp"]).FirstOrDefault();
+            if (sp != null)
+            {
+                SanPham kttrung = ql.SanPhams.Where(kt => kt.TenSP == form["tensp"]).FirstOrDefault();
+                if (kttrung == null)
+                {
+                    sp.TenSP = form["tensp"];
+                    sp.MaChuDe = form["chude"];
+                    sp.MoTa = form["mota"];
+                    sp.DonViTinh = form["dvt"];
+                    sp.TrangThai = form["tt"] != null && form["tt"].Equals("on");
+                    try
+                    {
+                        ql.SubmitChanges();
+                    }
+                    catch (System.Data.SqlClient.SqlException ex)
+                    {
+                        // Log chi tiết lỗi để phân tích
+                        Console.WriteLine(ex.ToString());
+                        throw;
+                    }
+                    return RedirectToAction("SanPham");
+                }
+                else
+                {
+                    ViewBag.ThongBao_SuaSanPham = "Ten San Pham Bi Trung !";
+                    return View();
+                }
+            }
+            else
+            {
+                ViewBag.ThongBao_SuaSanPham = "Khong Tim Thay San Pham Can Sua!";
+                return RedirectToAction("SanPham");
+            }
+        }
         //Phiếu Nhập
         public ActionResult PhieuNhap()
         {
-            return View();
+            List<PhieuNhap> ds = ql.PhieuNhaps.ToList();
+            return View(ds);
         }
 
         public ActionResult ThemDanhSachNhap()
         {
-            return View();
+            List<SanPham> ds = ql.SanPhams.ToList();
+            return View(ds);
         }
-        public ActionResult ThemChiTietPN()
+
+        [HttpPost]
+        public ActionResult ThemChiTietPN(FormCollection form)
+        {
+            DanhSachNhap dsNhap = Session["dsNhap"] as DanhSachNhap;
+            if (dsNhap == null)
+            {
+                dsNhap = new DanhSachNhap();
+            }
+            string[] maSPDuocChon = form.GetValues("chon");
+            DanhSachNhap dsnhap = new DanhSachNhap();
+            if (maSPDuocChon != null)
+            {
+                foreach (string item in maSPDuocChon)
+                {
+                    SanPhamNhap sp = new SanPhamNhap(item, 0, 0);
+                    dsnhap.Them(sp);
+                }
+                Session["dsNhap"] = dsnhap;
+            }
+            return View(dsnhap);
+        }
+
+        [HttpPost]
+        public ActionResult XuLy_ThemChiTietPN()
         {
             return View();
         }
+
 
         public ActionResult ChiTietPhieuNhap()
         {

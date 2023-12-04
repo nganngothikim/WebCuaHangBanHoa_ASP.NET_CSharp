@@ -133,6 +133,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\DanhSachPhieuNhap.cs" />
     <Compile Include="Models\QLShopHoa.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -854,6 +855,7 @@
     <Content Include="Views\TaiKhoan\TaiKhoan_Dropdown.cshtml" />
     <Content Include="Views\KhachHang\XacNhanThongTinDatHang.cshtml" />
     <Content Include="Views\KhachHang\DatHangThanhCong.cshtml" />
+    <Content Include="Views\QuanLy\Dropdown_ChuDe.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

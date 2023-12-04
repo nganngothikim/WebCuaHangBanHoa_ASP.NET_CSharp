@@ -41,7 +41,16 @@
                                     {
                                         <tr>
                                             <td>@item.MaSP</td>
-                                            <td><img class="img-fluid rounded" src="~/Image/@item.HinhAnh.Hinh1" alt=""></td>
+                                            <td>
+                                                @if (item.HinhAnh != null)
+                                                {
+                                                    <img class="img-fluid rounded" src="~/Image/@item.HinhAnh.Hinh1" alt="">
+                                                }
+                                                else
+                                                {
+                                                    <p>Chưa có hình</p>
+                                                }
+                                            </td>
                                             <td>@item.TenSP</td>
                                             <td>@item.ChuDe.TenChuDe</td>
                                             <td>
@@ -55,18 +64,18 @@
                                             </td>
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
-                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaSanPham"><i class="ri-pencil-line"></i></a>
+                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaSanPham/@item.MaSP"><i class="ri-pencil-line"></i></a>
                                                     <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>
                                                 </div>
                                             </td>
                                         </tr>
                                     }
-                            </tbody>
-                        </table>
+                                </tbody>
+                            </table>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
 </div>

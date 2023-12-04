@@ -1,0 +1,12 @@
+﻿@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<ChuDe>
+<div class="form-group">
+    <label>Danh mục chủ đề:</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="chude">
+        <option selected disabled>Danh mục chủ đề</option>
+        @foreach (var item in Model)
+        {
+            <option>@item.TenChuDe</option>
+        }    
+    </select>
+</div>

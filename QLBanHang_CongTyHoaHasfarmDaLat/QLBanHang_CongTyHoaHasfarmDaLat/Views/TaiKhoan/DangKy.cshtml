@@ -2,11 +2,11 @@
     ViewBag.Title = "DangKy";
     Layout = "~/Views/Shared/_LayoutKhachHang.cshtml";
 }
-@if (ViewBag.ThongBao_DangKy != null)
+@if (TempData["ThongBao_DangKy"] != null)
 {
     <script>
         // Đoạn mã JavaScript để hiển thị thông báo alert
-        alert("@ViewBag.ThongBao_DangKy");
+        alert("@TempData["ThongBao_DangKy"]");
     </script>
 }
 <div class="breadcrumbs-area position-relative">
@@ -37,35 +37,26 @@
                     </div>
                     <form action="/TaiKhoan/DangKy" method="post">
                         <div class="single-input-item mb-3">
-                            <input type="text" placeholder="Nhập Họ và Tên" name="hoten">
+                            <input type="text" placeholder="Nhập Họ và Tên" name="hoten" required="">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="text" placeholder="Nhập Địa Chỉ" name="diachi">
+                            <input type="text" placeholder="Nhập Địa Chỉ" name="diachi" required="">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="email" placeholder="Nhập Email" name="email">
+                            <input type="email" placeholder="Nhập Email" name="email" required="">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="number" placeholder="Nhập Số Điện Thoại" name="sdt">
+                            <input type="number" placeholder="Nhập Số Điện Thoại" name="sdt" id="sdt" required="">
+                            <span id="error-msg" style="color: red; display: none;">Số điện thoại cần phải đủ 10 số</span>
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="text" placeholder="Nhập Username" name="tendn">
+                            <input type="text" placeholder="Nhập Username" name="tendn" required="">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="password" placeholder="Nhập Mật Khẩu" name="mk">
+                            <input type="text" placeholder="Nhập Mật Khẩu" name="mk" required="">
                         </div>
                         <div class="single-input-item mb-3">
-                            <div class="login-reg-form-meta d-flex align-items-center justify-content-between">
-                                <div class="remember-meta mb-3">
-                                    <div class="custom-control custom-checkbox">
-                                        <input type="checkbox" class="custom-control-input" id="rememberMe">
-                                        <label class="custom-control-label" for="rememberMe">Subscribe Our Newsletter</label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-input-item mb-3">
-                            <button class="btn flosun-button secondary-btn theme-color rounded-0">Đăng Ký</button>
+                            <button type="submit" class="btn flosun-button secondary-btn theme-color rounded-0" onclick="validateAndSubmit(event)">Đăng Ký</button>
                         </div>
                     </form>
                 </div>

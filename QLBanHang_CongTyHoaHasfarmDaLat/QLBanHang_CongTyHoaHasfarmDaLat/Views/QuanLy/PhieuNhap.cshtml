@@ -2,8 +2,9 @@
     ViewBag.Title = "PhieuNhap";
     Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
 }
-
-   <!-- Phiếu nhập -->
+@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<PhieuNhap>
+<!-- Phiếu nhập -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
     <div class="container-fluid">
@@ -32,21 +33,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            Người lập
-                                        </td>
-                                        <td>Nhà cung cấp</td>
-                                        <td>22222222</td>
-                                        <td>23455555</td>
-                                        <td>
-                                            <div class="flex align-items-center list-user-action">
-                                                <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết" href="/QuanLy/ChiTietPhieuNhap/"><i class="ri-eye-line"></i></a>
-                                                <!-- <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a> -->
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @if (Model != null)
+                                    {
+                                        foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.MaPhieuNhap</td>
+                                                <td>
+                                                    @item.NhanVien.TenNhanVien
+                                                </td>
+                                                <td>@item.NhaCungCap.TenNhaCungCap</td>
+                                                <td>@item.NgayNhap</td>
+                                                <td>@item.TongTien</td>
+                                                <td>
+                                                    <div class="flex align-items-center list-user-action">
+                                                        <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết" href="/QuanLy/ChiTietPhieuNhap/"><i class="ri-eye-line"></i></a>
+                                                        <!-- <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a> -->
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    }
                                 </tbody>
                             </table>
                         </div>
