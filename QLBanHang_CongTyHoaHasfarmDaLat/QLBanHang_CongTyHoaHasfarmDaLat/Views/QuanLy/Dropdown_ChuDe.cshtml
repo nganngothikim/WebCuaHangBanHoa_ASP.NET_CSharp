@@ -2,11 +2,11 @@
 @model List<ChuDe>
 <div class="form-group">
     <label>Danh mục chủ đề:</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="chude">
+    <select class="form-control" id="exampleFormControlSelect1" name="chude" required>
         <option selected disabled>Danh mục chủ đề</option>
         @foreach (var item in Model)
         {
-            <option>@item.TenChuDe</option>
-        }    
+            <option value="@item.MaChuDe">@item.TenChuDe</option>
+        }
     </select>
 </div>

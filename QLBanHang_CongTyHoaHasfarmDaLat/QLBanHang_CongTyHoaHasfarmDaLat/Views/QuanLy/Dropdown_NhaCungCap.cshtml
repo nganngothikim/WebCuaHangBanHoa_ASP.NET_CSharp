@@ -1,0 +1,12 @@
+﻿@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<NhaCungCap>
+<div class="form-group">
+    <label>Nhà Cung Cấp:</label>
+    <select class="form-control" id="exampleFormControlSelect1" name="ncc">
+        <option selected disabled>Chọn Nhà Cung Cấp</option>
+        @foreach (var item in Model)
+        {
+            <option value="@item.MaNhaCungCap">@item.TenNhaCungCap</option>
+        }
+    </select>
+</div>

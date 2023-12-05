@@ -32,6 +32,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
+        public ActionResult Dropdown_NhaCungCap()
+        {
+            List<NhaCungCap> ds = ql.NhaCungCaps.ToList();
+            return View(ds);
+        }
+
         public ActionResult ThemChuDe()
         {
             return View();
@@ -276,16 +282,120 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(dsnhap);
         }
 
+
         [HttpPost]
-        public ActionResult XuLy_ThemChiTietPN()
+        public ActionResult XuLy_ThemChiTietPN(string ncc)
         {
-            return View();
+            DanhSachNhap dsNhap = Session["dsNhap"] as DanhSachNhap;
+            foreach (SanPhamNhap sp in dsNhap.dssp)
+            {
+                string maSPKey = string.Format(sp.maSP);
+                string donGiaNhapKey = string.Format("donGiaNhap_{0}", sp.maSP);
+                string soLuongNhapKey = string.Format("soLuongNhap_{0}", sp.maSP);
+
+                // Lấy giá trị từ form
+                string maSPValue = Request.Form[maSPKey];
+                string donGiaNhapValue = Request.Form[donGiaNhapKey];
+                string soLuongNhapValue = Request.Form[soLuongNhapKey];
+
+                // Kiểm tra sự trùng khớp mã sản phẩm
+                if (maSPValue == sp.maSP)
+                {
+                    // Tiến hành gán đơn giá và số lượng vào đối tượng sp
+                    sp.donGiaNhap = Convert.ToInt32(donGiaNhapValue);
+                    sp.soLuong = Convert.ToInt32(soLuongNhapValue);
+                }
+            }
+
+            Session["dsNhap"] = dsNhap;
+            TaiKhoan tk = (TaiKhoan)Session["tk"];
+            if (tk != null)
+            {
+                ViewBag.TB_GioHang = null;
+                int? Tongtien = 0;
+                if (dsNhap.SoLuongSP() <= 0)
+                {
+                    ViewBag.TB_GioHang = "Hay Them Gio Hang Truoc Khi Thanh Toan!";
+                    return View("GioHang", null);
+                }
+                else
+                {
+                    Tongtien = dsNhap.TongTien();
+                }
+                PhieuNhap pn = new PhieuNhap();
+                int stt = 1;
+                string mapn = "PN00" + (ql.PhieuNhaps.Count() + stt);
+                PhieuNhap kiemtra = ql.PhieuNhaps.Where(kt => kt.MaPhieuNhap == mapn).FirstOrDefault();
+                while (kiemtra != null)
+                {
+                    stt++;
+                    mapn = "PN00" + (ql.PhieuNhaps.Count() + stt);
+                    kiemtra = ql.PhieuNhaps.Where(kt => kt.MaPhieuNhap == mapn).FirstOrDefault();
+                }
+                pn.MaPhieuNhap = mapn;
+                pn.MaNhanVien = tk.NhanViens.FirstOrDefault().MaNhanVien;
+                pn.NgayNhap = DateTime.Now;
+                pn.TongTien = Tongtien;
+                pn.MaNhaCungCap = ncc;
+                ql.PhieuNhaps.InsertOnSubmit(pn);
+                ql.SubmitChanges();
+
+                nhapChiTietPhieuNhap(pn, dsNhap);
+                if (Session["dsNhap"] != null)
+                {
+                    // Xóa session với key "dsNhap"
+                    Session.Remove("dsNhap");
+                }
+                return RedirectToAction("PhieuNhap");
+            }
+            else
+            {
+                return RedirectToAction("DangNhap", "TaiKhoan");
+            }
+        }
+
+        public int nhapChiTietPhieuNhap(PhieuNhap pn, DanhSachNhap dsnhap)//thêm chi tiết hóa đơn cùng mã hóa đơn
+        {
+            if (pn != null)
+            {
+                foreach (SanPhamNhap i in dsnhap.dssp)
+                {
+                    ChiTietPhieuNhap ct = new ChiTietPhieuNhap();
+                    ct.MaPhieuNhap = pn.MaPhieuNhap;
+                    ct.MaSP = i.maSP;
+                    ct.SoLuongNhap = i.soLuong;
+                    ct.DonGiaNhap = i.donGiaNhap;
+                    ct.ThanhTien = i.thanhTien;
+                    ql.ChiTietPhieuNhaps.InsertOnSubmit(ct);
+                    ql.SubmitChanges();
+                    SanPham sp = ql.SanPhams.Where(t => t.MaSP == i.maSP).FirstOrDefault();
+                    if (sp != null)
+                    {
+                        // Cộng số lượng của sản phẩm
+                        sp.SoLuongTon -= i.soLuong;
+                        ql.SubmitChanges();
+                    }
+                }
+                return 1;
+            }
+            return -1;
         }
 
 
-        public ActionResult ChiTietPhieuNhap()
+        public ActionResult HuyDanhSachNhap()
         {
-            return View();
+            if (Session["dsNhap"] != null)
+            {
+                // Xóa session với key "dsNhap"
+                Session.Remove("dsNhap");
+            }
+            return RedirectToAction("PhieuNhap");
+        }
+        public ActionResult ChiTietPhieuNhap(string id)
+        {
+            List<ChiTietPhieuNhap> ct = ql.ChiTietPhieuNhaps.Where(t => t.MaPhieuNhap == id).ToList();
+            ViewBag.maPhieuNhap = id;
+            return View(ct);
         }
 
         //Hoá đơn

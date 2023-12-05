@@ -18,46 +18,53 @@
 
                     </div>
                     <div class="iq-card-body">
-                        <div class="table-responsive">
-                            <table class=" table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 25%;">Sản phẩm </th>
-                                        <th style="width: 25%;">Đơn giá nhập</th>
-                                        <th style="width: 25%;">Số lượng nhập</th>
-                                        <th style="width: 25%;">Thành tiền</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model.dssp)
-                                    {
+                        <form method="post" action="/QuanLy/XuLy_ThemChiTietPN">
+                            @Html.Action("Dropdown_NhaCungCap", "QuanLy")
+                            <div class="table-responsive">
+                                <table class=" table table-striped table-bordered" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>@item.tenSP</td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control" id="dg" value="0" min="0" name="dg">
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <div class="form-group">
-                                                    <input type="number" class="form-control" id="sl" value="0" min="0" name="sl">
-                                                </div>
-                                            </td>
-                                            <td>9987765</td>
+                                            <th style="width: 25%;">Sản phẩm </th>
+                                            <th style="width: 25%;">Đơn giá nhập</th>
+                                            <th style="width: 25%;">Số lượng nhập</th>
+                                            <th style="width: 25%;">Thành tiền</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="iq-card-header d-flex justify-content-between">
-                            <div class="iq-header-title">
-                                <a href="/QuanLy/ThemDanhSachNhap/" class="btn btn-danger">Quay lại</a>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model.dssp)
+                                        {
+                                            <tr>
+                                                <td>@item.tenSP</td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input type="number" class="form-control" value="" min="0" name="@string.Format("donGiaNhap_{0}", item.maSP)" required>
+                                                    </div>
+                                                </td>
+                                                <td>
+                                                    <div class="form-group">
+                                                        <input type="number" class="form-control" value="" min="0" name="@string.Format("soLuongNhap_{0}", item.maSP)" required>
+                                                    </div>
+                                                </td>
+                                                <td>9987765</td>
+                                                <td>
+                                                    <input type="hidden" name="@item.maSP" value="@item.maSP">
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
                             </div>
-                            <div class="iq-card-header-toolbar d-flex align-items-center">
-                                <a href="/QuanLy/ChiTietPhieuNhap" class="btn btn-primary">Hoàn thành</a>
+                            <div class="iq-card-header d-flex justify-content-between">
+                                <div class="iq-header-title">
+                                    <a href="/QuanLy/HuyDanhSachNhap" class="btn btn-danger">Quay lại</a>
+                                </div>
+                                <div class="iq-card-header-toolbar d-flex align-items-center">
+                                    <button type="submit" class="btn btn-primary">Hoàn thành</button>
+                                </div>
                             </div>
-                        </div>
+                        </form>
                     </div>
+
                 </div>
             </div>
         </div>

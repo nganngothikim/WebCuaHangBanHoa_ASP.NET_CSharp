@@ -2,8 +2,9 @@
     ViewBag.Title = "ChiTietPhieuNhap";
     Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
 }
-
-   <!-- Chi tiết phiếu nhập -->
+@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<ChiTietPhieuNhap>
+<!-- Chi tiết phiếu nhập -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
     <div class="container-fluid">
@@ -12,7 +13,7 @@
                 <div class="iq-card">
                     <div class="iq-card-header d-flex justify-content-between">
                         <div class="iq-header-title">
-                            <h4 class="card-title">Chi Tiết Phiếu Nhập: <span class="text-primary">PN001</span></h4>
+                            <h4 class="card-title">Chi Tiết Phiếu Nhập: <span class="text-primary">@ViewBag.maPhieuNhap</span></h4>
                         </div>
                         <div class="iq-card-header-toolbar d-flex align-items-center">
                             <a href="/QuanLy/PhieuNhap/" class="btn btn-primary">Quay lại</a>
@@ -30,12 +31,15 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>Sản phẩm</td>
-                                        <td>2</td>
-                                        <td>2222</td>
-                                        <td>57584</td>
-                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.SanPham.TenSP</td>
+                                            <td>@item.SoLuongNhap</td>
+                                            <td>@item.DonGiaNhap</td>
+                                            <td>@item.ThanhTien</td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>
