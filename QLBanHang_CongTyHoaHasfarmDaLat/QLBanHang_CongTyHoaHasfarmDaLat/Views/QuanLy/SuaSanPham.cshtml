@@ -26,7 +26,7 @@
                                 <label>Tên sản phẩm:</label>
                                 <input type="text" class="form-control" name="tensp" value="@Model.TenSP">
                             </div>
-                            @Html.Action("Dropdown_ChuDe", "QuanLy")
+                            @Html.Action("Dropdown_ChuDe", "QuanLy", new { id = @Model.MaChuDe })
                             <div class="form-group">
                                 <label>Mô tả:</label>
                                 <textarea class="form-control" rows="4" name="mota">@Model.MoTa</textarea>

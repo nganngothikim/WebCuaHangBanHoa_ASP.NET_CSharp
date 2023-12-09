@@ -1,12 +1,16 @@
 ﻿@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 @model List<ChuDe>
+@{string cdselected = "";}
+@if (ViewBag.ChuDe_Selected != null)
+{
+    cdselected = ViewBag.ChuDe_Selected;
+}
 <div class="form-group">
     <label>Danh mục chủ đề:</label>
     <select class="form-control" id="exampleFormControlSelect1" name="chude" required>
         <option selected disabled>Danh mục chủ đề</option>
         @foreach (var item in Model)
         {
-            <option value="@item.MaChuDe">@item.TenChuDe</option>
-        }
+            <option value="@item.MaChuDe" @(item.MaChuDe == cdselected ? "selected" : "")>@item.TenChuDe</option>        }
     </select>
 </div>

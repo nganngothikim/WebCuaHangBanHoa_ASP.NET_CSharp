@@ -22,40 +22,64 @@
                         <div class="iq-header-title">
                             <h4 class="card-title">Danh mục chủ đề</h4>
                         </div>
+                        <form action="/QuanLy/TimKiem_ChuDe" method="post">
+                            <div class="input-group" style="width:700px;">
+                                <div class="form-inline" style="width:320px;" data-mdb-input-init>
+                                    <input placeholder="Nhập từ khoá bạn muốn tìm kiếm..." name="search" type="search" class="form-control red-border" style="border: 1px solid gray; width: 320px;" />
+                                </div>
+                                <button id="search-button" type="submit" class="btn btn-primary ">
+                                    <i class="fas ri-search-line"></i>
+                                </button>
+                            </div>
+                        </form>
+
+                        @*<div class="iq-search-bar">
+                                <form action="/QuanLy/TimKiem_ChuDe" class="searchbox" method="post">
+                                    <input type="text" class="text search-input" placeholder="Nhập từ khoá bạn muốn tìm kiếm..." name="search">
+                                    <button class="search-link" type="submit"><i class="ri-search-line"></i></button>
+                                </form>
+                            </div>*@
                         <div class="iq-card-header-toolbar d-flex align-items-center">
                             <a href="/QuanLy/ThemChuDe" class="btn btn-primary">Thêm mới</a>
                         </div>
                     </div>
-                    <div class="iq-card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th width="20%">Mã chủ đề</th>
-                                        <th width="70%">Tên chủ đề</th>
-                                        <th width="10%">Hoạt động</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
+                    @if (Model != null)
+                    {
+                        <div class="iq-card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>@item.MaChuDe</td>
-                                            <td>@item.TenChuDe</td>
-                                            <td>
-                                                <div class="flex align-items-center list-user-action">
-                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaChuDe/@item.MaChuDe"><i class="ri-pencil-line"></i></a>
-                                                    <button class="bg-dark" data-toggle="tooltip" data-placement="top" title="Xoá" onclick="confirmDelete('@item.MaChuDe')">
-                                                        <i class="ri-delete-bin-line"></i>
-                                                    </button>
-                                                </div>
-                                            </td>
+                                            <th width="20%">Mã chủ đề</th>
+                                            <th width="70%">Tên chủ đề</th>
+                                            <th width="10%">Hoạt động</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.MaChuDe</td>
+                                                <td>@item.TenChuDe</td>
+                                                <td>
+                                                    <div class="flex align-items-center list-user-action">
+                                                        <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaChuDe/@item.MaChuDe"><i class="ri-pencil-line"></i></a>
+                                                        <button class="bg-dark" data-toggle="tooltip" data-placement="top" title="Xoá" onclick="confirmDelete('@item.MaChuDe')" style="border-radius:5px;">
+                                                            <i class="ri-delete-bin-line"></i>
+                                                        </button>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <h4 class="text-center text-danger">Chủ Đề Tìm Kiếm Không Tồn Tại!</h4>
+                    }
                 </div>
             </div>
         </div>

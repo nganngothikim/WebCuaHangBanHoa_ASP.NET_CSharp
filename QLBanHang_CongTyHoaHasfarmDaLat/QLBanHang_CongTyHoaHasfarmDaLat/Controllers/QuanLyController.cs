@@ -17,8 +17,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         {
             return View();
         }
-
-        //Danh mục Chủ Đề
+        public ActionResult Dropdown_NhaCungCap()
+        {
+            List<NhaCungCap> ds = ql.NhaCungCaps.ToList();
+            return View(ds);
+        }
+        //Danh mục Chủ Đề--------------------------------
         public ActionResult ChuDe()
         {
             List<ChuDe> ds = ql.ChuDes.ToList();
@@ -26,17 +30,29 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
-        public ActionResult Dropdown_ChuDe()
+        [HttpPost]
+        public ActionResult TimKiem_ChuDe(FormCollection form)
+        {
+            string search = form["search"];
+            List<ChuDe> ds = ql.ChuDes.Where(s => s.TenChuDe.Contains(search) || s.MaChuDe.Contains(search)).ToList();
+            if (ds.Count <= 0)
+            {
+                return View("ChuDe", null);
+            }
+            else
+            {
+                return View("ChuDe", ds);
+            }
+        }
+
+        public ActionResult Dropdown_ChuDe(string id)
         {
             List<ChuDe> ds = ql.ChuDes.ToList();
+            ViewBag.ChuDe_Selected = id;
             return View(ds);
         }
 
-        public ActionResult Dropdown_NhaCungCap()
-        {
-            List<NhaCungCap> ds = ql.NhaCungCaps.ToList();
-            return View(ds);
-        }
+
 
         public ActionResult ThemChuDe()
         {
@@ -105,7 +121,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
         public ActionResult XoaChuDe(string id)
         {
-            ViewBag.ThongBao_XoaChuDe = null;
+            TempData["ThongBao_XoaChuDe"] = null;
             ChuDe cd = ql.ChuDes.Where(t => t.MaChuDe == id).FirstOrDefault();
             if (cd != null && !cd.SanPhams.Any())
             {
@@ -121,7 +137,10 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             // Chuyển hướng sau khi xóa
             return RedirectToAction("ChuDe");
         }
-        //Danh mục Sản phẩm
+        //Hết chủ đề-----------------
+
+
+        //Sản phẩm-------------------
         public ActionResult SanPham()
         {
             List<SanPham> ds = ql.SanPhams.ToList();
@@ -247,6 +266,26 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 return RedirectToAction("SanPham");
             }
         }
+
+        //public ActionResult XoaSanPham(string id)
+        //{
+        //    TempData["ThongBao_XoaSanPham"] = null;
+        //    SanPham sp = ql.SanPhams.Where(t => t.MaSP== id).FirstOrDefault();
+        //    if (sp != null)
+        //    {
+        //        ql.SanPhams.DeleteOnSubmit(sp);
+        //        ql.SubmitChanges();
+        //        TempData["ThongBao_XoaSanPham"] = "Xoa Thanh Cong!";
+        //    }
+        //    else
+        //    {
+        //        TempData["ThongBao_XoaSanPham"] = "Khong The Xoa Chu De!";
+        //    }
+
+        //    // Chuyển hướng sau khi xóa
+        //    return RedirectToAction("SanPham");
+        //}
+
         //Phiếu Nhập
         public ActionResult PhieuNhap()
         {
@@ -284,7 +323,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
 
         [HttpPost]
-        public ActionResult XuLy_ThemChiTietPN(string ncc)
+        public ActionResult XuLy_ThemChiTietPN(FormCollection form)
         {
             DanhSachNhap dsNhap = Session["dsNhap"] as DanhSachNhap;
             foreach (SanPhamNhap sp in dsNhap.dssp)
@@ -336,7 +375,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 pn.MaNhanVien = tk.NhanViens.FirstOrDefault().MaNhanVien;
                 pn.NgayNhap = DateTime.Now;
                 pn.TongTien = Tongtien;
-                pn.MaNhaCungCap = ncc;
+                //pn.MaNhaCungCap = form["ncc"];
+                pn.MaNhaCungCap = "NCC001";
                 ql.PhieuNhaps.InsertOnSubmit(pn);
                 ql.SubmitChanges();
 

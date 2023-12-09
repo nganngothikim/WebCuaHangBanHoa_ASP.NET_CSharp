@@ -2,7 +2,7 @@
 @model List<NhaCungCap>
 <div class="form-group">
     <label>Nhà Cung Cấp:</label>
-    <select class="form-control" id="exampleFormControlSelect1" name="ncc">
+    <select class="form-control" id="exampleFormControlSelect1" name="ncc" required>
         <option selected disabled>Chọn Nhà Cung Cấp</option>
         @foreach (var item in Model)
         {

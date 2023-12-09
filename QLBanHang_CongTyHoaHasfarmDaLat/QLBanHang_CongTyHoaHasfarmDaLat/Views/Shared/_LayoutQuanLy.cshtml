@@ -59,9 +59,19 @@
                 <div id="sidebar-bottom" class="p-3 position-relative">
                     <div class="iq-card">
                         <div class="iq-card-body">
-                            <div class="sidebarbottom-content">
-                                <button type="submit" class="btn w-100 btn-primary mt-0 view-more">Đăng xuất</button>
-                            </div>
+                            @if (Session["tk"] != null)
+                            {
+                                <div class="sidebarbottom-content">
+                                    <a class="btn w-100 btn-primary mt-0 view-more" href="/TaiKhoan/DangXuat">Đăng xuất</a>
+                                </div>
+                            }
+                            else
+                            {
+                                <div class="sidebarbottom-content">
+                                    <a href="/TaiKhoan/DangNhap" class="btn w-100 btn-primary mt-0 view-more">Đăng nhập</a>
+                                </div>
+
+                            }
                         </div>
                     </div>
                 </div>
@@ -87,12 +97,6 @@
                     <div class="navbar-breadcrumb">
                         <h5 class="mb-0">Trang Chủ</h5>
                     </div>
-                    <div class="iq-search-bar">
-                        <form action="#" class="searchbox">
-                            <input type="text" class="text search-input" placeholder="Nhập từ khoá bạn muốn tìm kiếm...">
-                            <a class="search-link" href="#"><i class="ri-search-line"></i></a>
-                        </form>
-                    </div>
                     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-label="Toggle navigation">
                         <i class="ri-menu-3-line"></i>
                     </button>
@@ -113,80 +117,80 @@
             </div>
         </div>
     </div>
-        @*Render area*@
-        <div>
-            @RenderBody()
-        </div>
-        <!-- Wrapper END -->
-        <!-- Footer -->
-        <footer class="iq-footer">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-lg-6">
-                        <ul class="list-inline mb-0">
-                            <li class="list-inline-item"><a href="#">Chính sách</a></li>
-                            <li class="list-inline-item"><a href="#">Điều khoản</a></li>
-                        </ul>
-                    </div>
+    @*Render area*@
+    <div>
+        @RenderBody()
+    </div>
+    <!-- Wrapper END -->
+    <!-- Footer -->
+    <footer class="iq-footer">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-6">
+                    <ul class="list-inline mb-0">
+                        <li class="list-inline-item"><a href="#">Chính sách</a></li>
+                        <li class="list-inline-item"><a href="#">Điều khoản</a></li>
+                    </ul>
                 </div>
             </div>
-        </footer>
-        <!-- Footer END -->
-        <!-- color-customizer -->
-        <!-- color-customizer END -->
-        <!-- Optional JavaScript -->
-        <!-- jQuery first, then Popper.js, then Bootstrap JS -->
-        <script src="~/assets/admin/js/jquery.min.js"></script>
-        <script src="~/assets/admin/js/popper.min.js"></script>
-        <script src="~/assets/admin/js/bootstrap.min.js"></script>
-        <!-- Appear JavaScript -->
-        <script src="~/assets/admin/js/jquery.appear.js"></script>
-        <!-- Countdown JavaScript -->
-        <script src="~/assets/admin/js/countdown.min.js"></script>
-        <!-- Counterup JavaScript -->
-        <script src="~/assets/admin/js/waypoints.min.js"></script>
-        <script src="~/assets/admin/js/jquery.counterup.min.js"></script>
-        <!-- Wow JavaScript -->
-        <script src="~/assets/admin/js/wow.min.js"></script>
-        <!-- Apexcharts JavaScript -->
-        <script src="~/assets/admin/js/apexcharts.js"></script>
-        <!-- Slick JavaScript -->
-        <script src="~/assets/admin/js/slick.min.js"></script>
-        <!-- Select2 JavaScript -->
-        <script src="~/assets/admin/js/select2.min.js"></script>
-        <!-- Owl Carousel JavaScript -->
-        <script src="~/assets/admin/js/owl.carousel.min.js"></script>
-        <!-- Magnific Popup JavaScript -->
-        <script src="~/assets/admin/js/jquery.magnific-popup.min.js"></script>
-        <!-- Smooth Scrollbar JavaScript -->
-        <script src="~/assets/admin/js/smooth-scrollbar.js"></script>
-        <!-- lottie JavaScript -->
-        <script src="~/assets/admin/js/lottie.js"></script>
-        <!-- am core JavaScript -->
-        <script src="~/assets/admin/js/core.js"></script>
-        <!-- am charts JavaScript -->
-        <script src="~/assets/admin/js/charts.js"></script>
-        <!-- am animated JavaScript -->
-        <script src="~/assets/admin/js/animated.js"></script>
-        <!-- am kelly JavaScript -->
-        <script src="~/assets/admin/js/kelly.js"></script>
-        <!-- am maps JavaScript -->
-        <script src="~/assets/admin/js/maps.js"></script>
-        <!-- am worldLow JavaScript -->
-        <script src="~/assets/admin/js/worldLow.js"></script>
-        <!-- Raphael-min JavaScript -->
-        <script src="~/assets/admin/js/raphael-min.js"></script>
-        <!-- Morris JavaScript -->
-        <script src="~/assets/admin/js/morris.js"></script>
-        <!-- Morris min JavaScript -->
-        <script src="~/assets/admin/js/morris.min.js"></script>
-        <!-- Flatpicker Js -->
-        <script src="~/assets/admin/js/flatpickr.js"></script>
-        <!-- Style Customizer -->
-        <script src="~/assets/admin/js/style-customizer.js"></script>
-        <!-- Chart Custom JavaScript -->
-        <script src="~/assets/admin/js/chart-custom.js"></script>
-        <!-- Custom JavaScript -->
-        <script src="~/assets/admin/js/custom.js"></script>
+        </div>
+    </footer>
+    <!-- Footer END -->
+    <!-- color-customizer -->
+    <!-- color-customizer END -->
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="~/assets/admin/js/jquery.min.js"></script>
+    <script src="~/assets/admin/js/popper.min.js"></script>
+    <script src="~/assets/admin/js/bootstrap.min.js"></script>
+    <!-- Appear JavaScript -->
+    <script src="~/assets/admin/js/jquery.appear.js"></script>
+    <!-- Countdown JavaScript -->
+    <script src="~/assets/admin/js/countdown.min.js"></script>
+    <!-- Counterup JavaScript -->
+    <script src="~/assets/admin/js/waypoints.min.js"></script>
+    <script src="~/assets/admin/js/jquery.counterup.min.js"></script>
+    <!-- Wow JavaScript -->
+    <script src="~/assets/admin/js/wow.min.js"></script>
+    <!-- Apexcharts JavaScript -->
+    <script src="~/assets/admin/js/apexcharts.js"></script>
+    <!-- Slick JavaScript -->
+    <script src="~/assets/admin/js/slick.min.js"></script>
+    <!-- Select2 JavaScript -->
+    <script src="~/assets/admin/js/select2.min.js"></script>
+    <!-- Owl Carousel JavaScript -->
+    <script src="~/assets/admin/js/owl.carousel.min.js"></script>
+    <!-- Magnific Popup JavaScript -->
+    <script src="~/assets/admin/js/jquery.magnific-popup.min.js"></script>
+    <!-- Smooth Scrollbar JavaScript -->
+    <script src="~/assets/admin/js/smooth-scrollbar.js"></script>
+    <!-- lottie JavaScript -->
+    <script src="~/assets/admin/js/lottie.js"></script>
+    <!-- am core JavaScript -->
+    <script src="~/assets/admin/js/core.js"></script>
+    <!-- am charts JavaScript -->
+    <script src="~/assets/admin/js/charts.js"></script>
+    <!-- am animated JavaScript -->
+    <script src="~/assets/admin/js/animated.js"></script>
+    <!-- am kelly JavaScript -->
+    <script src="~/assets/admin/js/kelly.js"></script>
+    <!-- am maps JavaScript -->
+    <script src="~/assets/admin/js/maps.js"></script>
+    <!-- am worldLow JavaScript -->
+    <script src="~/assets/admin/js/worldLow.js"></script>
+    <!-- Raphael-min JavaScript -->
+    <script src="~/assets/admin/js/raphael-min.js"></script>
+    <!-- Morris JavaScript -->
+    <script src="~/assets/admin/js/morris.js"></script>
+    <!-- Morris min JavaScript -->
+    <script src="~/assets/admin/js/morris.min.js"></script>
+    <!-- Flatpicker Js -->
+    <script src="~/assets/admin/js/flatpickr.js"></script>
+    <!-- Style Customizer -->
+    <script src="~/assets/admin/js/style-customizer.js"></script>
+    <!-- Chart Custom JavaScript -->
+    <script src="~/assets/admin/js/chart-custom.js"></script>
+    <!-- Custom JavaScript -->
+    <script src="~/assets/admin/js/custom.js"></script>
 </body>
 </html>
