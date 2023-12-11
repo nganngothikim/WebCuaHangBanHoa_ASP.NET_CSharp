@@ -194,3 +194,13 @@
     <script src="~/assets/admin/js/custom.js"></script>
 </body>
 </html>
+<script>
+    function setMaxDateForInput() {
+        var currentDate = new Date();
+        var formattedDate = currentDate.toISOString().slice(0, 10);
+        document.getElementById("ngaysinh").max = formattedDate;
+    }
+
+    // Gọi hàm khi trang được tải
+    window.onload = setMaxDateForInput;
+</script>

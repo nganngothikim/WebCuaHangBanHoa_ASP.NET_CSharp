@@ -33,7 +33,7 @@
                             <button data-role="grid_3" type="button" class="active btn-grid-3" title="Grid"><i class="fa fa-th"></i></button>
                             <button data-role="grid_list" type="button" class="btn-list" title="List"><i class="fa fa-th-list"></i></button>
                         </div>
-                        <div class="shop-select">
+                        @*<div class="shop-select">
                             <form class="d-flex flex-column w-100" action="#">
                                 <div class="form-group">
                                     <select class="form-control nice-select w-100">
@@ -46,7 +46,7 @@
                                     </select>
                                 </div>
                             </form>
-                        </div>
+                        </div>*@
                     </div>
                     <!--shop toolbar end-->
                     <!-- Shop Wrapper Start -->
@@ -149,12 +149,12 @@
                     <aside class="sidebar_widget widget-mt">
                         <div class="widget_inner">
                             <div class="widget-list widget-mb-1">
-                                <h3 class="widget-title">Search</h3>
+                                <h3 class="widget-title">Tìm Kiếm</h3>
                                 <form action="@Url.Action("TimKiemTheoTen", "KhachHang")" method="post">
 
                                     <div class="search-box">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" id="search" name="search" placeholder="Search Our Store" aria-label="Search Our Store">
+                                            <input type="text" class="form-control" id="search" name="search" placeholder="" aria-label="Search Our Store">
                                             <div class="input-group-append">
                                                 <button class="btn btn-outline-secondary" type="submit">
                                                     <i class="fa fa-search"></i>

@@ -6,6 +6,18 @@
 @model List<NhanVien>
 <!-- Nhân viên -->
 <!-- Page Content  -->
+@if (ViewBag.ThongBao_SuaNhanVien != null)
+{
+    <script>
+        alert("@ViewBag.ThongBao_SuaNhanVien");
+    </script>
+}
+@if (ViewBag.ThongBao_ThemNhanVien != null)
+{
+    <script>
+        alert("@ViewBag.ThongBao_ThemNhanVien");
+    </script>
+}
 <div id="content-page" class="content-page">
     <div class="container-fluid">
         <div class="row">
@@ -16,7 +28,7 @@
                             <h4 class="card-title">Danh sách nhân viên</h4>
                         </div>
                         <div class="iq-card-header-toolbar d-flex align-items-center">
-                            <a href="#" class="btn btn-primary">Thêm mới</a>
+                            <a href="/QuanLy/ThemNhanVien" class="btn btn-primary">Thêm mới</a>
                         </div>
                     </div>
                     <div class="iq-card-body">
@@ -57,7 +69,7 @@
 
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
-                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="#"><i class="ri-pencil-line"></i></a>
+                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaNhanVien/@item.MaNhanVien"><i class="ri-pencil-line"></i></a>
                                                     <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>
                                                 </div>
                                             </td>

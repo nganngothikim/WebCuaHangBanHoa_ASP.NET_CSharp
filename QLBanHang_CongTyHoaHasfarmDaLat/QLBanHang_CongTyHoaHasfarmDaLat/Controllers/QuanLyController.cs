@@ -27,6 +27,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         {
             List<ChuDe> ds = ql.ChuDes.ToList();
             ViewBag.ThongBao_XoaChuDe = TempData["ThongBao_XoaChuDe"];
+            ViewBag.ThongBao_ThemChuDe = TempData["ThongBao_ThemChuDe"];
+            ViewBag.ThongBao_SuaChuDe = TempData["ThongBao_SuaChuDe"];
             return View(ds);
         }
 
@@ -45,14 +47,13 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
+        //hỗ trợ view sửa sản phẩm
         public ActionResult Dropdown_ChuDe(string id)
         {
             List<ChuDe> ds = ql.ChuDes.ToList();
             ViewBag.ChuDe_Selected = id;
             return View(ds);
         }
-
-
 
         public ActionResult ThemChuDe()
         {
@@ -61,7 +62,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         [HttpPost]
         public ActionResult ThemChuDe(FormCollection form)
         {
-            ViewBag.ThongBao_ChuDe = null;
+            TempData["ThongBao_ThemChuDe"] = null;
             ChuDe cd = ql.ChuDes.Where(t => t.TenChuDe == form["ten"]).FirstOrDefault();
             if (cd == null)
             {
@@ -79,6 +80,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 chude.TenChuDe = form["ten"];
                 ql.ChuDes.InsertOnSubmit(chude);
                 ql.SubmitChanges();
+                TempData["ThongBao_ThemChuDe"] = "Them Thanh Cong !";
                 return RedirectToAction("ChuDe");
             }
             else
@@ -95,7 +97,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         [HttpPost]
         public ActionResult SuaChuDe(FormCollection form)
         {
-            ViewBag.ThongBao_SuaChuDe = null;
+            TempData["ThongBao_SuaChuDe"] = null;
             ChuDe cd = ql.ChuDes.Where(t => t.MaChuDe == form["macd"]).FirstOrDefault();
             if (cd != null)
             {
@@ -114,7 +116,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
             else
             {
-                ViewBag.ThongBao_SuaChuDe = "Khong Tim Thay Chu De Can Sua!";
+                TempData["ThongBao_SuaChuDe"] = "Khong Tim Thay Chu De Can Sua!";
                 return RedirectToAction("ChuDe");
             }
         }
@@ -144,6 +146,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         public ActionResult SanPham()
         {
             List<SanPham> ds = ql.SanPhams.ToList();
+            ViewBag.ThongBao_ThemSanPham = TempData["ThongBao_ThemSanPham"];
+            ViewBag.ThongBao_SuaSanPham = TempData["ThongBao_SuaSanPham"];
             return View(ds);
         }
 
@@ -155,7 +159,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         [HttpPost]
         public ActionResult ThemSanPham(FormCollection form, HttpPostedFileBase hinh1, HttpPostedFileBase hinh2, HttpPostedFileBase hinh3, HttpPostedFileBase hinh4)
         {
-            ViewBag.ThongBao_ThemSanPham = null;
+            TempData["ThongBao_ThemSanPham"] = null;
             // Lấy thông tin từ form
             string tenSanPham = form["tensp"];
             string maChuDe = form["chude"];
@@ -212,13 +216,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 }
                 ql.HinhAnhs.InsertOnSubmit(ha);
                 ql.SubmitChanges();
-
-                // Chuyển hướng sau khi thêm sản phẩm
+                TempData["ThongBao_ThemSanPham"] = "Them San Pham Thanh Cong!";
                 return RedirectToAction("SanPham");
             }
             else
             {
-                ViewBag.ThongBao_ThemSanPham = "Chu De Khong Ton Tai!";
+                TempData["ThongBao_ThemSanPham"] = "Chu De Khong Ton Tai!";
                 return RedirectToAction("SanPham");
             }
         }
@@ -230,7 +233,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         [HttpPost]
         public ActionResult SuaSanPham(FormCollection form)
         {
-            ViewBag.ThongBao_SuaSanPham = null;
+            TempData["ThongBao_SuaSanPham"] = null;
             SanPham sp = ql.SanPhams.Where(t => t.MaSP == form["masp"]).FirstOrDefault();
             if (sp != null)
             {
@@ -242,16 +245,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     sp.MoTa = form["mota"];
                     sp.DonViTinh = form["dvt"];
                     sp.TrangThai = form["tt"] != null && form["tt"].Equals("on");
-                    try
-                    {
-                        ql.SubmitChanges();
-                    }
-                    catch (System.Data.SqlClient.SqlException ex)
-                    {
-                        // Log chi tiết lỗi để phân tích
-                        Console.WriteLine(ex.ToString());
-                        throw;
-                    }
+                    ql.SubmitChanges();
+                    TempData["ThongBao_SuaSanPham"] = "Sua San Pham Thanh Cong !";
                     return RedirectToAction("SanPham");
                 }
                 else
@@ -262,7 +257,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
             else
             {
-                ViewBag.ThongBao_SuaSanPham = "Khong Tim Thay San Pham Can Sua!";
+                TempData["ThongBao_SuaSanPham"] = "Khong Tim Thay San Pham Can Sua!";
                 return RedirectToAction("SanPham");
             }
         }
@@ -441,7 +436,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         //Hoá đơn
         public ActionResult HoaDon()
         {
-            return View();
+            List<HoaDon> ds = ql.HoaDons.ToList();
+            return View(ds);
         }
 
         public ActionResult ChiTietHoaDon()
@@ -452,13 +448,15 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         //Nhà cung cấp 
         public ActionResult NhaCungCap()
         {
-            return View();
+            List<NhaCungCap> ds = ql.NhaCungCaps.ToList();
+            return View(ds);
         }
 
         //Khách Hàng 
         public ActionResult KhachHang()
         {
-            return View();
+            List<KhachHang> ds = ql.KhachHangs.ToList();
+            return View(ds);
         }
 
         public ActionResult SuaKhachHang()
@@ -470,8 +468,104 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         public ActionResult NhanVien()
         {
             List<NhanVien> ds = ql.NhanViens.ToList();
+            ViewBag.ThongBao_SuaNhanVien = TempData["ThongBao_SuaNhanVien"];
+            ViewBag.ThongBao_ThemNhanVien = TempData["ThongBao_ThemNhanVien"];
             return View(ds);
         }
 
+        public ActionResult ThemNhanVien()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ThemNhanVien(FormCollection form)
+        {
+            TempData["ThongBao_ThemNhanVien"] = null;
+            TaiKhoan kiemtratt = ql.TaiKhoans.Where(tk => tk.Username == form["username"]).FirstOrDefault();
+            if (kiemtratt == null)
+            {
+                TaiKhoan taikhoan = new TaiKhoan();
+                taikhoan.Username = form["username"];
+                taikhoan.Pass = form["pass"];
+                taikhoan.Quyen = false;
+                ql.TaiKhoans.InsertOnSubmit(taikhoan);
+                ql.SubmitChanges();
+                //thêm nhân viên sau khi thêm tài khoản
+                NhanVien nv = ql.NhanViens.Where(t => t.MaNhanVien == form["username"]).FirstOrDefault();
+                if (nv == null)
+                {
+                    NhanVien nhanvien = new NhanVien();
+                    int stt = 1;
+                    string manv = "NV00" + (ql.NhanViens.Count() + stt);
+                    NhanVien kiemtra = ql.NhanViens.Where(kt => kt.MaNhanVien == manv).FirstOrDefault();
+                    while (kiemtra != null)
+                    {
+                        stt++;
+                        manv = "NV00" + (ql.NhanViens.Count() + stt);
+                        kiemtra = ql.NhanViens.Where(kt => kt.MaNhanVien == manv).FirstOrDefault();
+                    }
+                    nhanvien.MaNhanVien = manv;
+                    nhanvien.TenNhanVien = form["tennv"];
+                    nhanvien.DiaChi = form["diachi"];
+                    nhanvien.SoDienThoai = form["sdt"];
+                    nhanvien.NgaySinh = DateTime.Parse(form["ngaysinh"]);
+                    nhanvien.Email = form["email"];
+                    nhanvien.Username = form["username"];
+                    nhanvien.HoatDong = form["tt"] != null && form["tt"].Equals("on");
+                    ql.NhanViens.InsertOnSubmit(nhanvien);
+                    ql.SubmitChanges();
+                    TempData["ThongBao_ThemNhanVien"] = "Them Thanh Cong !";
+                    return RedirectToAction("NhanVien");
+                }
+                else
+                {
+                    ViewBag.ThongBao_ThemNhanVien = "Ten Dang Nhap Da Ton Tai!";
+                    return View();
+                }
+            }
+            else
+            {
+                ViewBag.ThongBao_ThemNhanVien = "Ten Dang Nhap Da Ton Tai!";
+                return RedirectToAction("NhanVien");
+            }
+        }
+
+
+        public ActionResult SuaNhanVien(string id)
+        {
+            TempData["ThongBao_SuaNhanVien"] = null;
+            NhanVien nv = ql.NhanViens.Where(n => n.MaNhanVien == id).FirstOrDefault();
+            if (nv != null)
+            {
+                return View(nv);
+            }
+            else
+            {
+                TempData["ThongBao_SuaNhanVien"] = "Khong Tim Thay Nhan Vien De Sua !";
+                return RedirectToAction("NhanVien");
+            }
+        }
+
+        [HttpPost]
+        public ActionResult SuaNhanVien(FormCollection form)
+        {
+            TempData["ThongBao_SuaNhanVien"] = null;
+            NhanVien nv = ql.NhanViens.Where(t => t.MaNhanVien == form["manv"]).FirstOrDefault();
+            if (nv != null)
+            {
+                nv.TenNhanVien = form["tennv"];
+                nv.DiaChi = form["diachi"];
+                nv.SoDienThoai = form["sdt"];
+                nv.HoatDong = form["tt"] != null && form["tt"].Equals("on");
+                ql.SubmitChanges();
+                TempData["ThongBao_SuaNhanVien"] = "Sua Thanh Cong Nhan Vien!";
+                return RedirectToAction("NhanVien");
+            }
+            else
+            {
+                TempData["ThongBao_SuaNhanVien"] = "Khong Tim Thay San Pham Can Sua!";
+                return RedirectToAction("NhanVien");
+            }
+        }
     }
 }

@@ -2,7 +2,8 @@
     ViewBag.Title = "NhaCungCap";
     Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
 }
-
+@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<NhaCungCap>
 <!-- Nhà cung cấp -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
@@ -15,8 +16,8 @@
                             <h4 class="card-title">Danh sách nhà cung cấp</h4>
                         </div>
                         @*<div class="iq-card-header-toolbar d-flex align-items-center">
-                            <a href="/QuanLy/ThemNhaCungCap" class="btn btn-primary">Thêm mới</a>
-                        </div>*@
+                                <a href="/QuanLy/ThemNhaCungCap" class="btn btn-primary">Thêm mới</a>
+                            </div>*@
                     </div>
                     <div class="iq-card-body">
                         <div class="table-responsive">
@@ -32,21 +33,24 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            Tên khách hàng
-                                        </td>
-                                        <td>Địa chỉ</td>
-                                        <td>005857354</td>
-                                        <td>Email</td>
-                                        @*<td>
-                                            <div class="flex align-items-center list-user-action">
-                                                <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="#"><i class="ri-pencil-line"></i></a>
-                                                <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>
-                                            </div>
-                                        </td>*@
-                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.MaNhaCungCap</td>
+                                            <td>
+                                                @item.TenNhaCungCap
+                                            </td>
+                                            <td>@item.DiaChi</td>
+                                            <td>@item.SoDienThoai</td>
+                                            <td>@item.Email</td>
+                                            @*<td>
+                                                    <div class="flex align-items-center list-user-action">
+                                                        <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="#"><i class="ri-pencil-line"></i></a>
+                                                        <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>
+                                                    </div>
+                                                </td>*@
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>

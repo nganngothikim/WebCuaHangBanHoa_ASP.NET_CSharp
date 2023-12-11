@@ -2,8 +2,9 @@
     ViewBag.Title = "KhachHang";
     Layout = "~/Views/Shared/_LayoutQuanLy.cshtml";
 }
-
-  <!-- Khách Hàng -->
+@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
+@model List<KhachHang>
+<!-- Khách Hàng -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
     <div class="container-fluid">
@@ -33,22 +34,27 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr>
-                                        <td>1</td>
-                                        <td>
-                                            Tên khách hàng
-                                        </td>
-                                        <td>Địa chỉ</td>
-                                        <td>005857354</td>
-                                        <td>Email</td>
-                                        <td>Hoạt động</td>
-                                        <td>
-                                            <div class="flex align-items-center list-user-action">
-                                                <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaKhachHang/"><i class="ri-pencil-line"></i></a>
-                                                <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                    @foreach (var item in Model)
+                                    {
+                                        <tr>
+                                            <td>@item.MaKhachHang</td>
+                                            <td>
+                                                @item.TenKhachHang
+                                            </td>
+                                            <td>@item.DiaChi</td>
+                                            <td>@item.SoDienThoai</td>
+                                            <td>@item.SoDienThoai</td>
+                                            <td>
+                                                <input type="checkbox" @(item.HoatDong == true ? "checked" : "") disabled />
+                                            </td>
+                                            <td>
+                                                <div class="flex align-items-center list-user-action">
+                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaKhachHang/"><i class="ri-pencil-line"></i></a>
+                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
                                 </tbody>
                             </table>
                         </div>

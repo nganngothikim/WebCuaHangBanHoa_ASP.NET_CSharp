@@ -4,6 +4,18 @@
 }
 @using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 @model List<SanPham>
+@if (ViewBag.ThongBao_ThemSanPham != null)
+{
+    <script>
+        alert("@ViewBag.ThongBao_ThemSanPham");
+    </script>
+}
+@if (ViewBag.ThongBao_SuaSanPham != null)
+{
+    <script>
+        alert("@ViewBag.ThongBao_SuaSanPham");
+    </script>
+}
 <!-- Sản phẩm -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
