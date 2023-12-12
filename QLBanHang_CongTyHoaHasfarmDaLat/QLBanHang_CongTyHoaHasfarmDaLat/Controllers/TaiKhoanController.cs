@@ -79,7 +79,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
         public ActionResult DangKy()
         {
-            ViewBag.ThongBao_DangKy = null;
+            ViewBag.ThongBao_DangKy = TempData["ThongBao_DangKy"];
             return View();
         }
         [HttpPost]
@@ -133,7 +133,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                         trungTruong += "So Dien Thoai ";
                     if (trungEmail)
                         trungTruong += "Email ";
-                    ViewBag.ThongBao_ThemNhanVien = trungTruong + "da ton tai!";
+                    TempData["ThongBao_DangKy"] = trungTruong + "da ton tai!";
                     return View();
                 }
             }
