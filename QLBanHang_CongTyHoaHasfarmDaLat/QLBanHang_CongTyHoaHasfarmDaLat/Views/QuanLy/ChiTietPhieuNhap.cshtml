@@ -19,31 +19,38 @@
                             <a href="/QuanLy/PhieuNhap/" class="btn btn-primary">Quay lại</a>
                         </div>
                     </div>
-                    <div class="iq-card-body">
-                        <div class="table-responsive">
-                            <table class="table table-striped table-bordered" style="width:100%">
-                                <thead>
-                                    <tr>
-                                        <th style="width: 25%;">Sản phẩm</th>
-                                        <th style="width: 25%;">Số lượng</th>
-                                        <th style="width: 25%;">Đơn giá</th>
-                                        <th style="width: 25%;">Tổng</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    @foreach (var item in Model)
-                                    {
+                    @if (Model.Count > 0)
+                    {
+                        <div class="iq-card-body">
+                            <div class="table-responsive">
+                                <table class="table table-striped table-bordered" style="width:100%">
+                                    <thead>
                                         <tr>
-                                            <td>@item.SanPham.TenSP</td>
-                                            <td>@item.SoLuongNhap</td>
-                                            <td>@item.DonGiaNhap</td>
-                                            <td>@item.ThanhTien</td>
+                                            <th style="width: 25%;">Sản phẩm</th>
+                                            <th style="width: 25%;">Số lượng</th>
+                                            <th style="width: 25%;">Đơn giá</th>
+                                            <th style="width: 25%;">Tổng</th>
                                         </tr>
-                                    }
-                                </tbody>
-                            </table>
+                                    </thead>
+                                    <tbody>
+                                        @foreach (var item in Model)
+                                        {
+                                            <tr>
+                                                <td>@item.SanPham.TenSP</td>
+                                                <td>@item.SoLuongNhap</td>
+                                                <td>@string.Format("{0:N0}đ", @item.DonGiaNhap)</td>
+                                                <td>@string.Format("{0:N0}đ", @item.ThanhTien)</td>
+                                            </tr>
+                                        }
+                                    </tbody>
+                                </table>
+                            </div>
                         </div>
-                    </div>
+                    }
+                    else
+                    {
+                        <h3 class="text-danger text-center">Chi Tiết Phiếu Nhập Rỗng</h3>
+                    }
                 </div>
             </div>
         </div>

@@ -51,7 +51,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     }
                     else
                     {
-                        TempData["ThongBao_DangNhap"] = "Tai Khoan Da Dung Hoat Dong!"; 
+                        TempData["ThongBao_DangNhap"] = "Tai Khoan Da Dung Hoat Dong!";
                         return View();
                     }
                 }
@@ -65,14 +65,14 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     }
                     else
                     {
-                        TempData["ThongBao_DangNhap"] = "Tai Khoan Da Dung Hoat Dong!"; 
+                        TempData["ThongBao_DangNhap"] = "Tai Khoan Da Dung Hoat Dong!";
                         return View();
                     }
                 }
             }
             else
             {
-                TempData["ThongBao_DangNhap"] = "Sai Mat Khau Hoac Ten Dang Nhap!"; 
+                TempData["ThongBao_DangNhap"] = "Sai Mat Khau Hoac Ten Dang Nhap!";
                 return View();
             }
         }
@@ -94,29 +94,48 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 taikhoan.Username = form["tendn"];
                 taikhoan.Pass = form["mk"];
                 taikhoan.Quyen = true;
-                ql.TaiKhoans.InsertOnSubmit(taikhoan);
-                ql.SubmitChanges();
-                //thêm khách hàng bằng user trong tài khoản
-                KhachHang khach = new KhachHang();
-                int stt = 1;
-                string makh = "KH00" + (ql.KhachHangs.Count() + stt);
-                KhachHang kiemtra = ql.KhachHangs.Where(kt => kt.MaKhachHang == makh).FirstOrDefault();
-                while (kiemtra != null)
+                bool trungUsername = ql.KhachHangs.Any(t => t.Username == form["tendn"]);
+                bool trungSoDienThoai = ql.KhachHangs.Any(t => t.SoDienThoai == form["sdt"]);
+                bool trungEmail = ql.KhachHangs.Any(t => t.Email == form["email"]);
+                if (!trungUsername && !trungSoDienThoai && !trungEmail)
                 {
-                    stt++;
-                    makh = "KH00" + (ql.KhachHangs.Count() + stt);
-                    kiemtra = ql.KhachHangs.Where(kt => kt.MaKhachHang == makh).FirstOrDefault();
+                    //thêm khách hàng bằng user trong tài khoản
+                    KhachHang khach = new KhachHang();
+                    int stt = 1;
+                    string makh = "KH00" + (ql.KhachHangs.Count() + stt);
+                    KhachHang kiemtra = ql.KhachHangs.Where(kt => kt.MaKhachHang == makh).FirstOrDefault();
+                    while (kiemtra != null)
+                    {
+                        stt++;
+                        makh = "KH00" + (ql.KhachHangs.Count() + stt);
+                        kiemtra = ql.KhachHangs.Where(kt => kt.MaKhachHang == makh).FirstOrDefault();
+                    }
+                    khach.MaKhachHang = makh;
+                    khach.TenKhachHang = form["hoten"];
+                    khach.Email = form["email"];
+                    khach.DiaChi = form["diachi"];
+                    khach.SoDienThoai = form["sdt"];
+                    khach.Username = form["tendn"];
+                    khach.HoatDong = true;
+                    ql.TaiKhoans.InsertOnSubmit(taikhoan);
+                    ql.SubmitChanges();
+                    //thêm khách hàng sau tài khoản
+                    ql.KhachHangs.InsertOnSubmit(khach);
+                    ql.SubmitChanges();
+                    return RedirectToAction("DangNhap", "TaiKhoan");
                 }
-                khach.MaKhachHang = makh;
-                khach.TenKhachHang = form["hoten"];
-                khach.Email = form["email"];
-                khach.DiaChi = form["diachi"];
-                khach.SoDienThoai = form["sdt"];
-                khach.Username = form["tendn"];
-                khach.HoatDong = true;
-                ql.KhachHangs.InsertOnSubmit(khach);
-                ql.SubmitChanges();
-                return RedirectToAction("DangNhap", "TaiKhoan");
+                else
+                {
+                    string trungTruong = "";
+                    if (trungUsername)
+                        trungTruong += "Ten Dang Nhap ";
+                    if (trungSoDienThoai)
+                        trungTruong += "So Dien Thoai ";
+                    if (trungEmail)
+                        trungTruong += "Email ";
+                    ViewBag.ThongBao_ThemNhanVien = trungTruong + "da ton tai!";
+                    return View();
+                }
             }
             else
             {

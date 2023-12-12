@@ -31,117 +31,117 @@
                     <div class="shop_toolbar_wrapper mb-30">
                         <div class="shop_toolbar_btn">
                             <button data-role="grid_3" type="button" class="active btn-grid-3" title="Grid"><i class="fa fa-th"></i></button>
-                            <button data-role="grid_list" type="button" class="btn-list" title="List"><i class="fa fa-th-list"></i></button>
                         </div>
                         @*<div class="shop-select">
-                            <form class="d-flex flex-column w-100" action="#">
-                                <div class="form-group">
-                                    <select class="form-control nice-select w-100">
-                                        <option selected value="1">Alphabetically, A-Z</option>
-                                        <option value="2">Sort by popularity</option>
-                                        <option value="3">Sort by newness</option>
-                                        <option value="4">Sort by price: low to high</option>
-                                        <option value="5">Sort by price: high to low</option>
-                                        <option value="6">Product Name: Z</option>
-                                    </select>
-                                </div>
-                            </form>
-                        </div>*@
+                                <form class="d-flex flex-column w-100" action="#">
+                                    <div class="form-group">
+                                        <select class="form-control nice-select w-100">
+                                            <option selected value="1">Alphabetically, A-Z</option>
+                                            <option value="2">Sort by popularity</option>
+                                            <option value="3">Sort by newness</option>
+                                            <option value="4">Sort by price: low to high</option>
+                                            <option value="5">Sort by price: high to low</option>
+                                            <option value="6">Product Name: Z</option>
+                                        </select>
+                                    </div>
+                                </form>
+                            </div>*@
                     </div>
                     <!--shop toolbar end-->
                     <!-- Shop Wrapper Start -->
                     <div class="row shop_wrapper grid_3">
                         @foreach (var item in Model)
                         {
-                            <div class="col-md-6 col-sm-6 col-lg-4 col-custom product-area">
+                            if (item.TrangThai == true)
+                            {
+                                <div class="col-md-6 col-sm-6 col-lg-4 col-custom product-area">
+                                    <div class="product-item">
+                                        <div class="single-product position-relative mr-0 ml-0">
+                                            <div class="product-image">
+                                                <a class="d-block" href="/KhachHang/ChiTietSanPham/@item.MaSP">
+                                                    <img src="~/Image/@item.HinhAnh.Hinh1" alt="" class="product-image-1 w-100">
+                                                    <img src="~/Image/@item.HinhAnh.Hinh2" alt="" class="product-image-2 position-absolute w-100">
+                                                </a>
+                                                @*<span class="onsale">Sale!</span>*@
+                                                <div class="add-action d-flex flex-column position-absolute">
+                                                    <a href="compare.html" title="Compare">
+                                                        <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="left" title="Compare"></i>
+                                                    </a>
+                                                    <a href="wishlist.html" title="Add To Wishlist">
+                                                        <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
+                                                    </a>
+                                                    <a href="#exampleModalCenter" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+                                                        <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <div class="product-content">
+                                                <div class="product-title">
+                                                    <h4 class="title-2"> <a href="product-details.html">@item.TenSP</a></h4>
+                                                </div>
+                                                @*<div class="product-rating">
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                        <i class="fa fa-star-o"></i>
+                                                    </div>*@
+                                                <div class="price-box">
+                                                    <span class="regular-price ">@string.Format("{0:N0}đ", @item.GiaBan)/@item.DonViTinh</span>
+                                                    @*<span class="old-price"><del>$70.00</del></span>*@
+                                                </div>
+                                                <a href="/KhachHang/ThemGioHang/@item.MaSP" class="btn product-cart">MUA NGAY</a>
+                                            </div>
 
-                                <div class="product-item">
-                                    <div class="single-product position-relative mr-0 ml-0">
-                                        <div class="product-image">
-                                            <a class="d-block" href="/KhachHang/ChiTietSanPham/@item.MaSP">
-                                                <img src="~/Image/@item.HinhAnh.Hinh1" alt="" class="product-image-1 w-100">
-                                                <img src="~/Image/@item.HinhAnh.Hinh2" alt="" class="product-image-2 position-absolute w-100">
-                                            </a>
-                                            @*<span class="onsale">Sale!</span>*@
-                                            <div class="add-action d-flex flex-column position-absolute">
-                                                <a href="compare.html" title="Compare">
-                                                    <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="left" title="Compare"></i>
-                                                </a>
-                                                <a href="wishlist.html" title="Add To Wishlist">
-                                                    <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
-                                                </a>
-                                                <a href="#exampleModalCenter" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                                    <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
-                                                </a>
-                                            </div>
                                         </div>
-                                        <div class="product-content">
-                                            <div class="product-title">
-                                                <h4 class="title-2"> <a href="product-details.html">@item.TenSP</a></h4>
-                                            </div>
-                                            @*<div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>*@
-                                            <div class="price-box">
-                                                <span class="regular-price ">@string.Format("{0:N0}đ", @item.GiaBan)/@item.DonViTinh</span>
-                                                @*<span class="old-price"><del>$70.00</del></span>*@
-                                            </div>
-                                            <a href="/KhachHang/ThemGioHang/@item.MaSP" class="btn product-cart">MUA NGAY</a>
-                                        </div>
-
                                     </div>
                                 </div>
-                            </div>
-
+                            }
                         }
 
                     </div>
                     <!-- Shop Wrapper End -->
                     <!-- Bottom Toolbar Start -->
                     @*<div class="row">
-                        <div class="col-sm-12 col-custom">
-                            <div class="toolbar-bottom">
-                                <div class="pagination">
-                                    <ul>
-                                        <li class="next @(ViewBag.PageIndex == 1 ? "disabled" : "")">
-                                            @if (ViewBag.PageIndex > 1)
-                                            {
-                                                <a href="@Url.Action("SanPham", new { pageIndex = ViewBag.PageIndex - 1, pageSize = ViewBag.PageSize })">pre</a>
-                                            }
-                                        </li>
+                            <div class="col-sm-12 col-custom">
+                                <div class="toolbar-bottom">
+                                    <div class="pagination">
+                                        <ul>
+                                            <li class="next @(ViewBag.PageIndex == 1 ? "disabled" : "")">
+                                                @if (ViewBag.PageIndex > 1)
+                                                {
+                                                    <a href="@Url.Action("SanPham", new { pageIndex = ViewBag.PageIndex - 1, pageSize = ViewBag.PageSize })">pre</a>
+                                                }
+                                            </li>
 
-                                        @for (int i = ViewBag.PageIndex - 1; i <= ViewBag.PageIndex + 1; i++)
-                                        {
-                                            if (i > 0 && i <= ViewBag.TotalPages)
+                                            @for (int i = ViewBag.PageIndex - 1; i <= ViewBag.PageIndex + 1; i++)
                                             {
-                                                <li class="@(i == ViewBag.PageIndex ? "current" : "")">
-                                                    @if (i == ViewBag.PageIndex)
-                                                    {
-                                                        @i
-                                                    }
-                                                    else
-                                                    {
-                                                        <a href="@Url.Action("SanPham", new { pageIndex = i, pageSize = ViewBag.PageSize })">@i</a>
-                                                    }
-                                                </li>
+                                                if (i > 0 && i <= ViewBag.TotalPages)
+                                                {
+                                                    <li class="@(i == ViewBag.PageIndex ? "current" : "")">
+                                                        @if (i == ViewBag.PageIndex)
+                                                        {
+                                                            @i
+                                                        }
+                                                        else
+                                                        {
+                                                            <a href="@Url.Action("SanPham", new { pageIndex = i, pageSize = ViewBag.PageSize })">@i</a>
+                                                        }
+                                                    </li>
+                                                }
                                             }
-                                        }
 
-                                        <li class="next @(ViewBag.PageIndex == ViewBag.TotalPages ? "disabled" : "")">
-                                            @if (ViewBag.PageIndex < ViewBag.TotalPages)
-                                            {
-                                                <a href="@Url.Action("SanPham", new { pageIndex = ViewBag.PageIndex + 1, pageSize = ViewBag.PageSize })">next</a>
-                                            }
-                                        </li>
-                                    </ul>
+                                            <li class="next @(ViewBag.PageIndex == ViewBag.TotalPages ? "disabled" : "")">
+                                                @if (ViewBag.PageIndex < ViewBag.TotalPages)
+                                                {
+                                                    <a href="@Url.Action("SanPham", new { pageIndex = ViewBag.PageIndex + 1, pageSize = ViewBag.PageSize })">next</a>
+                                                }
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                    </div>*@
+                        </div>*@
                     <!-- Bottom Toolbar End -->
                 </div>
                 <div class="col-lg-3 col-12 col-custom">
@@ -151,7 +151,6 @@
                             <div class="widget-list widget-mb-1">
                                 <h3 class="widget-title">Tìm Kiếm</h3>
                                 <form action="@Url.Action("TimKiemTheoTen", "KhachHang")" method="post">
-
                                     <div class="search-box">
                                         <div class="input-group">
                                             <input type="text" class="form-control" id="search" name="search" placeholder="" aria-label="Search Our Store">
@@ -194,125 +193,6 @@
                                     </ul>
                                 </div>
                             </div>
-                            <div class="widget-list widget-mb-2">
-                                <h3 class="widget-title">Color</h3>
-                                <div class="sidebar-body">
-                                    <ul class="checkbox-container categories-list">
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck12">
-                                                <label class="custom-control-label" for="customCheck12">black (20)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck13">
-                                                <label class="custom-control-label" for="customCheck13">red (6)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck14">
-                                                <label class="custom-control-label" for="customCheck14">blue (8)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck11">
-                                                <label class="custom-control-label" for="customCheck11">green (5)</label>
-                                            </div>
-                                        </li>
-                                        <li>
-                                            <div class="custom-control custom-checkbox">
-                                                <input type="checkbox" class="custom-control-input" id="customCheck15">
-                                                <label class="custom-control-label" for="customCheck15">pink (4)</label>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="widget-list widget-mb-3">
-                                <h3 class="widget-title">Tags</h3>
-                                <div class="sidebar-body">
-                                    <ul class="tags">
-                                        <li><a href="#">Rose</a></li>
-                                        <li><a href="#">Sunflower</a></li>
-                                        <li><a href="#">Tulip</a></li>
-                                        <li><a href="#">Lily</a></li>
-                                        <li><a href="#">Smart</a></li>
-                                        <li><a href="#">Modern</a></li>
-                                        <li><a href="#">Gift</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                            @*<div class="widget-list mb-0">
-                                    <h3 class="widget-title">Recent Products</h3>
-                                    <div class="sidebar-body">
-                                        <div class="sidebar-product align-items-center">
-                                            <a href="product-details.html" class="image">
-                                                <img src="~/assets/images/cart/1.jpg" alt="product">
-                                            </a>
-                                            <div class="product-content">
-                                                <div class="product-title">
-                                                    <h4 class="title-2"> <a href="product-details.html">Glory of the Snow</a></h4>
-                                                </div>
-                                                <div class="price-box">
-                                                    <span class="regular-price ">$80.00</span>
-                                                    <span class="old-price"><del>$90.00</del></span>
-                                                </div>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="sidebar-product align-items-center">
-                                            <a href="product-details.html" class="image">
-                                                <img src="~/assets/images/cart/2.jpg" alt="product">
-                                            </a>
-                                            <div class="product-content">
-                                                <div class="product-title">
-                                                    <h4 class="title-2"> <a href="product-details.html">Pearly Everlasting</a></h4>
-                                                </div>
-                                                <div class="price-box">
-                                                    <span class="regular-price ">$50.00</span>
-                                                    <span class="old-price"><del>$60.00</del></span>
-                                                </div>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="sidebar-product align-items-center">
-                                            <a href="product-details.html" class="image">
-                                                <img src="~/assets/images/cart/3.jpg" alt="product">
-                                            </a>
-                                            <div class="product-content">
-                                                <div class="product-title">
-                                                    <h4 class="title-2"> <a href="product-details.html">Jack in the Pulpit</a></h4>
-                                                </div>
-                                                <div class="price-box">
-                                                    <span class="regular-price ">$40.00</span>
-                                                    <span class="old-price"><del>$50.00</del></span>
-                                                </div>
-                                                <div class="product-rating">
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                    <i class="fa fa-star-half-o"></i>
-                                                    <i class="fa fa-star-o"></i>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>*@
                         </div>
                     </aside>
                     <!-- Sidebar Widget End -->

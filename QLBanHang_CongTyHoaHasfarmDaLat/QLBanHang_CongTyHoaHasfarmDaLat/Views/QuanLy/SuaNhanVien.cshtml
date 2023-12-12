@@ -4,6 +4,12 @@
 }
 @using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 @model NhanVien
+@if (ViewBag.ThongBao_SuaNhanVien != null)
+{
+    <script>
+        alert("@ViewBag.ThongBao_SuaNhanVien");
+    </script>
+}
 <!-- Sửa nhân viên -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
@@ -20,27 +26,28 @@
                         <form action="/QuanLy/SuaNhanVien" method="post">
                             <div class="form-group">
                                 <label>Mã nhân viên:</label>
-                                <input type="text" class="form-control" readonly name="manv" value="@Model.MaNhanVien">
+                                <input type="text" class="form-control" readonly name="manv" value="@Model.MaNhanVien" >
                             </div>
                             <div class="form-group">
                                 <label>Tên nhân viên:</label>
-                                <input type="text" class="form-control" name="tennv" value="@Model.TenNhanVien">
+                                <input type="text" class="form-control" name="tennv" value="@Model.TenNhanVien" required>
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ:</label>
-                                <input type="text" class="form-control" name="diachi" value="@Model.DiaChi">
+                                <input type="text" class="form-control" name="diachi" value="@Model.DiaChi" required>
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại:</label>
-                                <input type="number" class="form-control" name="sdt" value="@Model.SoDienThoai">
+                                <input type="number" class="form-control" name="sdt" value="@Model.SoDienThoai" required>
                             </div>
                             <div class="form-group">
                                 <label class="d-block">Hoạt Động:</label>
                                 <input type="checkbox" name="tt" @(Model.HoatDong == true ? "checked" : "") />
                             </div>
                             <button type="submit" class="btn btn-primary">Gửi</button>
+                            <a href="/QuanLy/NhanVien/" class="btn btn-danger text-light" style="float:right;">Quay về</a>
+
                         </form>
-                        <a href="/QuanLy/NhanVien/" class=" btn btn-dangertext-light">Quay về</a>
                     </div>
                 </div>
             </div>

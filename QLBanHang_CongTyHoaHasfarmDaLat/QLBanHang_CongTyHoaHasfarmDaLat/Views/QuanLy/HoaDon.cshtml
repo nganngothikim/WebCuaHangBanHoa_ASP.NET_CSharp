@@ -46,10 +46,10 @@
                                             {
                                                 <td>Thanh toán online</td>
                                             }
-                                            <td>@item.TongTien</td>
+                                            <td>@string.Format("{0:N0}đ", @item.TongTien)</td>
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
-                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết" href="/QuanLy/ChiTietHoaDon/"><i class="ri-eye-line"></i></a>
+                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết" href="/QuanLy/ChiTietHoaDon/@item.SoHoaDon"><i class="ri-eye-line"></i></a>
                                                     <!-- <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a> -->
                                                 </div>
                                             </td>

@@ -35,29 +35,32 @@
                                     <tbody>
                                         @foreach (var item in Model)
                                         {
-                                            <tr>
-                                                <td>@item.MaSP</td>
-                                                <td>
-                                                    @if (item.HinhAnh != null)
-                                                    {
-                                                        <img class="img-fluid rounded" src="~/Image/@item.HinhAnh.Hinh1" alt="">
-                                                    }
-                                                    else
-                                                    {
-                                                        <p>Chưa có hình</p>
-                                                    }
-                                                </td>
-                                                <td>@item.TenSP</td>
-                                                <td>@item.ChuDe.TenChuDe</td>
-                                                <td>@item.SoLuongTon</td>
-                                                <td><input type="checkbox" @(item.TrangThai == true ? "checked" : "") disabled /></td>
-                                                <td>
-                                                    <div class="custom-control custom-checkbox">
-                                                        <input type="checkbox" class="custom-control-input" id="chon-@item.MaSP" name="chon" value="@item.MaSP">
-                                                        <label class="custom-control-label" for="chon-@item.MaSP">Nhập</label>
-                                                    </div>
-                                                </td>
-                                            </tr>
+                                            if (item.TrangThai == true)
+                                            {
+                                                <tr>
+                                                    <td>@item.MaSP</td>
+                                                    <td>
+                                                        @if (item.HinhAnh != null)
+                                                        {
+                                                            <img class="img-fluid rounded" src="~/Image/@item.HinhAnh.Hinh1" alt="">
+                                                        }
+                                                        else
+                                                        {
+                                                            <p>Chưa có hình</p>
+                                                        }
+                                                    </td>
+                                                    <td>@item.TenSP</td>
+                                                    <td>@item.ChuDe.TenChuDe</td>
+                                                    <td>@item.SoLuongTon</td>
+                                                    <td><input type="checkbox" @(item.TrangThai == true ? "checked" : "") disabled /></td>
+                                                    <td>
+                                                        <div class="custom-control custom-checkbox">
+                                                            <input type="checkbox" class="custom-control-input" id="chon-@item.MaSP" name="chon" value="@item.MaSP">
+                                                            <label class="custom-control-label" for="chon-@item.MaSP">Nhập</label>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            }
                                         }
                                     </tbody>
                                 </table>

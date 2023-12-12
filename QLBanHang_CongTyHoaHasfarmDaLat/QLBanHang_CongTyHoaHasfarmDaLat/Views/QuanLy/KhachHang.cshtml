@@ -4,6 +4,12 @@
 }
 @using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 @model List<KhachHang>
+@if (ViewBag.ThongBao_SuaKhachHang != null)
+{
+    <script>
+        alert("@ViewBag.ThongBao_SuaKhachHang");
+    </script>
+}
 <!-- Khách Hàng -->
 <!-- Page Content  -->
 <div id="content-page" class="content-page">
@@ -44,13 +50,18 @@
                                             <td>@item.DiaChi</td>
                                             <td>@item.SoDienThoai</td>
                                             <td>@item.SoDienThoai</td>
-                                            <td>
-                                                <input type="checkbox" @(item.HoatDong == true ? "checked" : "") disabled />
-                                            </td>
+                                            @if (item.HoatDong == true)
+                                            {
+                                                <td>Hoạt Động</td>
+                                            }
+                                            else
+                                            {
+                                                <td>Bị Khóa</td>
+                                            }
                                             <td>
                                                 <div class="flex align-items-center list-user-action">
-                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaKhachHang/"><i class="ri-pencil-line"></i></a>
-                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>
+                                                    <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Sửa" href="/QuanLy/SuaKhachHang/@item.MaKhachHang"><i class="ri-pencil-line"></i></a>
+                                                    @*<a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xoá" href="#"><i class="ri-delete-bin-line"></i></a>*@
                                                 </div>
                                             </td>
                                         </tr>

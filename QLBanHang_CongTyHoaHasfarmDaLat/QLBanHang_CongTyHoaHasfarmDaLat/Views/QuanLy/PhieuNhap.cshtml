@@ -44,7 +44,7 @@
                                                 </td>
                                                 <td>@item.NhaCungCap.TenNhaCungCap</td>
                                                 <td>@item.NgayNhap</td>
-                                                <td>@item.TongTien</td>
+                                                <td>@string.Format("{0:N0}đ", @item.TongTien)</td>
                                                 <td>
                                                     <div class="flex align-items-center list-user-action">
                                                         <a class="bg-dark" data-toggle="tooltip" data-placement="top" title="" data-original-title="Xem chi tiết" href="/QuanLy/ChiTietPhieuNhap/@item.MaPhieuNhap"><i class="ri-eye-line"></i></a>
