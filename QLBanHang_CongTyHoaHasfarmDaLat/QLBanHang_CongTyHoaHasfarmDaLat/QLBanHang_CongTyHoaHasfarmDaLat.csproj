@@ -857,6 +857,8 @@
     <Content Include="Views\KhachHang\DatHangThanhCong.cshtml" />
     <Content Include="Views\QuanLy\Dropdown_ChuDe.cshtml" />
     <Content Include="Views\QuanLy\Dropdown_NhaCungCap.cshtml" />
+    <Content Include="Views\QuanLy\PhieuGiao.cshtml" />
+    <Content Include="Views\QuanLy\DuyetPhieuGiao.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

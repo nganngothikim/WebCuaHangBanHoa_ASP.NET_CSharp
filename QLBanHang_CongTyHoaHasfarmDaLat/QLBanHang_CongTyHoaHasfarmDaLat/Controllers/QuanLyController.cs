@@ -434,8 +434,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             ViewBag.maPhieuNhap = id;
             return View(ct);
         }
-
-        //Hoá đơn
+        //Hết Phiếu Nhập----------------
+        //Hoá đơn-----------------------
         public ActionResult HoaDon()
         {
             List<HoaDon> ds = ql.HoaDons.ToList();
@@ -449,14 +449,71 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ct);
         }
 
-        //Nhà cung cấp 
+
+        public ActionResult PhieuGiao()
+        {
+            List<GiaoHang> ds = ql.GiaoHangs.ToList();
+            return View(ds);
+        }
+        public ActionResult DuyetPhieuGiao()
+        {
+            List<GiaoHang> ds = ql.GiaoHangs.Where(g => g.TrangThai == false).ToList();
+            return View(ds);
+        }
+        [HttpPost]
+        public ActionResult DuyetPhieuGiao(FormCollection form)
+        {
+            ViewBag.ThongBao_DuyetPhieuGiao = null;
+            string[] maSPDuocChon = form.GetValues("chon");
+            if (maSPDuocChon != null)
+            {
+                foreach (string item in maSPDuocChon)
+                {
+                    GiaoHang giao = ql.GiaoHangs.Where(g => g.MaVanDon == item).FirstOrDefault();
+                    if (giao != null)
+                    {
+                        giao.TrangThai = true;
+                        giao.NgayGiao = DateTime.Now;
+                        List<ChiTietHoaDon> lst = ql.ChiTietHoaDons.Where(l => l.SoHoaDon == giao.SoHoaDon).ToList();
+                        if (lst.Count > 0)
+                        {
+                            foreach (ChiTietHoaDon ct in lst)
+                            {
+                                SanPham sp = ql.SanPhams.Where(t => t.MaSP == ct.MaSP).FirstOrDefault();
+                                if (sp != null)
+                                {
+                                    // Trừ số lượng của chi tiết kích thước
+                                    sp.SoLuongTon -= ct.SoLuongBan;
+                                    ql.SubmitChanges();
+                                }
+                            }
+                        }
+                    }
+                }
+                ViewBag.ThongBao_DuyetPhieuGiao = "Cap Nhat Phieu Giao Thanh Cong !";
+                return View();
+            }
+            else
+            {
+                ViewBag.ThongBao_DuyetPhieuGiao = "Cap Nhat Phieu Giao That Bai!";
+                return View();
+            }
+        }
+
+
+
+
+        //Hết Hóa Đơn----------------------
+
+        //Nhà cung cấp---------------------
         public ActionResult NhaCungCap()
         {
             List<NhaCungCap> ds = ql.NhaCungCaps.ToList();
             return View(ds);
         }
+        //Hết Nhà Cung Cấp------------------
 
-        //Khách Hàng------------------
+        //Khách Hàng------------------------
         public ActionResult KhachHang()
         {
             List<KhachHang> ds = ql.KhachHangs.ToList();

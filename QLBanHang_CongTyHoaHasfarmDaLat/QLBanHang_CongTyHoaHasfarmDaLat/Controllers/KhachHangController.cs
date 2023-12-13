@@ -287,13 +287,13 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     ct.ThanhTien = (i.SanPham.GiaBan * i.SoLuong);
                     ql.ChiTietHoaDons.InsertOnSubmit(ct);
                     ql.SubmitChanges();
-                    SanPham sp = ql.SanPhams.Where(t => t.MaSP == i.MaSP).FirstOrDefault();
-                    if (sp != null)
-                    {
-                        // Trừ số lượng của chi tiết kích thước
-                        sp.SoLuongTon -= i.SoLuong;
-                        ql.SubmitChanges();
-                    }
+                    //SanPham sp = ql.SanPhams.Where(t => t.MaSP == i.MaSP).FirstOrDefault();
+                    //if (sp != null)
+                    //{
+                    //    // Trừ số lượng của chi tiết kích thước
+                    //    sp.SoLuongTon -= i.SoLuong;
+                    //    ql.SubmitChanges();
+                    //}
                 }
                 return 1;
             }
