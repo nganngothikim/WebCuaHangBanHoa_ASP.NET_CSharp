@@ -13,10 +13,10 @@
   </Table>
   <Table Name="dbo.ThongTinThanhToan" Member="ThongTinThanhToans">
     <Type Name="ThongTinThanhToan">
-      <Column Name="MaGiaoDich" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenNganHang" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />
+      <Column Name="MaGiaoDichHeThong" Type="System.String" DbType="Char(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="MaNganHang" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MaGiaoDichNganHang" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="HoaDon_ThongTinThanhToan" Member="HoaDon" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="HoaDon" IsForeignKey="true" />
     </Type>
   </Table>
@@ -133,6 +133,7 @@
     <Type Name="NhanVien">
       <Column Name="MaNhanVien" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Column Name="TenNhanVien" Type="System.String" DbType="NVarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="ChucVu" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
       <Column Name="DiaChi" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
       <Column Name="NgaySinh" Type="System.DateTime" DbType="Date" CanBeNull="true" />
       <Column Name="SoDienThoai" Type="System.String" DbType="VarChar(10)" CanBeNull="true" />

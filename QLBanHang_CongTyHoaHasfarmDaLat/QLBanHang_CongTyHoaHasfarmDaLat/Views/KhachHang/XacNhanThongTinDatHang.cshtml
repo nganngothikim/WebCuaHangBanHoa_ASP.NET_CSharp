@@ -13,7 +13,7 @@
                     <h3 class="title-3">Checkout</h3>
                     <ul>
                         <li><a href="index.html">Home</a></li>
-                        <li>Checkout</li>
+                        <li>Thông Tin Thanh Toán</li>
                     </ul>
                 </div>
             </div>
@@ -31,11 +31,11 @@
                         <h3>Billing Details</h3>
                         <div class="row">
                             @*<div class="col-md-12 col-custom">
-                                <div class="checkout-form-list">
-                                    <label>Họ Và Tên</label>
-                                    <input placeholder="Nhập Họ Và Tên" type="text" name="hoten">
-                                </div>
-                            </div>*@
+                                    <div class="checkout-form-list">
+                                        <label>Họ Và Tên</label>
+                                        <input placeholder="Nhập Họ Và Tên" type="text" name="hoten">
+                                    </div>
+                                </div>*@
                             <div class="col-md-12 col-custom">
                                 <div class="checkout-form-list">
                                     <label>Địa Chỉ <span class="required">*</span></label>
@@ -54,10 +54,10 @@
                                     <br />
                                     <div class="radio-buttons">
                                         <label class="radio-inline" style="padding-right:10px; margin-top:10px;">
-                                            <input type="radio" name="thanhtoan" value="diDong" checked> Thanh Toán Online
+                                            <input type="radio" name="thanhtoan" value="online" checked> Thanh Toán Online
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="thanhtoan" value="coDinh"> Ship COD
+                                            <input type="radio" name="thanhtoan" value="cod"> Ship COD
                                         </label>
                                     </div>
                                 </div>
@@ -89,7 +89,7 @@
                                                 × @item.SoLuong
                                             </strong>
                                         </td>
-                                        <td class="cart-product-total text-center"><span class="amount">@string.Format("{0:N0}đ",@item.SanPham.GiaBan*@item.SoLuong)</span></td>
+                                        <td class="cart-product-total text-center"><span class="amount">@string.Format("{0:N0}đ", @item.SanPham.GiaBan * @item.SoLuong)</span></td>
                                     </tr>
                                     Tongtien += (item.SanPham.GiaBan * item.SoLuong);
                                 }
@@ -121,8 +121,8 @@
                                 </div>
                             </div>
                             @*<div class="order-button-payment">
-                                <button class="btn flosun-button secondary-btn black-color rounded-0 w-100">Place Order</button>
-                            </div>*@
+                                    <button class="btn flosun-button secondary-btn black-color rounded-0 w-100">Place Order</button>
+                                </div>*@
                         </div>
                     </div>
                 </div>

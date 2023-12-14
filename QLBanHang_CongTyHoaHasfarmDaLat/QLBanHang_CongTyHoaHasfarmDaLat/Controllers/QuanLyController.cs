@@ -500,9 +500,6 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
-
-
-
         //Hết Hóa Đơn----------------------
 
         //Nhà cung cấp---------------------

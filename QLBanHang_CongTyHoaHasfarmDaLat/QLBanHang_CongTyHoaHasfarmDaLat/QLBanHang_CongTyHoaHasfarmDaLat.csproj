@@ -39,6 +39,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net">
+      <HintPath>..\packages\log4net\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />
@@ -134,11 +137,13 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\DanhSachPhieuNhap.cs" />
+    <Compile Include="Models\OrderInfo.cs" />
     <Compile Include="Models\QLShopHoa.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>QLShopHoa.dbml</DependentUpon>
     </Compile>
+    <Compile Include="Models\VnPayLibrary.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -859,6 +864,7 @@
     <Content Include="Views\QuanLy\Dropdown_NhaCungCap.cshtml" />
     <Content Include="Views\QuanLy\PhieuGiao.cshtml" />
     <Content Include="Views\QuanLy\DuyetPhieuGiao.cshtml" />
+    <Content Include="Views\KhachHang\vnpay_return.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
