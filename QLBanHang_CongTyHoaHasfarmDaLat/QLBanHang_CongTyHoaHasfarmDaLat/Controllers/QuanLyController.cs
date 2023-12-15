@@ -13,7 +13,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         // GET: /QuanLy/
         QLShopHoaDataContext ql = new QLShopHoaDataContext();
 
-
+        [CustomAuthorizeFilter]
         public ActionResult ThongKeTongSo()
         {
             int? tongSLSP = ql.SanPhams.ToList().Count;
@@ -25,8 +25,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View();
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult Dashboard()
-        {            
+        {
             return View();
         }
 
@@ -72,19 +73,21 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 {
                     salesByMonth[month - 1] = 0;
                 }
-            }    
+            }
             ViewBag.DoanhSoTheoThang = string.Join(",", salesByMonth);
 
             // Trả về view Dashboard và truyền dữ liệu (ViewBag) cho nó
             return View("Dashboard");
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult Dropdown_NhaCungCap()
         {
             List<NhaCungCap> ds = ql.NhaCungCaps.ToList();
             return View(ds);
         }
         //Danh mục Chủ Đề--------------------------------
+        [CustomAuthorizeFilter]
         public ActionResult ChuDe()
         {
             List<ChuDe> ds = ql.ChuDes.ToList();
@@ -94,6 +97,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
+
+        [CustomAuthorizeFilter]
         [HttpPost]
         public ActionResult TimKiem_ChuDe(FormCollection form)
         {
@@ -110,6 +115,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         }
 
         //hỗ trợ view sửa sản phẩm
+        [CustomAuthorizeFilter]
         public ActionResult Dropdown_ChuDe(string id)
         {
             List<ChuDe> ds = ql.ChuDes.ToList();
@@ -117,6 +123,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult ThemChuDe()
         {
             return View();
@@ -151,6 +158,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 return View();
             }
         }
+
+        [CustomAuthorizeFilter]
         public ActionResult SuaChuDe(string id)
         {
             ChuDe cd = ql.ChuDes.Where(t => t.MaChuDe == id).FirstOrDefault();
@@ -183,6 +192,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult XoaChuDe(string id)
         {
             TempData["ThongBao_XoaChuDe"] = null;
@@ -205,6 +215,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
 
         //Sản phẩm-------------------
+        [CustomAuthorizeFilter]
         public ActionResult SanPham()
         {
             List<SanPham> ds = ql.SanPhams.ToList();
@@ -213,6 +224,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
+
+        [CustomAuthorizeFilter]
         public ActionResult ThemSanPham()
         {
             List<ChuDe> ds = ql.ChuDes.ToList();
@@ -287,6 +300,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 return RedirectToAction("SanPham");
             }
         }
+
+        [CustomAuthorizeFilter]
         public ActionResult SuaSanPham(string id)
         {
             SanPham sp = ql.SanPhams.Where(t => t.MaSP == id).FirstOrDefault();
@@ -326,32 +341,14 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
-        //public ActionResult XoaSanPham(string id)
-        //{
-        //    TempData["ThongBao_XoaSanPham"] = null;
-        //    SanPham sp = ql.SanPhams.Where(t => t.MaSP== id).FirstOrDefault();
-        //    if (sp != null)
-        //    {
-        //        ql.SanPhams.DeleteOnSubmit(sp);
-        //        ql.SubmitChanges();
-        //        TempData["ThongBao_XoaSanPham"] = "Xoa Thanh Cong!";
-        //    }
-        //    else
-        //    {
-        //        TempData["ThongBao_XoaSanPham"] = "Khong The Xoa Chu De!";
-        //    }
-
-        //    // Chuyển hướng sau khi xóa
-        //    return RedirectToAction("SanPham");
-        //}
-
-        //Phiếu Nhập
+        [CustomAuthorizeFilter]
         public ActionResult PhieuNhap()
         {
             List<PhieuNhap> ds = ql.PhieuNhaps.ToList();
             return View(ds);
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult ThemDanhSachNhap()
         {
             List<SanPham> ds = ql.SanPhams.ToList();
@@ -380,6 +377,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(dsnhap);
         }
 
+        [CustomAuthorizeFilter]
 
         [HttpPost]
         public ActionResult XuLy_ThemChiTietPN(FormCollection form)
@@ -453,6 +451,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
+        [CustomAuthorizeFilter]
         public int nhapChiTietPhieuNhap(PhieuNhap pn, DanhSachNhap dsnhap)//thêm chi tiết hóa đơn cùng mã hóa đơn
         {
             if (pn != null)
@@ -471,7 +470,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     if (sp != null)
                     {
                         // Cộng số lượng của sản phẩm
-                        sp.SoLuongTon -= i.soLuong;
+                        sp.SoLuongTon += i.soLuong;
                         ql.SubmitChanges();
                     }
                 }
@@ -480,7 +479,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return -1;
         }
 
-
+        [CustomAuthorizeFilter]
         public ActionResult HuyDanhSachNhap()
         {
             if (Session["dsNhap"] != null)
@@ -490,6 +489,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
             return RedirectToAction("PhieuNhap");
         }
+        [CustomAuthorizeFilter]
         public ActionResult ChiTietPhieuNhap(string id)
         {
             List<ChiTietPhieuNhap> ct = ql.ChiTietPhieuNhaps.Where(t => t.MaPhieuNhap == id).ToList();
@@ -498,12 +498,15 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         }
         //Hết Phiếu Nhập----------------
         //Hoá đơn-----------------------
+        [CustomAuthorizeFilter]
         public ActionResult HoaDon()
         {
             List<HoaDon> ds = ql.HoaDons.ToList();
             return View(ds);
         }
 
+
+        [CustomAuthorizeFilter]
         public ActionResult ChiTietHoaDon(string id)
         {
             List<ChiTietHoaDon> ct = ql.ChiTietHoaDons.Where(t => t.SoHoaDon == id).ToList();
@@ -512,16 +515,21 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         }
 
 
+        [CustomAuthorizeFilter]
         public ActionResult PhieuGiao()
         {
             List<GiaoHang> ds = ql.GiaoHangs.ToList();
             return View(ds);
         }
+
+        [CustomAuthorizeFilter]
         public ActionResult DuyetPhieuGiao()
         {
             List<GiaoHang> ds = ql.GiaoHangs.Where(g => g.TrangThai == false).ToList();
             return View(ds);
         }
+
+        [CustomAuthorizeFilter]
         [HttpPost]
         public ActionResult DuyetPhieuGiao(FormCollection form)
         {
@@ -565,6 +573,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         //Hết Hóa Đơn----------------------
 
         //Nhà cung cấp---------------------
+        [CustomAuthorizeFilter]
         public ActionResult NhaCungCap()
         {
             List<NhaCungCap> ds = ql.NhaCungCaps.ToList();
@@ -573,6 +582,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         //Hết Nhà Cung Cấp------------------
 
         //Khách Hàng------------------------
+        [CustomAuthorizeFilter]
         public ActionResult KhachHang()
         {
             List<KhachHang> ds = ql.KhachHangs.ToList();
@@ -580,6 +590,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult SuaKhachHang(string id)
         {
             ViewBag.ThongBao_SuaKhachHang = null;
@@ -595,6 +606,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 return RedirectToAction("KhachHang");
             }
         }
+
+        [CustomAuthorizeFilter]
         [HttpPost]
         public ActionResult SuaKhachHang(FormCollection form)
         {
@@ -616,6 +629,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
         //Hết khách hàng--------------
         //Nhân viên--------------------
+        [CustomAuthorizeFilter]
         public ActionResult NhanVien()
         {
             List<NhanVien> ds = ql.NhanViens.ToList();
@@ -626,6 +640,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(ds);
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult ThemNhanVien()
         {
             return View();
@@ -664,6 +679,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     nhanvien.NgaySinh = DateTime.Parse(form["ngaysinh"]);
                     nhanvien.Email = form["email"];
                     nhanvien.Username = form["username"];
+                    nhanvien.ChucVu = "Nhân viên";
                     nhanvien.HoatDong = form["tt"] != null && form["tt"].Equals("on");
                     ql.TaiKhoans.InsertOnSubmit(taikhoan);
                     ql.SubmitChanges();
@@ -693,7 +709,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
-
+        [CustomAuthorizeFilter]
         public ActionResult SuaNhanVien(string id)
         {
             ViewBag.ThongBao_SuaNhanVien = null;
@@ -711,6 +727,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         }
 
         [HttpPost]
+        [CustomAuthorizeFilter]
         public ActionResult SuaNhanVien(FormCollection form)
         {
             TempData["ThongBao_SuaNhanVien"] = null;
@@ -741,6 +758,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
+        [CustomAuthorizeFilter]
         public ActionResult XoaNhanVien(string id)
         {
             TempData["ThongBao_XoaNhanVien"] = null;

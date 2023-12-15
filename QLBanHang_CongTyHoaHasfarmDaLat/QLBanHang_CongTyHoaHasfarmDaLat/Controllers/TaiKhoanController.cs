@@ -12,6 +12,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         // GET: /TaiKhoan/
 
         QLShopHoaDataContext ql = new QLShopHoaDataContext();
+
+        public ActionResult ThongBaoLoi()
+        {
+            return View();
+        }
+
         public ActionResult TaiKhoan_Dropdown()
         {
             TaiKhoan tk = (TaiKhoan)Session["tk"];

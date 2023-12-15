@@ -136,6 +136,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\CustomAuthorizeFilter.cs" />
     <Compile Include="Models\DanhSachPhieuNhap.cs" />
     <Compile Include="Models\OrderInfo.cs" />
     <Compile Include="Models\QLShopHoa.designer.cs">
@@ -818,7 +819,9 @@
     <Content Include="Scripts\knockout-2.2.0.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -866,6 +869,7 @@
     <Content Include="Views\QuanLy\DuyetPhieuGiao.cshtml" />
     <Content Include="Views\KhachHang\vnpay_return.cshtml" />
     <Content Include="Views\QuanLy\ThongKeTongSo.cshtml" />
+    <Content Include="Views\TaiKhoan\ThongBaoLoi.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
