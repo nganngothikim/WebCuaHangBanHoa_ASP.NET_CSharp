@@ -13,10 +13,72 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         // GET: /QuanLy/
         QLShopHoaDataContext ql = new QLShopHoaDataContext();
 
-        public ActionResult Dashboard()
+
+        public ActionResult ThongKeTongSo()
         {
+            int? tongSLSP = ql.SanPhams.ToList().Count;
+            int? tongSLHD = ql.HoaDons.ToList().Count;
+            int? tongSLTonKho = ql.SanPhams.Sum(s => s.SoLuongTon.GetValueOrDefault(0));
+            ViewBag.TongSoSanPham = tongSLSP;
+            ViewBag.TongSoHoaDon = tongSLHD;
+            ViewBag.TongSLTonKho = tongSLTonKho;
             return View();
         }
+
+        public ActionResult Dashboard()
+        {            
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Dashboard(DateTime? startDate, DateTime? endDate)
+        {
+            if (startDate == null)
+            {
+                // Gán giá trị mặc định hoặc xử lý nếu cần
+                startDate = DateTime.MinValue;
+            }
+
+            if (endDate == null)
+            {
+                // Gán giá trị mặc định hoặc xử lý nếu cần
+                endDate = DateTime.MinValue;
+            }
+            int?[] salesByMonth = new int?[12];
+
+            for (int month = 1; month <= 12; month++)
+            {
+                try
+                {
+                    if (startDate.HasValue && endDate.HasValue)
+                    {
+                        int totalSales = ql.HoaDons
+                          .Where(hd => hd.NgayLap != null &&
+                                       hd.NgayLap.Value.Year == startDate.Value.Year &&
+                                       hd.NgayLap.Value.Month == month &&
+                                       hd.NgayLap >= startDate &&
+                                       hd.NgayLap <= endDate)
+                          .Sum(hd => hd.TongTien.GetValueOrDefault(0));
+                        salesByMonth[month - 1] = totalSales;// Sử dụng GetValueOrDefault để trả về giá trị mặc định nếu là null
+                    }
+                    else
+                    {
+                        // Xử lý khi startDate hoặc endDate là null (không có giá trị)
+                        // Chẳng hạn, bạn có thể gán giá trị mặc định hoặc làm điều gì đó khác tùy thuộc vào yêu cầu của bạn
+                        salesByMonth[month - 1] = 0; // Hoặc gán một giá trị khác nếu cần
+                    }
+                }
+                catch (Exception ex)
+                {
+                    salesByMonth[month - 1] = 0;
+                }
+            }    
+            ViewBag.DoanhSoTheoThang = string.Join(",", salesByMonth);
+
+            // Trả về view Dashboard và truyền dữ liệu (ViewBag) cho nó
+            return View("Dashboard");
+        }
+
         public ActionResult Dropdown_NhaCungCap()
         {
             List<NhaCungCap> ds = ql.NhaCungCaps.ToList();

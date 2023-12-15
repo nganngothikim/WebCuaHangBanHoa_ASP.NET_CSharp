@@ -865,6 +865,7 @@
     <Content Include="Views\QuanLy\PhieuGiao.cshtml" />
     <Content Include="Views\QuanLy\DuyetPhieuGiao.cshtml" />
     <Content Include="Views\KhachHang\vnpay_return.cshtml" />
+    <Content Include="Views\QuanLy\ThongKeTongSo.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -116,7 +116,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         {
             List<GioHang> ds = null;
             TaiKhoan tk = (TaiKhoan)Session["tk"];
-            if(tk != null)
+            if (tk != null)
             {
                 ds = ql.GioHangs.Where(t => t.MaKhachHang == tk.KhachHangs.FirstOrDefault().MaKhachHang).ToList();
                 return View(ds);
@@ -443,28 +443,24 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 
         public bool ThemThongTinThanhToan(string maGDHeThong, string soHD, string maNH, string maGDNganHang)
         {
-            //if (vnpayTranId && maHD && maNH)
-            //{
             HoaDon hd = ql.HoaDons.Where(h => h.SoHoaDon == soHD).FirstOrDefault();
             if (hd != null)
             {
-                //ThongTinThanhToan kiemtratt = ql.ThongTinThanhToans.Where(tt => tt.MaGiaoDich == vnpayTranId).FirstOrDefault();
-                ThongTinThanhToan thanhtoan = new ThongTinThanhToan();
-                thanhtoan.MaGiaoDichHeThong= maGDHeThong;
-                thanhtoan.MaNganHang = maNH;
-                thanhtoan.MaGiaoDichNganHang = maGDNganHang;
-                thanhtoan.SoHoaDon = soHD;
-                ql.ThongTinThanhToans.InsertOnSubmit(thanhtoan);
-                ql.SubmitChanges();
-                return true;
+                ThongTinThanhToan kiemtratt = ql.ThongTinThanhToans.Where(tt => tt.SoHoaDon == soHD).FirstOrDefault();
+                if(kiemtratt == null)
+                {
+                    ThongTinThanhToan thanhtoan = new ThongTinThanhToan();
+                    thanhtoan.MaGiaoDichHeThong = maGDHeThong;
+                    thanhtoan.MaNganHang = maNH;
+                    thanhtoan.MaGiaoDichNganHang = maGDNganHang;
+                    thanhtoan.SoHoaDon = soHD;
+                    ql.ThongTinThanhToans.InsertOnSubmit(thanhtoan);
+                    ql.SubmitChanges();
+                    return true;
+                }
             }
             return false;
 
-            //}
-            //else
-            //{
-
-            //}
         }
 
 
