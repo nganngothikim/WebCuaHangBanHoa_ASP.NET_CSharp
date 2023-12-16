@@ -9,7 +9,7 @@
         <div class="row">
             <div class="col-12 text-center">
                 <div class="breadcrumb-content position-relative section-content">
-                    <h3 class="title-3">Shop Sidebar</h3>
+                    <h3 class="title-3">Trang Mua Hàng</h3>
                     <ul>
                         <li><a href="/KhachHang/Home">Trang Chủ</a></li>
                         <li>Trang Mua Hàng</li>
@@ -62,33 +62,13 @@
                                                     <img src="~/Image/@item.HinhAnh.Hinh1" alt="" class="product-image-1 w-100">
                                                     <img src="~/Image/@item.HinhAnh.Hinh2" alt="" class="product-image-2 position-absolute w-100">
                                                 </a>
-                                                @*<span class="onsale">Sale!</span>*@
-                                                <div class="add-action d-flex flex-column position-absolute">
-                                                    <a href="compare.html" title="Compare">
-                                                        <i class="lnr lnr-sync" data-toggle="tooltip" data-placement="left" title="Compare"></i>
-                                                    </a>
-                                                    <a href="wishlist.html" title="Add To Wishlist">
-                                                        <i class="lnr lnr-heart" data-toggle="tooltip" data-placement="left" title="Wishlist"></i>
-                                                    </a>
-                                                    <a href="#exampleModalCenter" title="Quick View" data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
-                                                        <i class="lnr lnr-eye" data-toggle="tooltip" data-placement="left" title="Quick View"></i>
-                                                    </a>
-                                                </div>
                                             </div>
                                             <div class="product-content">
                                                 <div class="product-title">
-                                                    <h4 class="title-2"> <a href="product-details.html">@item.TenSP</a></h4>
+                                                    <h4 class="title-2"> <a href="/KhachHang/ChiTietSanPham/@item.MaSP">@item.TenSP</a></h4>
                                                 </div>
-                                                @*<div class="product-rating">
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                        <i class="fa fa-star-o"></i>
-                                                    </div>*@
                                                 <div class="price-box">
                                                     <span class="regular-price ">@string.Format("{0:N0}đ", @item.GiaBan)/@item.DonViTinh</span>
-                                                    @*<span class="old-price"><del>$70.00</del></span>*@
                                                 </div>
                                                 <a href="/KhachHang/ThemGioHang/@item.MaSP" class="btn product-cart">MUA NGAY</a>
                                             </div>

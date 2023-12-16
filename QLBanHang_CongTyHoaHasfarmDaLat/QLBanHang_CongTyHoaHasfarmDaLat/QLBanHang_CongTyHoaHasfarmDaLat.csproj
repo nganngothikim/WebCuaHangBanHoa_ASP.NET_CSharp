@@ -427,7 +427,7 @@
     <Content Include="assets\images\icon\author.png" />
     <Content Include="assets\images\logo\logo-footer.png" />
     <Content Include="assets\images\logo\logo.png" />
-    <Content Include="assets\images\payment\payment-icon.png" />
+    <Content Include="assets\images\payment\vnpay.png" />
     <Content Include="assets\images\product\1.jpg" />
     <Content Include="assets\images\product\2.jpg" />
     <Content Include="assets\images\product\3.jpg" />

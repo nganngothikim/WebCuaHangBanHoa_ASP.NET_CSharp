@@ -52,7 +52,7 @@
                                         <td class="pro-quantity">
                                             <div class="quantity">
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box soluong" value="@item.SoLuong" type="text" id="quantity" oninput="updateQuantity(this, '@item.MaSP')">
+                                                    <input class="cart-plus-minus-box soluong-@item.MaSP" value="@item.SoLuong" type="number" oninput="updateTangGiam('plus', '@item.MaSP', @item.SanPham.SoLuongTon)" step="1" readonly>
                                                     <button class="dec qtybutton" onclick="updateTangGiam('minus', '@item.MaSP')"><i class="fa fa-minus"></i></button>
                                                     <button class="inc qtybutton" onclick="updateTangGiam('plus', '@item.MaSP')"><i class="fa fa-plus"></i></button>
                                                 </div>
@@ -63,6 +63,7 @@
                                     </tr>
                                     Tongtien += (item.SanPham.GiaBan * item.SoLuong);
                                 }
+
                             </tbody>
                         </table>
                     </div>
@@ -79,27 +80,15 @@
                             <div class="table-responsive">
                                 <table class="table">
                                     <tr>
-                                        <td>Sub Total</td>
+                                        <td>Tạm Tính</td>
                                         <td>@string.Format("{0:N0}đ", @Tongtien)</td>
                                     </tr>
                                     <tr>
-                                        <td>Shipping</td>
+                                        <td>Phí Vận Chuyển</td>
                                         <td>0đ</td>
                                     </tr>
-                                    @*<tr>
-                                        <td>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="thanhtoan" value="true" checked> Thanh Toán Online
-                                            </label>
-                                        </td>
-                                        <td>
-                                            <label class="radio-inline">
-                                                <input type="radio" name="thanhtoan" value="false"> Ship COD
-                                            </label>
-                                        </td>
-                                    </tr>*@
                                     <tr class="total">
-                                        <td>Total</td>
+                                        <td>Tổng Tiền</td>
                                         <td class="total-amount">@string.Format("{0:N0}đ", @Tongtien)</td>
                                     </tr>
                                 </table>

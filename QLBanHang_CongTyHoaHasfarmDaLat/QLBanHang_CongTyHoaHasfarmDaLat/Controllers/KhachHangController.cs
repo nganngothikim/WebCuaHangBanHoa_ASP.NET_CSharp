@@ -13,41 +13,10 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         QLShopHoaDataContext ql = new QLShopHoaDataContext();
         private static readonly ILog log = LogManager.GetLogger(System.Reflection.MethodBase.GetCurrentMethod().DeclaringType);
 
-
         public ActionResult Home()
         {
             return View();
         }
-
-        //private void SetupPagination(int totalItems, int pageIndex, int pageSize)
-        //{
-        //    int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
-        //    ViewBag.PageSize = pageSize;
-        //    ViewBag.PageIndex = pageIndex;
-        //    ViewBag.TotalPages = totalPages;
-        //    ViewBag.TotalItems = totalItems;
-        //}
-
-        //public ActionResult SanPham(int pageIndex = 1, int pageSize = 12)
-        //{
-        //    // Lấy tổng số sản phẩm
-        //    int totalItems = ql.SanPhams.Count();
-
-        //    // Tính tổng số trang
-        //    int totalPages = (int)Math.Ceiling((double)totalItems / pageSize);
-
-        //    // Lấy sản phẩm cho trang hiện tại
-        //    List<SanPham> ds = ql.SanPhams
-        //        .Skip((pageIndex - 1) * pageSize)
-        //        .Take(pageSize)
-        //        .ToList();
-
-        //    // Gán thông số phân trang vào ViewBag 
-        //    SetupPagination(totalItems, pageIndex, pageSize);
-
-        //    return View(ds);
-        //}
 
         public ActionResult SanPham()
         {
@@ -297,13 +266,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     ct.ThanhTien = (i.SanPham.GiaBan * i.SoLuong);
                     ql.ChiTietHoaDons.InsertOnSubmit(ct);
                     ql.SubmitChanges();
-                    //SanPham sp = ql.SanPhams.Where(t => t.MaSP == i.MaSP).FirstOrDefault();
-                    //if (sp != null)
-                    //{
-                    //    // Trừ số lượng của chi tiết kích thước
-                    //    sp.SoLuongTon -= i.SoLuong;
-                    //    ql.SubmitChanges();
-                    //}
+
                 }
                 return 1;
             }
