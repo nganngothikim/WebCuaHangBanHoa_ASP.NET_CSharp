@@ -15,12 +15,24 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
             var tk = filterContext.HttpContext.Session["tk"] as TaiKhoan;
             if (tk != null)
             {
-                bool isAdmin = tk.NhanViens.FirstOrDefault().ChucVu == "Quản lý";
-
-                if (!isAdmin || tk.Quyen == true)
+                if (tk.Quyen == true)
                 {
                     // Kiểm tra quyền và chuyển hướng nếu cần thiết
                     filterContext.Result = new HttpUnauthorizedResult();
+                    return;
+                }
+                else
+                {
+                    string actionName = filterContext.ActionDescriptor.ActionName;
+                    // Bạn có thể sử dụng tên controller để thực hiện logic kiểm tra cụ thể nếu cần
+                    if (actionName == "NhanVien" || actionName == "ThemNhanVien" || actionName == "SuaNhanVien" || actionName == "XoaNhanVien")
+                    {
+                        if (tk.NhanViens.FirstOrDefault().ChucVu != "Quản lý")
+                        {
+                            filterContext.Result = new HttpUnauthorizedResult();
+                        }
+                    }
+
                 }
             }
             else
@@ -29,24 +41,6 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
                 filterContext.Result = new HttpUnauthorizedResult();
             }
         }
-        public void OnAuthorization_NhanVien(AuthorizationContext filterContext)
-        {
-            var tk = filterContext.HttpContext.Session["tk"] as TaiKhoan;
-            if (tk != null)
-            {
-                bool isAdmin = tk.NhanViens.FirstOrDefault().ChucVu == "Quản lý";
 
-                if (!isAdmin || tk.Quyen == true)
-                {
-                    // Kiểm tra quyền và chuyển hướng nếu cần thiết
-                    filterContext.Result = new HttpUnauthorizedResult();
-                }
-            }
-            else
-            {
-                // Session không tồn tại (chưa đăng nhập), xử lý tùy thuộc vào yêu cầu của bạn
-                filterContext.Result = new HttpUnauthorizedResult();
-            }
-        }
     }
 }

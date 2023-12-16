@@ -727,7 +727,6 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         }
 
         [HttpPost]
-        [CustomAuthorizeFilter]
         public ActionResult SuaNhanVien(FormCollection form)
         {
             TempData["ThongBao_SuaNhanVien"] = null;
