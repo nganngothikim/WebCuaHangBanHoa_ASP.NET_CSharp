@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 using log4net;
+using PagedList;
 using System.Configuration;
 namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
 {
@@ -18,10 +19,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View();
         }
 
-        public ActionResult SanPham()
+        public ActionResult SanPham(int? page)
         {
             List<SanPham> ds = ql.SanPhams.ToList();
-            return View(ds);
+            int pageNumber = (page ?? 1);
+            ViewBag.URL = "SanPham";
+            return View(ds.ToPagedList(pageNumber, 6));
         }
 
         public ActionResult MenuChuDe()
@@ -30,10 +33,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return PartialView(ds);
         }
 
-        public ActionResult LocTheoChuDe(string id)
+        public ActionResult LocTheoChuDe(string id, int? page)
         {
             List<SanPham> ds = ql.SanPhams.Where(t => t.MaChuDe == id).ToList();
-            return View("SanPham", ds);
+            int pageNumber = (page ?? 1);
+            ViewBag.URL = "LocTheoChuDe" + "/" + id;
+            return View("SanPham", ds.ToPagedList(pageNumber, 6));
         }
 
 
@@ -43,20 +48,24 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             return View(sp);
         }
 
-        [HttpPost]
-        public ActionResult TimKiemTheoTen(FormCollection fc)
+        public ActionResult TimKiemTheoTen(string tensp, int? page)
         {
-            string tensp = fc["search"];
             List<SanPham> ds = ql.SanPhams.Where(t => t.TenSP.Contains(tensp)).ToList();
+            int pageNumber = page ?? 1;
+            ViewBag.URL = "/TimKiemTheoTen";
+            ViewBag.Param = tensp;
+
             if (ds.Count > 0)
             {
-                return View("SanPham", ds);
+                return View("SanPham", ds.ToPagedList(pageNumber, 6));
             }
             else
             {
                 return View("SanPham", null);
             }
         }
+
+
 
         public ActionResult LocSanPhamTheoGia(string id)
         {

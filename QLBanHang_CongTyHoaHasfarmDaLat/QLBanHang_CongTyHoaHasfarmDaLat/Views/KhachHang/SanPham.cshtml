@@ -2,8 +2,45 @@
     ViewBag.Title = "SanPham";
     Layout = "~/Views/Shared/_LayoutKhachHang.cshtml";
 }
-@using QLBanHang_CongTyHoaHasfarmDaLat.Models;
-@model List<SanPham>
+@model PagedList.IPagedList<QLBanHang_CongTyHoaHasfarmDaLat.Models.SanPham>
+@using PagedList.Mvc;
+<style>
+    .pagination-container {
+        display: flex;
+        justify-content: center;
+    }
+
+    .PagedList-skipToPrevious, .PagedList-skipToNext, .PagedList-skipToLast, .PagedList-skipToFirst {
+        width: auto !important;
+    }
+
+    .pagination > li {
+        margin-left: 4px;
+        width: 40px;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #d3d3d3d3;
+    }
+
+        .pagination > li > a {
+            display: block;
+            width: 100%;
+            border-radius: 5px;
+            padding: 4px 8px;
+            color: black;
+        }
+
+            .pagination > li > a:hover {
+                background-color: #E72463;
+                color: white;
+            }
+    /* Thêm quy tắc cho trang hiện tại */
+    .pagination > .active > a,
+    .pagination > .active > a:hover {
+        background-color: #E72463;
+        color: white;
+    }
+</style>
 <div class="breadcrumbs-area position-relative">
     <div class="container">
         <div class="row">
@@ -82,46 +119,18 @@
                     </div>
                     <!-- Shop Wrapper End -->
                     <!-- Bottom Toolbar Start -->
-                    @*<div class="row">
-                            <div class="col-sm-12 col-custom">
-                                <div class="toolbar-bottom">
-                                    <div class="pagination">
-                                        <ul>
-                                            <li class="next @(ViewBag.PageIndex == 1 ? "disabled" : "")">
-                                                @if (ViewBag.PageIndex > 1)
-                                                {
-                                                    <a href="@Url.Action("SanPham", new { pageIndex = ViewBag.PageIndex - 1, pageSize = ViewBag.PageSize })">pre</a>
-                                                }
-                                            </li>
+                    <div>
+                        @if (ViewBag.Param != null)
+                        {
+                            @Html.PagedListPager(Model, page => Url.Action(ViewBag.URL, new { page, tensp = ViewBag.Param }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })
+                        }
+                        else
+                        {
+                            @Html.PagedListPager(Model, page => Url.Action(ViewBag.URL, new { page }), new PagedListRenderOptions { MaximumPageNumbersToDisplay = 5 })
+                        }
+                    </div>
 
-                                            @for (int i = ViewBag.PageIndex - 1; i <= ViewBag.PageIndex + 1; i++)
-                                            {
-                                                if (i > 0 && i <= ViewBag.TotalPages)
-                                                {
-                                                    <li class="@(i == ViewBag.PageIndex ? "current" : "")">
-                                                        @if (i == ViewBag.PageIndex)
-                                                        {
-                                                            @i
-                                                        }
-                                                        else
-                                                        {
-                                                            <a href="@Url.Action("SanPham", new { pageIndex = i, pageSize = ViewBag.PageSize })">@i</a>
-                                                        }
-                                                    </li>
-                                                }
-                                            }
 
-                                            <li class="next @(ViewBag.PageIndex == ViewBag.TotalPages ? "disabled" : "")">
-                                                @if (ViewBag.PageIndex < ViewBag.TotalPages)
-                                                {
-                                                    <a href="@Url.Action("SanPham", new { pageIndex = ViewBag.PageIndex + 1, pageSize = ViewBag.PageSize })">next</a>
-                                                }
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>*@
                     <!-- Bottom Toolbar End -->
                 </div>
                 <div class="col-lg-3 col-12 col-custom">
@@ -130,18 +139,18 @@
                         <div class="widget_inner">
                             <div class="widget-list widget-mb-1">
                                 <h3 class="widget-title">Tìm Kiếm</h3>
-                                <form action="@Url.Action("TimKiemTheoTen", "KhachHang")" method="post">
-                                    <div class="search-box">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" id="search" name="search" placeholder="" aria-label="Search Our Store">
-                                            <div class="input-group-append">
-                                                <button class="btn btn-outline-secondary" type="submit">
-                                                    <i class="fa fa-search"></i>
-                                                </button>
-                                            </div>
+                                <div class="search-box">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" id="productSearch" name="tensp" placeholder="" aria-label="Search Our Store">
+                                        <div class="input-group-append">
+                                            <button type="button" class="btn btn-outline-secondary" id="searchButton" onclick="submitSearch()">
+                                                <i class="fa fa-search"></i>
+                                            </button>
                                         </div>
                                     </div>
-                                </form>
+                                </div>
+
+
                             </div>
                             <div class="widget-list widget-mb-1">
                                 <h3 class="widget-title">Danh Mục</h3>
@@ -153,16 +162,6 @@
                                 </nav>
                                 <!-- Widget Menu End -->
                             </div>
-                            @*<div class="widget-list widget-mb-1">
-                                    <h3 class="widget-title">Price Filter</h3>
-                                    <!-- Widget Menu Start -->
-                                    <form action="#">
-                                        <div id="slider-range"></div>
-                                        <button type="submit">Filter</button>
-                                        <input type="text" name="text" id="amount" />
-                                    </form>
-                                    <!-- Widget Menu End -->
-                                </div>*@
                             <div class="widget-list widget-mb-1">
                                 <h3 class="widget-title">Sản Phẩm Theo Mức Giá</h3>
                                 <div class="sidebar-body">
@@ -185,3 +184,15 @@ else
 {
     <p>Chưa tìm ra sản phẩm này! Quý khách vui lòng tìm kiếm từ khóa khác hoặc xem thêm trong danh mục sản phẩm.</p>
 }
+@*<script>
+
+    function onSearch() {
+        console.log($('#productSearch').val().trim());
+        if (event.key == 'Enter') {
+            if ($('#productSearch').val().trim() == '')
+                return;
+            window.location = "/KhachHang/TimKiemTheoTen?tensp=" + $('#productSearch').val().trim();
+        }
+
+    }
+</script>*@

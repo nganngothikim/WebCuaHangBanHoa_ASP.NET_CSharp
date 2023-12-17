@@ -335,4 +335,17 @@
     //    // Ngăn chặn chuyển hướng mặc định của thẻ a
     //    return false;
     //}
+
+
+    $('.PagedList-skipToPrevious > a').text('Trang trước');
+    $('.PagedList-skipToNext > a').text('Trang sau');
+    $('.PagedList-skipToLast > a').text('Trang cuối');
+    $('.PagedList-skipToFirst > a').text('Trang đầu');
+    function submitSearch() {
+        var searchTerm = $('#productSearch').val().trim();
+        if (searchTerm !== '') {
+            // Gửi dữ liệu
+            window.location = "/KhachHang/TimKiemTheoTen?tensp=" + $('#productSearch').val().trim()
+        }
+    }
 </script>
