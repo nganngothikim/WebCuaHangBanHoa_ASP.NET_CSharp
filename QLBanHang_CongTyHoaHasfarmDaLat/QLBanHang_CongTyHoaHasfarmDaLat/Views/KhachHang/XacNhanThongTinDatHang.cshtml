@@ -28,7 +28,7 @@
             <div class="col-lg-6 col-12 col-custom">
                 <form action="/KhachHang/XacNhanThongTinDatHang" method="post">
                     <div class="checkbox-form">
-                        <h3>Billing Details</h3>
+                        <h3>CHI TIẾT HOÁ ĐƠN</h3>
                         <div class="row">
                             @*<div class="col-md-12 col-custom">
                                     <div class="checkout-form-list">
@@ -71,13 +71,13 @@
             </div>
             <div class="col-lg-6 col-12 col-custom">
                 <div class="your-order">
-                    <h3>Your order</h3>
+                    <h3>Hoá đơn</h3>
                     <div class="your-order-table table-responsive">
                         <table class="table">
                             <thead>
                                 <tr>
-                                    <th class="cart-product-name">Product</th>
-                                    <th class="cart-product-total">Total</th>
+                                    <th class="cart-product-name">Tên sản phẩm</th>
+                                    <th class="cart-product-total">Thành tiền</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -96,7 +96,7 @@
                             </tbody>
                             <tfoot>
                                 <tr class="order-total">
-                                    <th>Order Total</th>
+                                    <th>Tổng Tiền</th>
                                     <td class="text-center"><strong><span class="amount">@string.Format("{0:N0}đ", @Tongtien)</span></strong></td>
                                 </tr>
                             </tfoot>
@@ -109,13 +109,13 @@
                                     <div class="card-header" id="#payment-1">
                                         <h5 class="panel-title mb-3">
                                             <a href="#" class="" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                                Direct Bank Transfer.
+                                                Thanh toán nhanh bằng tài khoản ngân hàng
                                             </a>
                                         </h5>
                                     </div>
                                     <div id="collapseOne" class="collapse show" data-parent="#accordion">
                                         <div class="card-body mb-2 mt-2">
-                                            <p>Make your payment directly into our bank account. Please use your Order ID as the payment reference. Your order won’t be shipped until the funds have cleared in our account.</p>
+                                            <p>Sau khi đơn hàng của khách hàng đã được xác nhận, đơn hàng sẽ được chuyển đến cửa hàng gần nhất với địa chỉ giao hàng của Quý khách hoặc chuyển đến cửa hàng mà Quý khách chọn sẽ đến lấy hàng. </p>
                                         </div>
                                     </div>
                                 </div>

@@ -46,13 +46,13 @@
 /*----------------------------------------*/
 /*-- Google Font --*/
 @import url("https://fonts.googleapis.com/css2?family=Great+Vibes&amp;display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Josefin+Slab:ital,wght@0,100;0,300;0,400;0,600;0,700;1,100;1,300;1,400;1,600;1,700&amp;display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&amp;display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Roboto+Slab:ital,wght@0,100;0,300;0,400;0,600;0,700;1,100;1,300;1,400;1,600;1,700&amp;display=swap");
 body {
   line-height: 1.6;
   font-weight: 400;
   color: #484848;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   scroll-behavior: smooth;
   font-size: 14px;
 }
@@ -63,7 +63,7 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   color: #000000;
   font-weight: 500;
   margin-top: 0px;
@@ -492,7 +492,7 @@ mark {
 
 .section-title .section-title-2 {
   font-size: 28px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   color: #010101;
   margin-bottom: 15px;
   text-transform: uppercase;
@@ -737,7 +737,7 @@ mark {
 
 .countdown-wrapper .single-countdown .single-countdown_time {
   font-size: 40px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 400;
   line-height: 40px;
   color: #555555;
@@ -760,7 +760,7 @@ mark {
 .countdown-wrapper .single-countdown .single-countdown_text {
   font-size: 14px;
   line-height: 16px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 400;
   color: #999999;
 }
@@ -804,7 +804,7 @@ mark {
 
 .countdown-style-2 .single-countdown .single-countdown_time {
   font-size: 14px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 500;
   line-height: 16px;
   color: #000000;
@@ -814,7 +814,7 @@ mark {
 .countdown-style-2 .single-countdown .single-countdown_text {
   font-size: 14px;
   line-height: 16px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 500;
   color: #000000;
 }
@@ -1720,7 +1720,7 @@ mark {
   padding: 8px 16px;
   font-size: 15px;
   text-transform: capitalize;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 600;
   line-height: 18px;
   color: #000000;
@@ -1765,7 +1765,7 @@ mark {
       -ms-flex-pack: justify;
           justify-content: space-between;
   text-transform: capitalize;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   line-height: 18px;
   position: relative;
   color: #000000;
@@ -1844,7 +1844,7 @@ mark {
 .mega-menu .menu-colum ul li .mega-menu-text {
   position: relative;
   font-size: 18px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   display: table-caption;
   padding: 0px 20px 0px 0px;
   margin: 0px 0px 10px 20px;
@@ -1864,7 +1864,7 @@ mark {
 .mega-menu .menu-colum ul li a {
   padding: 10px 20px;
   display: block;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   line-height: 20px;
   color: #000000;
   font-size: 14px;
@@ -2078,7 +2078,7 @@ mark {
   font-weight: 600;
   margin-top: 0;
   margin-bottom: 8px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
 }
 
 .header-right-area .cart-item-wrapper .single-cart-item .cart-text .cart-text-btn {
@@ -2968,7 +2968,7 @@ mark {
   font-weight: 600;
   display: inline-block;
   margin-bottom: 3px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
 }
 
 .sidebar-product .product-content .title-2:hover {
@@ -3852,7 +3852,7 @@ mark {
   color: #ffffff;
   background-color: #000000;
   font-size: 18px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   border-color: #000000;
   border-radius: 0px;
 }
@@ -5350,7 +5350,7 @@ mark {
 
 .about-area .section-title-wrap .title {
   font-size: 42px;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 700;
   line-height: 1.2;
   color: #000000;
@@ -6053,7 +6053,7 @@ mark {
   display: inline-block;
   font-size: 15px;
   font-weight: 500;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   height: 45px;
   letter-spacing: 0.025em;
   line-height: 45px;
@@ -6462,7 +6462,7 @@ mark {
   top: 30px;
   left: 30px;
   background: #000000;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 500;
   font-size: 12px;
   height: 20px;
@@ -7245,7 +7245,7 @@ mark {
 .breadcrumbs-area .breadcrumb-content ul li a {
   font-size: 18px;
   color: #000000;
-  font-family: "Poppins", sans-serif;
+  font-family: "Open+Sans", sans-serif;
   font-weight: 400;
   line-height: 1;
 }
