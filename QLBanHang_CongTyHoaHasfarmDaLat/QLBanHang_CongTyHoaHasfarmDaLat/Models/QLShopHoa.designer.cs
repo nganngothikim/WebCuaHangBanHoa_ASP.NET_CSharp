@@ -84,7 +84,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
     #endregion
 		
 		public QLShopHoaDataContext() : 
-				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLShopHoaConnectionString"].ConnectionString, mappingSource)
+				base(global::System.Configuration.ConfigurationManager.ConnectionStrings["QLShopHoaConnectionString1"].ConnectionString, mappingSource)
 		{
 			OnCreated();
 		}
@@ -526,7 +526,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiaoDichHeThong", DbType="Char(100) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiaoDichHeThong", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string MaGiaoDichHeThong
 		{
 			get
@@ -546,7 +546,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNganHang", DbType="Char(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaNganHang", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string MaNganHang
 		{
 			get
@@ -566,7 +566,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiaoDichNganHang", DbType="Char(100) NOT NULL", CanBeNull=false)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MaGiaoDichNganHang", DbType="VarChar(100) NOT NULL", CanBeNull=false)]
 		public string MaGiaoDichNganHang
 		{
 			get
@@ -627,12 +627,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 					if ((previousValue != null))
 					{
 						this._HoaDon.Entity = null;
-						previousValue.ThongTinThanhToans.Remove(this);
+						previousValue.ThongTinThanhToan = null;
 					}
 					this._HoaDon.Entity = value;
 					if ((value != null))
 					{
-						value.ThongTinThanhToans.Add(this);
+						value.ThongTinThanhToan = this;
 						this._SoHoaDon = value.SoHoaDon;
 					}
 					else
@@ -1893,7 +1893,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		
 		private EntitySet<ChiTietHoaDon> _ChiTietHoaDons;
 		
-		private EntitySet<ThongTinThanhToan> _ThongTinThanhToans;
+		private EntityRef<ThongTinThanhToan> _ThongTinThanhToan;
 		
 		private EntitySet<GiaoHang> _GiaoHangs;
 		
@@ -1922,7 +1922,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		public HoaDon()
 		{
 			this._ChiTietHoaDons = new EntitySet<ChiTietHoaDon>(new Action<ChiTietHoaDon>(this.attach_ChiTietHoaDons), new Action<ChiTietHoaDon>(this.detach_ChiTietHoaDons));
-			this._ThongTinThanhToans = new EntitySet<ThongTinThanhToan>(new Action<ThongTinThanhToan>(this.attach_ThongTinThanhToans), new Action<ThongTinThanhToan>(this.detach_ThongTinThanhToans));
+			this._ThongTinThanhToan = default(EntityRef<ThongTinThanhToan>);
 			this._GiaoHangs = new EntitySet<GiaoHang>(new Action<GiaoHang>(this.attach_GiaoHangs), new Action<GiaoHang>(this.detach_GiaoHangs));
 			this._KhachHang = default(EntityRef<KhachHang>);
 			this._NhanVien = default(EntityRef<NhanVien>);
@@ -2070,16 +2070,32 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDon_ThongTinThanhToan", Storage="_ThongTinThanhToans", ThisKey="SoHoaDon", OtherKey="SoHoaDon")]
-		public EntitySet<ThongTinThanhToan> ThongTinThanhToans
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="HoaDon_ThongTinThanhToan", Storage="_ThongTinThanhToan", ThisKey="SoHoaDon", OtherKey="SoHoaDon", IsUnique=true, IsForeignKey=false)]
+		public ThongTinThanhToan ThongTinThanhToan
 		{
 			get
 			{
-				return this._ThongTinThanhToans;
+				return this._ThongTinThanhToan.Entity;
 			}
 			set
 			{
-				this._ThongTinThanhToans.Assign(value);
+				ThongTinThanhToan previousValue = this._ThongTinThanhToan.Entity;
+				if (((previousValue != value) 
+							|| (this._ThongTinThanhToan.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._ThongTinThanhToan.Entity = null;
+						previousValue.HoaDon = null;
+					}
+					this._ThongTinThanhToan.Entity = value;
+					if ((value != null))
+					{
+						value.HoaDon = this;
+					}
+					this.SendPropertyChanged("ThongTinThanhToan");
+				}
 			}
 		}
 		
@@ -2191,18 +2207,6 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Models
 		}
 		
 		private void detach_ChiTietHoaDons(ChiTietHoaDon entity)
-		{
-			this.SendPropertyChanging();
-			entity.HoaDon = null;
-		}
-		
-		private void attach_ThongTinThanhToans(ThongTinThanhToan entity)
-		{
-			this.SendPropertyChanging();
-			entity.HoaDon = this;
-		}
-		
-		private void detach_ThongTinThanhToans(ThongTinThanhToan entity)
 		{
 			this.SendPropertyChanging();
 			entity.HoaDon = null;

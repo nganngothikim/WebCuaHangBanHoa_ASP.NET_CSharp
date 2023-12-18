@@ -4,10 +4,10 @@
 }
 @using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 @model List<GiaoHang>
-@if (ViewBag.ThongBao_DuyetPhieuGiao != null)
+@if (ViewBag.ThongBao_CapNhatPhieuGiao != null)
 {
     <script>
-        alert("@ViewBag.ThongBao_DuyetPhieuGiao");
+        alert("@ViewBag.ThongBao_CapNhatPhieuGiao");
     </script>
 }
 
@@ -24,7 +24,7 @@
                            <a href="admin-add-author.html" class="btn btn-primary">Thêm mới</a>
                         </div> -->
                     </div>
-                    @if (Model != null)
+                    @if (Model.Count != 0)
                     {
                         <form method="post" action="/QuanLy/DuyetPhieuGiao">
                             <div class="iq-card-body">
@@ -60,7 +60,7 @@
                                 </div>
                                 <div class="iq-card-header d-flex justify-content-between">
                                     <div class="iq-card-header-toolbar d-flex align-items-center">
-                                        <button type="submit" class="btn btn-primary">Tạo danh sách</button>
+                                        <button type="submit" class="btn btn-primary">Cập Nhật</button>
                                     </div>
                                 </div>
                             </div>

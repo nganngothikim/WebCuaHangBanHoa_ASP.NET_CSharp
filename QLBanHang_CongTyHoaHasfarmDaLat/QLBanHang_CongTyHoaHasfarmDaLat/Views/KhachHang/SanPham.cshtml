@@ -69,20 +69,6 @@
                         <div class="shop_toolbar_btn">
                             <button data-role="grid_3" type="button" class="active btn-grid-3" title="Grid"><i class="fa fa-th"></i></button>
                         </div>
-                        @*<div class="shop-select">
-                                <form class="d-flex flex-column w-100" action="#">
-                                    <div class="form-group">
-                                        <select class="form-control nice-select w-100">
-                                            <option selected value="1">Alphabetically, A-Z</option>
-                                            <option value="2">Sort by popularity</option>
-                                            <option value="3">Sort by newness</option>
-                                            <option value="4">Sort by price: low to high</option>
-                                            <option value="5">Sort by price: high to low</option>
-                                            <option value="6">Product Name: Z</option>
-                                        </select>
-                                    </div>
-                                </form>
-                            </div>*@
                     </div>
                     <!--shop toolbar end-->
                     <!-- Shop Wrapper Start -->
@@ -96,8 +82,22 @@
                                         <div class="single-product position-relative mr-0 ml-0">
                                             <div class="product-image">
                                                 <a class="d-block" href="/KhachHang/ChiTietSanPham/@item.MaSP">
-                                                    <img src="~/Image/@item.HinhAnh.Hinh1" alt="" class="product-image-1 w-100">
-                                                    <img src="~/Image/@item.HinhAnh.Hinh2" alt="" class="product-image-2 position-absolute w-100">
+                                                    @if (item.HinhAnh.Hinh1 != null)
+                                                    {
+                                                        <img src="~/Image/@item.HinhAnh.Hinh1" alt="" class="product-image-1 w-100">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Image/hinhtrong.jpg" alt="" class="product-image-1 w-100">
+                                                    }
+                                                    @if (item.HinhAnh.Hinh2 != null)
+                                                    {
+                                                        <img src="~/Image/@item.HinhAnh.Hinh2" alt="" class="product-image-2 position-absolute w-100">
+                                                    }
+                                                    else
+                                                    {
+                                                        <img src="~/Image/hinhtrong.jpg" alt="" class="product-image-2 position-absolute w-100">
+                                                    }
                                                 </a>
                                             </div>
                                             <div class="product-content">
@@ -186,13 +186,13 @@ else
 }
 @*<script>
 
-    function onSearch() {
-        console.log($('#productSearch').val().trim());
-        if (event.key == 'Enter') {
-            if ($('#productSearch').val().trim() == '')
-                return;
-            window.location = "/KhachHang/TimKiemTheoTen?tensp=" + $('#productSearch').val().trim();
-        }
+        function onSearch() {
+            console.log($('#productSearch').val().trim());
+            if (event.key == 'Enter') {
+                if ($('#productSearch').val().trim() == '')
+                    return;
+                window.location = "/KhachHang/TimKiemTheoTen?tensp=" + $('#productSearch').val().trim();
+            }
 
-    }
-</script>*@
+        }
+    </script>*@

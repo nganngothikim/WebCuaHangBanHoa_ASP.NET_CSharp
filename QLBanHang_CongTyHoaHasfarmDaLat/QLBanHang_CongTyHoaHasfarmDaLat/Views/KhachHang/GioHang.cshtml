@@ -46,13 +46,17 @@
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td class="pro-thumbnail"><a href="#"><img class="img-fluid" src="~/Image/@item.SanPham.HinhAnh.Hinh1" alt="Product" /></a></td>
+                                        <td class="pro-thumbnail">
+                                            <a href="#">
+                                                <img class="img-fluid" src="~/Image/@(item.SanPham.HinhAnh.Hinh1 ?? "hinhtrong.jpg")" alt="Product" />
+                                            </a>
+                                        </td>
                                         <td class="pro-title"><a href="#">@item.SanPham.TenSP / @item.SanPham.DonViTinh</a></td>
                                         <td class="pro-price"><span>@string.Format("{0:N0}đ", @item.SanPham.GiaBan)</span></td>
                                         <td class="pro-quantity">
                                             <div class="quantity">
                                                 <div class="cart-plus-minus">
-                                                    <input class="cart-plus-minus-box soluong-@item.MaSP" value="@item.SoLuong" type="number" oninput="updateTangGiam('plus', '@item.MaSP', @item.SanPham.SoLuongTon)" step="1" readonly>
+                                                    <input class="cart-plus-minus-box soluong-@item.MaSP" value="@item.SoLuong" type="number" data-soluongton="@item.SanPham.SoLuongTon" oninput="updateTangGiam('plus', '@item.MaSP')" readonly>
                                                     <button class="dec qtybutton" onclick="updateTangGiam('minus', '@item.MaSP')"><i class="fa fa-minus"></i></button>
                                                     <button class="inc qtybutton" onclick="updateTangGiam('plus', '@item.MaSP')"><i class="fa fa-plus"></i></button>
                                                 </div>

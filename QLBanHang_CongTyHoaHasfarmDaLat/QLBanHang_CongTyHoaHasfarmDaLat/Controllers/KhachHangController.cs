@@ -65,24 +65,28 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             }
         }
 
-
-
-        public ActionResult LocSanPhamTheoGia(string id)
+        public ActionResult LocSanPhamTheoGia(string id, int? page)
         {
             if (id == "1")
             {
                 List<SanPham> ds = ql.SanPhams.Where(t => t.GiaBan < 500000).ToList();
-                return View("SanPham", ds);
+                int pageNumber = page ?? 1;
+                ViewBag.URL = "LocSanPhamTheoGia" + "/" + id;
+                return View("SanPham", ds.ToPagedList(pageNumber, 6));
             }
             else if (id == "2")
             {
                 List<SanPham> ds = ql.SanPhams.Where(t => t.GiaBan >= 500000 && t.GiaBan < 1000000).ToList();
-                return View("SanPham", ds);
+                int pageNumber = page ?? 1;
+                ViewBag.URL = "LocSanPhamTheoGia" + "/" + id;
+                return View("SanPham", ds.ToPagedList(pageNumber, 6));
             }
             else if (id == "3")
             {
                 List<SanPham> ds = ql.SanPhams.Where(t => t.GiaBan > 1000000).ToList();
-                return View("SanPham", ds);
+                int pageNumber = page ?? 1;
+                ViewBag.URL = "LocSanPhamTheoGia" + "/" + id;
+                return View("SanPham", ds.ToPagedList(pageNumber, 6));
             }
             else
             {
@@ -176,6 +180,8 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         {
             TaiKhoan tk = (TaiKhoan)Session["tk"];
             List<GioHang> ds = ql.GioHangs.Where(t => t.MaKhachHang == tk.KhachHangs.FirstOrDefault().MaKhachHang).ToList();
+            ViewBag.DiaChi = tk.KhachHangs.FirstOrDefault().DiaChi;
+            ViewBag.SDT = tk.KhachHangs.FirstOrDefault().SoDienThoai;
             return View(ds);
         }
         [HttpPost]
@@ -211,7 +217,14 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                 hd.MaKhachHang = tk.KhachHangs.FirstOrDefault().MaKhachHang;
                 hd.NgayLap = DateTime.Now;
                 hd.TongTien = Tongtien;
-                hd.PhuongThucThanhToan = false;
+                if (form["thanhtoan"] == "online")
+                {
+                    hd.PhuongThucThanhToan = false;
+                }
+                else
+                {
+                    hd.PhuongThucThanhToan = true;
+                }
                 ql.HoaDons.InsertOnSubmit(hd);
                 ql.SubmitChanges();
 

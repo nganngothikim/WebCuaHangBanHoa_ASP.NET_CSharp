@@ -263,9 +263,10 @@
         });
     }
 
-    function updateTangGiam(action, maSP, soLuongTon) {
+    function updateTangGiam(action, maSP) {
         console.log('Button clicked:', action, maSP);
         var input = document.querySelector('.soluong-' + maSP);
+        var soLuongTon = input.getAttribute("data-soluongton");
 
         if (input) {
             var val = parseInt(input.value, 10);
@@ -278,7 +279,6 @@
             updateQuantity(input, maSP);
         }
     }
-
     function validateAndSubmit(event) {
         var phoneNumber = document.getElementById('sdt').value;
 

@@ -27,23 +27,26 @@
                     <div class="single-product-img swiper-container gallery-top popup-gallery">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <a class="w-100" href="~/Image/@Model.HinhAnh.Hinh1">
-                                    <img class="w-100" src="~/Image/@Model.HinhAnh.Hinh1" alt="Product">
+                                <a class="w-100" href="~/Image/@(Model.HinhAnh.Hinh1 ?? "hinhtrong.jpg")">
+                                    <img class="w-100" src="~/Image/@(Model.HinhAnh.Hinh1 ?? "hinhtrong.jpg")" alt="Product">
                                 </a>
+
                             </div>
                             <div class="swiper-slide">
-                                <a class="w-100" href="~/Image/@Model.HinhAnh.Hinh2">
-                                    <img class="w-100" src="~/Image/@Model.HinhAnh.Hinh2" alt="Product">
+                                <a class="w-100" href="~/Image/@(Model.HinhAnh.Hinh2 ?? "hinhtrong.jpg")">
+                                    <img class="w-100" src="~/Image/@(Model.HinhAnh.Hinh2 ?? "hinhtrong.jpg")" alt="Product">
                                 </a>
+
                             </div>
                             <div class="swiper-slide">
-                                <a class="w-100" href="~/Image/@Model.HinhAnh.Hinh3">
-                                    <img class="w-100" src="~/Image/@Model.HinhAnh.Hinh3" alt="Product">
+                                <a class="w-100" href="~/Image/@(Model.HinhAnh.Hinh3 ?? "hinhtrong.jpg")">
+                                    <img class="w-100" src="~/Image/@(Model.HinhAnh.Hinh3 ?? "hinhtrong.jpg")" alt="Product">
                                 </a>
+
                             </div>
                             <div class="swiper-slide">
-                                <a class="w-100" href="~/Image/@Model.HinhAnh.Hinh4">
-                                    <img class="w-100" src="~/Image/@Model.HinhAnh.Hinh4" alt="Product">
+                                <a class="w-100" href="~/Image/@(Model.HinhAnh.Hinh4 ?? "hinhtrong.jpg")">
+                                    <img class="w-100" src="~/Image/@(Model.HinhAnh.Hinh4 ?? "hinhtrong.jpg")" alt="Product">
                                 </a>
                             </div>
                         </div>
@@ -51,17 +54,21 @@
                     <div class="single-product-thumb swiper-container gallery-thumbs">
                         <div class="swiper-wrapper">
                             <div class="swiper-slide">
-                                <img src="~/Image/@Model.HinhAnh.Hinh1" alt="Product">
+                                <img src="~/Image/@(Model.HinhAnh.Hinh1 ?? "hinhtrong.jpg")" alt="Product">
                             </div>
+
                             <div class="swiper-slide">
-                                <img src="~/Image/@Model.HinhAnh.Hinh2" alt="Product">
+                                <img src="~/Image/@(Model.HinhAnh.Hinh2 ?? "hinhtrong.jpg")" alt="Product">
                             </div>
+
                             <div class="swiper-slide">
-                                <img src="~/Image/@Model.HinhAnh.Hinh3" alt="Product">
+                                <img src="~/Image/@(Model.HinhAnh.Hinh3 ?? "hinhtrong.jpg")" alt="Product">
                             </div>
+
                             <div class="swiper-slide">
-                                <img src="~/Image/@Model.HinhAnh.Hinh4" alt="Product">
+                                <img src="~/Image/@(Model.HinhAnh.Hinh4 ?? "hinhtrong.jpg")" alt="Product">
                             </div>
+
                         </div>
                         <!-- Add Arrows -->
                         <div class="swiper-button-next swiper-button-white"><i class="lnr lnr-arrow-right"></i></div>

@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="QLShopHoa" Class="QLShopHoaDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-QCTVOKN\SQLEXPRESS;Initial Catalog=QLShopHoa;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLShopHoaConnectionString" Provider="System.Data.SqlClient" />
+  <Connection Mode="WebSettings" ConnectionString="Data Source=DESKTOP-QCTVOKN\SQLEXPRESS;Initial Catalog=QLShopHoa;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="QLShopHoaConnectionString1" Provider="System.Data.SqlClient" />
   <Table Name="dbo.ChiTietHoaDon" Member="ChiTietHoaDons">
     <Type Name="ChiTietHoaDon">
       <Column Name="SoHoaDon" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -13,9 +13,9 @@
   </Table>
   <Table Name="dbo.ThongTinThanhToan" Member="ThongTinThanhToans">
     <Type Name="ThongTinThanhToan">
-      <Column Name="MaGiaoDichHeThong" Type="System.String" DbType="Char(100) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="MaNganHang" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
-      <Column Name="MaGiaoDichNganHang" Type="System.String" DbType="Char(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MaGiaoDichHeThong" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MaNganHang" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
+      <Column Name="MaGiaoDichNganHang" Type="System.String" DbType="VarChar(100) NOT NULL" CanBeNull="false" />
       <Column Name="SoHoaDon" Type="System.String" DbType="VarChar(10) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
       <Association Name="HoaDon_ThongTinThanhToan" Member="HoaDon" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="HoaDon" IsForeignKey="true" />
     </Type>
@@ -88,7 +88,7 @@
       <Column Name="PhuongThucThanhToan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
       <Column Name="TongTien" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Association Name="HoaDon_ChiTietHoaDon" Member="ChiTietHoaDons" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="ChiTietHoaDon" />
-      <Association Name="HoaDon_ThongTinThanhToan" Member="ThongTinThanhToans" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="ThongTinThanhToan" />
+      <Association Name="HoaDon_ThongTinThanhToan" Member="ThongTinThanhToan" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="ThongTinThanhToan" Cardinality="One" />
       <Association Name="HoaDon_GiaoHang" Member="GiaoHangs" ThisKey="SoHoaDon" OtherKey="SoHoaDon" Type="GiaoHang" />
       <Association Name="KhachHang_HoaDon" Member="KhachHang" ThisKey="MaKhachHang" OtherKey="MaKhachHang" Type="KhachHang" IsForeignKey="true" />
       <Association Name="NhanVien_HoaDon" Member="NhanVien" ThisKey="MaNhanVien" OtherKey="MaNhanVien" Type="NhanVien" IsForeignKey="true" />
