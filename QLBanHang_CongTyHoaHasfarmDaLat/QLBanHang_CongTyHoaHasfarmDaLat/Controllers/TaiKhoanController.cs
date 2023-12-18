@@ -92,12 +92,12 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         public ActionResult DangKy(FormCollection form)
         {
             TempData["ThongBao_DangKy"] = null;
-            TaiKhoan ktra = ql.TaiKhoans.Where(t => t.Username == form["tendn"]).FirstOrDefault();
+            TaiKhoan ktra = ql.TaiKhoans.Where(t => t.Username == form["tendn"].Trim()).FirstOrDefault();
             if (ktra == null)
             {
                 //tạo tài khoản bằng username trước
                 TaiKhoan taikhoan = new TaiKhoan();
-                taikhoan.Username = form["tendn"];
+                taikhoan.Username = form["tendn"].Trim();
                 taikhoan.Pass = form["mk"];
                 taikhoan.Quyen = true;
                 bool trungUsername = ql.KhachHangs.Any(t => t.Username == form["tendn"]);
@@ -117,11 +117,11 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                         kiemtra = ql.KhachHangs.Where(kt => kt.MaKhachHang == makh).FirstOrDefault();
                     }
                     khach.MaKhachHang = makh;
-                    khach.TenKhachHang = form["hoten"];
-                    khach.Email = form["email"];
-                    khach.DiaChi = form["diachi"];
+                    khach.TenKhachHang = form["hoten"].Trim();
+                    khach.Email = form["email"].Trim();
+                    khach.DiaChi = form["diachi"].Trim();
                     khach.SoDienThoai = form["sdt"];
-                    khach.Username = form["tendn"];
+                    khach.Username = form["tendn"].Trim();
                     khach.HoatDong = true;
                     ql.TaiKhoans.InsertOnSubmit(taikhoan);
                     ql.SubmitChanges();

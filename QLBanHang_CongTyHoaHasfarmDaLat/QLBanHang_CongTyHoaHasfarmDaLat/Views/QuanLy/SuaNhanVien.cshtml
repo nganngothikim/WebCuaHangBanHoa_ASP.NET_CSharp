@@ -30,11 +30,11 @@
                             </div>
                             <div class="form-group">
                                 <label>Tên nhân viên:</label>
-                                <input type="text" class="form-control" name="tennv" value="@Model.TenNhanVien" required>
+                                <input type="text" class="form-control" name="tennv" value="@Model.TenNhanVien" required oninput="limitConsecutiveSpaces(this)">
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ:</label>
-                                <input type="text" class="form-control" name="diachi" value="@Model.DiaChi" required>
+                                <input type="text" class="form-control" name="diachi" value="@Model.DiaChi" required oninput="limitConsecutiveSpaces(this)">
                             </div>
                             <div class="form-group">
                                 <label>Số điện thoại:</label>

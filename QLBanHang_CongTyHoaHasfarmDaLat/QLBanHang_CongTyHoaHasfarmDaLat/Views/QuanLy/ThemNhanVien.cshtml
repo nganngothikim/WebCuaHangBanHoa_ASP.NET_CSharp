@@ -24,11 +24,11 @@
                         <form action="/QuanLy/ThemNhanVien" method="post">
                             <div class="form-group">
                                 <label>Tên nhân viên:</label>
-                                <input type="text" class="form-control" name="tennv" required>
+                                <input type="text" class="form-control" name="tennv" required oninput="limitConsecutiveSpaces(this)">
                             </div>
                             <div class="form-group">
                                 <label>Địa chỉ:</label>
-                                <input type="text" class="form-control" name="diachi" required>
+                                <input type="text" class="form-control" name="diachi" required oninput="limitConsecutiveSpaces(this)">
                             </div>
                             <div class="form-group">
                                 <label>Ngày sinh:</label>
@@ -41,15 +41,15 @@
                             </div>
                             <div class="form-group">
                                 <label>Email:</label>
-                                <input type="email" class="form-control" name="email" required>
+                                <input type="email" class="form-control" name="email" required oninput="removeSpaces(this)">
                             </div>
                             <div class="form-group">
                                 <label>Tên Đăng Nhập:</label>
-                                <input type="text" class="form-control" name="username" required>
+                                <input type="text" class="form-control" name="username" required oninput="removeSpaces(this)">
                             </div>
                             <div class="form-group">
                                 <label>Mật Khẩu:</label>
-                                <input type="text" class="form-control" name="pass" required>
+                                <input type="text" class="form-control" name="pass" required oninput="limitConsecutiveSpaces(this)">
                             </div>
                             <div class="form-group">
                                 <label class="d-block">Hoạt Động:</label>

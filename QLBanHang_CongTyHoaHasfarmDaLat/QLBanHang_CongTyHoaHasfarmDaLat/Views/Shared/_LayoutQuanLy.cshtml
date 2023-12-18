@@ -239,4 +239,22 @@
         }
     });
 
+    function limitConsecutiveSpaces(inputElement) {
+        var inputValue = inputElement.value;
+        var sanitizedValue = inputValue.replace(/ +/g, ' '); // Chuyển nhiều khoảng trắng liên tục thành một khoảng trắng
+
+        if (inputValue !== sanitizedValue) {
+            inputElement.value = sanitizedValue;
+        }
+    }
+
+    function removeSpaces(inputElement) {
+        if (inputElement) {
+            // Lấy giá trị từ input và loại bỏ dấu cách
+            var usernameValue = inputElement.value.replace(/\s/g, '');
+
+            // Gán giá trị mới vào input
+            inputElement.value = usernameValue;
+        }
+    }
 </script>

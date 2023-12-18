@@ -37,20 +37,20 @@
                     </div>
                     <form action="/TaiKhoan/DangKy" method="post">
                         <div class="single-input-item mb-3">
-                            <input type="text" placeholder="Nhập Họ và Tên" name="hoten" required="">
+                            <input type="text" placeholder="Nhập Họ và Tên" name="hoten" required="" oninput="limitConsecutiveSpaces(this)">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="text" placeholder="Nhập Địa Chỉ" name="diachi" required="">
+                            <input type="text" placeholder="Nhập Địa Chỉ" name="diachi" required="" oninput="limitConsecutiveSpaces(this)">
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="email" placeholder="Nhập Email" name="email" required="">
+                            <input type="email" placeholder="Nhập Email" name="email" required="" oninput="removeSpaces(this)">
                         </div>
                         <div class="single-input-item mb-3">
                             <input type="number" placeholder="Nhập Số Điện Thoại" name="sdt" id="sdt" required="">
                             <span id="error-msg" style="color: red; display: none;">Số điện thoại cần phải đủ 10 số</span>
                         </div>
                         <div class="single-input-item mb-3">
-                            <input type="text" placeholder="Nhập Username" name="tendn" required="">
+                            <input type="text" placeholder="Nhập Username" name="tendn" required="" oninput="removeSpaces(this)">
                         </div>
                         <div class="single-input-item mb-3">
                             <input type="text" placeholder="Nhập Mật Khẩu" name="mk" required="">

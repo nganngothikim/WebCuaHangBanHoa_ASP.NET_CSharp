@@ -4,11 +4,11 @@
 }
 @using QLBanHang_CongTyHoaHasfarmDaLat.Models;
 @model ChuDe
-@if (ViewBag.ThongBao_SuaChuDe != null)
+@if (ViewBag.TrungTenChuDe != null)
 {
     <script>
         // Đoạn mã JavaScript để hiển thị thông báo alert
-        alert("@ViewBag.ThongBao_SuaChuDe");
+        alert("@ViewBag.TrungTenChuDe");
     </script>
 }
 <!-- Sửa chủ đề -->
@@ -33,7 +33,7 @@
                                 </div>
                                 <div class="form-group">
                                     <label>Tên chủ đề:</label>
-                                    <input type="text" class="form-control" value="@Model.TenChuDe" name="tencd" required>
+                                    <input type="text" class="form-control" value="@Model.TenChuDe" name="tencd" required oninput="limitConsecutiveSpaces(this)">
                                 </div>
                                 <button type="submit" class="btn btn-primary">Gửi</button>
                                 <button type="reset" class="btn btn-danger"><a href="/QuanLy/ChuDe" class="text-light">Quay về</a></button>
