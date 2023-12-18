@@ -162,7 +162,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             if (tk != null)
             {
                 //int dangnhap = 1;
-                GioHang gh = ql.GioHangs.Where(t => t.MaKhachHang == "KH001" && t.MaSP == masp).FirstOrDefault();
+                GioHang gh = ql.GioHangs.Where(t => t.MaKhachHang == tk.KhachHangs.FirstOrDefault().MaKhachHang && t.MaSP == masp).FirstOrDefault();
                 if (gh != null)
                 {
                     gh.SoLuong = soluong;

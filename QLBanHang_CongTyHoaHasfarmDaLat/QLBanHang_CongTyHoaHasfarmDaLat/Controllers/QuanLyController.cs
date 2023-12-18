@@ -132,24 +132,32 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
         public ActionResult ThemChuDe(FormCollection form)
         {
             TempData["ThongBao_ThemChuDe"] = null;
-            ChuDe chude = new ChuDe();
-            int stt = 1;
-            string macd = "CD0" + (ql.ChuDes.Count() + stt);
-            ChuDe kiemtra = ql.ChuDes.Where(kt => kt.MaChuDe == macd).FirstOrDefault();
-            while (kiemtra != null)
+            ChuDe cd = ql.ChuDes.Where(t => t.TenChuDe == form["ten"]).FirstOrDefault();
+            if (cd == null)
             {
-                stt++;
-                macd = "CD0" + (ql.ChuDes.Count() + stt);
-                kiemtra = ql.ChuDes.Where(kt => kt.MaChuDe == macd).FirstOrDefault();
+                ChuDe chude = new ChuDe();
+                int stt = 1;
+                string macd = "CD0" + (ql.ChuDes.Count() + stt);
+                ChuDe kiemtra = ql.ChuDes.Where(kt => kt.MaChuDe == macd).FirstOrDefault();
+                while (kiemtra != null)
+                {
+                    stt++;
+                    macd = "CD0" + (ql.ChuDes.Count() + stt);
+                    kiemtra = ql.ChuDes.Where(kt => kt.MaChuDe == macd).FirstOrDefault();
+                }
+                chude.MaChuDe = macd;
+                chude.TenChuDe = form["ten"];
+                ql.ChuDes.InsertOnSubmit(chude);
+                ql.SubmitChanges();
+                TempData["ThongBao_ThemChuDe"] = "Them Thanh Cong !";
+                return RedirectToAction("ChuDe");
             }
-            chude.MaChuDe = macd;
-            chude.TenChuDe = form["ten"];
-            ql.ChuDes.InsertOnSubmit(chude);
-            ql.SubmitChanges();
-            TempData["ThongBao_ThemChuDe"] = "Them Thanh Cong !";
-            return RedirectToAction("ChuDe");
+            else
+            {
+                ViewBag.ThongBao_ChuDe = "Ten Chu De Da Ton Tai!";
+                return View();
+            }
         }
-
         [CustomAuthorizeFilter]
         public ActionResult SuaChuDe(string id)
         {
@@ -163,18 +171,9 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             ChuDe cd = ql.ChuDes.Where(t => t.MaChuDe == form["macd"]).FirstOrDefault();
             if (cd != null)
             {
-                ChuDe kttrung = ql.ChuDes.Where(kt => kt.TenChuDe == form["tencd"]).FirstOrDefault();
-                if (kttrung == null)
-                {
-                    cd.TenChuDe = form["tencd"];
-                    ql.SubmitChanges();
-                    return RedirectToAction("ChuDe");
-                }
-                else
-                {
-                    ViewBag.ThongBao_SuaChuDe = "Ten Chu De Bi Trung !";
-                    return View();
-                }
+                cd.TenChuDe = form["tencd"];
+                ql.SubmitChanges();
+                return RedirectToAction("ChuDe");
             }
             else
             {
@@ -235,7 +234,7 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
             bool trangThai = form["tt"] != null && form["tt"].Equals("on"); // Kiểm tra checkbox trạng thái
 
             // Kiểm tra chủ đề tồn tại
-            ChuDe chuDe = ql.ChuDes.Where(t => t.TenChuDe == maChuDe).FirstOrDefault();
+            ChuDe chuDe = ql.ChuDes.Where(t => t.MaChuDe == maChuDe).FirstOrDefault();
             if (chuDe != null)
             {
                 SanPham sanPham = new SanPham();
@@ -265,21 +264,40 @@ namespace QLBanHang_CongTyHoaHasfarmDaLat.Controllers
                     hinh1.SaveAs(Server.MapPath("/Image/" + hinh1.FileName));
                     ha.Hinh1 = hinh1.FileName;
                 }
+                else
+                {
+                    ha.Hinh1 = null;
+                }
                 if (hinh2 != null)
                 {
                     hinh2.SaveAs(Server.MapPath("/Image/" + hinh2.FileName));
                     ha.Hinh2 = hinh2.FileName;
                 }
+                else
+                {
+                    ha.Hinh2 = null;
+                }
+
                 if (hinh3 != null)
                 {
                     hinh3.SaveAs(Server.MapPath("/Image/" + hinh3.FileName));
                     ha.Hinh3 = hinh3.FileName;
                 }
+                else
+                {
+                    ha.Hinh3 = null;
+                }
+
                 if (hinh4 != null)
                 {
                     hinh4.SaveAs(Server.MapPath("/Image/" + hinh4.FileName));
                     ha.Hinh4 = hinh4.FileName;
                 }
+                else
+                {
+                    ha.Hinh4 = null;
+                }
+
                 ql.HinhAnhs.InsertOnSubmit(ha);
                 ql.SubmitChanges();
                 TempData["ThongBao_ThemSanPham"] = "Them San Pham Thanh Cong!";

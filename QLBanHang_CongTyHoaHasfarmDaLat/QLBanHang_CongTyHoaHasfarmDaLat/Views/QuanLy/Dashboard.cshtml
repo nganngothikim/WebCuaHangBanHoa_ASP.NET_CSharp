@@ -11,7 +11,7 @@
 <div id="content-page" class="content-page">
     <div class="container-fluid">
         <div class="row">
-            @Html.Action("ThongKeTongSo","QuanLy")
+            @Html.Action("ThongKeTongSo", "QuanLy")
 
             <div class="col-md-12">
                 <div class="iq-card iq-card-block iq-card-stretch iq-card-height">
@@ -33,7 +33,9 @@
                             <!-- Button submit -->
                             <button type="submit" onclick="submitForm()" class="btn btn-primary">Submit</button>
                         </form>
-
+                        <div style="float:right; margin-top:-40px;">
+                            <input type="submit" onclick="exportToExcel()" value="Excel" class="btn btn-primary" />
+                        </div>
 
                         <canvas id="salesChart"></canvas>
                     </div>
@@ -127,6 +129,38 @@
                                 }
                             }
                         });
+                            function exportToExcel() {
+                                var months = ["Tháng 1", "Tháng 2", "Tháng 3", "Tháng 4", "Tháng 5", "Tháng 6", "Tháng 7", "Tháng 8", "Tháng 9", "Tháng 10", "Tháng 11", "Tháng 12"];
+                                var salesDataString = '@Html.Raw(ViewBag.DoanhSoTheoThang)'; // Sử dụng trực tiếp mảng salesData
+
+                                // Chuyển đổi chuỗi JSON thành một mảng JavaScript
+                                var salesDataArray = JSON.parse('[' + salesDataString + ']');
+
+                                // Tạo một mảng dữ liệu có tiêu đề
+                                var dataToExport = [months].concat([salesDataArray]);
+
+                                // Tạo đối tượng workbook và worksheet từ dữ liệu
+                                var wb = XLSX.utils.book_new();
+                                var ws = XLSX.utils.aoa_to_sheet(dataToExport);
+
+                                // Thêm worksheet vào workbook
+                                XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+                                var fileName = 'thongke.xlsx';
+                                // Tạo Blob từ workbook
+                                var blob = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+
+                                var excelBlob = new Blob([blob], { type: 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet' });
+
+                                saveAs(excelBlob, fileName);
+                            }
+                        function saveAs(blob, fileName) {
+                            var link = document.createElement('a');
+                            link.href = window.URL.createObjectURL(blob);
+                            link.download = fileName;
+                            document.body.appendChild(link);
+                            link.click();
+                            document.body.removeChild(link);
+                        }
                     </script>
                 </div>
             </div>

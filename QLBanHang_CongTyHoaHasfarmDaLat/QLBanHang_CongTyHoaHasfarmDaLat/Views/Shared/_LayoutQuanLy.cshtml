@@ -195,6 +195,9 @@
     <script src="~/assets/admin/js/chart-custom.js"></script>
     <!-- Custom JavaScript -->
     <script src="~/assets/admin/js/custom.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.5/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/file-saver@2.0.5/dist/FileSaver.min.js"></script>
+
 </body>
 </html>
 <script>
@@ -235,27 +238,5 @@
             this.value = '0' + inputValue.slice(1);
         }
     });
-
-
-     //$(document).ready(function () {
-     //    $('#submitButton').click(function (e) {
-     //        // Ngăn chặn hành động mặc định của nút button
-     //        e.preventDefault();
-
-     //        // Kiểm tra xem có ít nhất một checkbox được chọn hay không
-     //        var checkedCount = $('input[type="checkbox"]:checked').length;
-
-     //        if (checkedCount === 0) {
-     //            // Nếu không có checkbox nào được chọn, hiển thị thông báo hoặc thực hiện hành động phù hợp
-     //            alert('Vui lòng chọn ít nhất một sản phẩm để nhập hàng.');
-     //        } else {
-     //            // Nếu có ít nhất một checkbox được chọn, submit form
-     //            $('#danhSachNhapForm').submit();
-     //        }
-     //    });
-     //});
-
-
-
 
 </script>
